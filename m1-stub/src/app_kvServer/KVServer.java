@@ -11,14 +11,20 @@ public class KVServer implements IKVServer {
 	 *           currently not contained in the cache. Options are "FIFO", "LRU",
 	 *           and "LFU".
 	 */
+	private int port;
+	private int cacheSize;
+	private String strategy;
 	public KVServer(int port, int cacheSize, String strategy) {
 		// TODO Auto-generated method stub
+		this.port = port;
+		this.cacheSize = cacheSize;
+		this.strategy = strategy;
 	}
 	
 	@Override
 	public int getPort(){
 		// TODO Auto-generated method stub
-		return -1;
+		return port;
 	}
 
 	@Override
