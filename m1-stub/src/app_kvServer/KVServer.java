@@ -24,7 +24,6 @@ public class KVServer implements IKVServer {
 	 *           and "LFU".
 	 */
 	private static Logger logger = Logger.getRootLogger();
-
 	private int port;
 	private ServerSocket serverSocket;
 	private boolean running;
