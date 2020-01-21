@@ -4,28 +4,32 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
 import shared.messages.KVMessageImplementation;
 import java.io.RandomAccessFile;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Storage {
     private static Logger logger = Logger.getRootLogger();
-    private Map<String, locationData> locationStorage;
+    private ConcurrentHashMap<String, locationData>  locationStorage;
     private int port;
     private String locationStorageFileName;
     private String DBName;
+    private RandomAccessFile serverFile;
+
 
     public Storage(int port) {
         this.port = port;
     }
 
-    public void initializeStorageData(){
+    public void initializeStorageData() throws FileNotFoundException {
         locationStorageFileName = "";
         DBName = "";
-        locationStorage = new Collections.synchronizedMap(map);
+        locationStorage = new ConcurrentHashMap<>();
+        serverFile = new RandomAccessFile(DBName, "w+");
     }
 
     public void saveLocationStorage(Map<String, String> storage) throws  IOException{
@@ -66,12 +70,33 @@ public class Storage {
         }
     }
 
-    public void putLocationStorageData(String Key, String Value){
+    public void putLocationStorageData(String Key, String Value) {
+        if (locationStorage.containsKey(key)) {
 
+        } else {
+            int location = 0;
+            locationData _locationData = new locationData(location, Value.length());
+            logger.info("Created Key and Value");
+        }
     }
 
-    // Marshalling and Demarshalling of Data
+    public synchronized long saveToRandomAccessFile(String message) throws IOException {
+        long location = serverFile.length();
+        serverFile.seek(location);
+        serverFile.write(message.getBytes());
+        logger.info("Write to File");
+        return location;
+    }
 
+    public synchronized byte[] readCharsFromFile (String filePath, long location, int chars) throws IOException {
+        serverFile.seek(location);
+        byte[] bytes = new byte[chars];
+        serverFile.read(bytes);
+        serverFile.close();
+        return bytes;
+    }
+
+    public
 
 
 
