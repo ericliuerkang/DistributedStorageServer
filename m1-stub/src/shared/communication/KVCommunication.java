@@ -2,8 +2,8 @@ package shared.communication;
 
 import app_kvServer.KVServer;
 import org.apache.log4j.Logger;
-import org.json.*;
-import shared.messages.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,20 +1,23 @@
 package persistent_storage;
+
 import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.*;
 
-import shared.messages.KVMessageImplementation;
-import java.io.RandomAccessFile;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Storage {
     private static Logger logger = Logger.getRootLogger();
-    private ConcurrentHashMap<String, locationData>  locationStorage;
+    private Map<String, locationData> locationStorage;
+
     private int port;
     private String locationStorageFileName;
     private String DBName;
@@ -23,26 +26,30 @@ public class Storage {
 
     public Storage(int port) {
         this.port = port;
+        this.locationStorageFileName = "";
+        this.DBName = "";
+        this.locationStorage = Collections.synchronizedMap(new HashMap<String, locationData>());
     }
 
-    public void initializeStorageData() throws FileNotFoundException {
-        locationStorageFileName = "";
-        DBName = "";
-        locationStorage = new ConcurrentHashMap<>();
-        serverFile = new RandomAccessFile(DBName, "w+");
+    public void loadDBFile() {
+        try {
+            serverFile = new RandomAccessFile(DBName, "rw");
+        } catch (FileNotFoundException e) {
+            logger.error("File not found");
+        }
     }
 
-    public void saveLocationStorage(Map<String, String> storage) throws  IOException{
-        try{
+    public void saveLocationStorage(Map<String, locationData> storage) throws IOException {
+        try {
             logger.info("Attempting to serialize data");
             Properties properties = new Properties();
-            for (Map.Entry<String,String> entry : storage.entrySet()) {
+            for (Map.Entry<String, locationData> entry : storage.entrySet()) {
                 properties.put(entry.getKey(), entry.getValue());
             }
             properties.store(new FileOutputStream("data.properties"), null);
-        }catch (FileNotFoundException FNE){
+        } catch (FileNotFoundException FNE) {
             logger.info("Saving failed, FileNotFoundException: ", FNE);
-        }catch (IOException IOE){
+        } catch (IOException IOE) {
             logger.info("Saving failed, IOException: ", IOE);
         }
     }
@@ -57,22 +64,23 @@ public class Storage {
         return map;
     }
 
-    public void deleteLocationStorageData(String key){
-        if (locationStorage.containsKey(key)){
-            try{
+    public void deleteLocationStorageData(String key) {
+        if (locationStorage.containsKey(key)) {
+            try {
                 logger.info("Attempting to remove key: " + key);
                 locationStorage.remove(key);
-            }catch (Exception e){
+            } catch (Exception e) {
                 logger.error("DeleteKV failed ");
             }
-        }else{
+        } else {
             logger.debug("Key is not found in locationStorage");
         }
     }
 
-    public void putLocationStorageData(String Key, String Value) {
+    public void putLocationStorageData(String key, String Value) {
         if (locationStorage.containsKey(key)) {
 
+            return;
         } else {
             int location = 0;
             locationData _locationData = new locationData(location, Value.length());
@@ -80,7 +88,7 @@ public class Storage {
         }
     }
 
-    public synchronized long saveToRandomAccessFile(String message) throws IOException {
+    public synchronized long saveToFile(String message) throws IOException {
         long location = serverFile.length();
         serverFile.seek(location);
         serverFile.write(message.getBytes());
@@ -88,16 +96,21 @@ public class Storage {
         return location;
     }
 
-    public synchronized byte[] readCharsFromFile (String filePath, long location, int chars) throws IOException {
+    public synchronized byte[] readCharsFromFile(long location, int length) throws IOException {
         serverFile.seek(location);
-        byte[] bytes = new byte[chars];
+        byte[] bytes = new byte[length];
         serverFile.read(bytes);
         serverFile.close();
         return bytes;
     }
 
+    public void addToFile(){
+
+    }
+
+    public void deleteFromFile(){
+
+    }
+
     public
-
-
-
 }
