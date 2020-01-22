@@ -1,5 +1,7 @@
 package app_kvServer;
 
+import cache.KVCache;
+
 public class KVServer implements IKVServer {
 	/**
 	 * Start KV Server at given port
@@ -14,11 +16,14 @@ public class KVServer implements IKVServer {
 	private int port;
 	private int cacheSize;
 	private String strategy;
+	private KVCache cache;
+
 	public KVServer(int port, int cacheSize, String strategy) {
 		// TODO Auto-generated method stub
 		this.port = port;
 		this.cacheSize = cacheSize;
 		this.strategy = strategy;
+		this.cache = new KVCache(strategy, cacheSize);
 	}
 	
 	@Override
@@ -35,14 +40,22 @@ public class KVServer implements IKVServer {
 
 	@Override
     public CacheStrategy getCacheStrategy(){
-		// TODO Auto-generated method stub
-		return IKVServer.CacheStrategy.None;
+		switch (this.strategy){
+			case "FIFO":
+				return IKVServer.CacheStrategy.FIFO;
+			case "LRU":
+				return IKVServer.CacheStrategy.LRU;
+			case "LFU":
+				return IKVServer.CacheStrategy.LFU;
+			default:
+				return IKVServer.CacheStrategy.None;
+		}
 	}
 
 	@Override
     public int getCacheSize(){
 		// TODO Auto-generated method stub
-		return -1;
+		return cache.getCurrentCacheSize();
 	}
 
 	@Override
@@ -54,23 +67,33 @@ public class KVServer implements IKVServer {
 	@Override
     public boolean inCache(String key){
 		// TODO Auto-generated method stub
-		return false;
+		return cache.inCache(key);
 	}
 
 	@Override
     public String getKV(String key) throws Exception{
 		// TODO Auto-generated method stub
-		return "";
+		if (inCache(key)){
+			return cache.getV(key);
+		}
+		else{
+			String val = Storage.getV(key);
+			cache.putKV(key, val);
+			return val
+		}
 	}
 
 	@Override
     public void putKV(String key, String value) throws Exception{
 		// TODO Auto-generated method stub
+		cache.putKV(key, value);
+		// TODO put storage stuff here
 	}
 
 	@Override
     public void clearCache(){
 		// TODO Auto-generated method stub
+		cache.clearCache();
 	}
 
 	@Override
