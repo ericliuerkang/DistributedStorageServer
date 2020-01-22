@@ -1,5 +1,7 @@
 package app_kvServer;
 
+import cache.KVCache;
+
 import shared.communication.*;
 
 import java.net.*;
@@ -11,6 +13,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+
 
 public class KVServer implements IKVServer {
 	/**
@@ -28,6 +31,9 @@ public class KVServer implements IKVServer {
 	private ServerSocket serverSocket;
 	private boolean running;
 	private int cacheSize;
+  
+	//private String strategy;
+	//private KVCache cache;
 	private CacheStrategy cacheStrategy;
 	private ArrayList<Thread> serverThreadList;
 	private Thread serverThread;
@@ -36,6 +42,8 @@ public class KVServer implements IKVServer {
 		// TODO Auto-generated method stub
 		this.port = port;
 		this.cacheSize = cacheSize;
+		//this.strategy = strategy;
+		//this.cache = new KVCache(strategy, cacheSize);
 		this.cacheStrategy = stringToStrategy(strategy);
 		serverThreadList = new ArrayList<Thread>();
 		serverThread = null;
@@ -66,6 +74,18 @@ public class KVServer implements IKVServer {
 
 	@Override
     public CacheStrategy getCacheStrategy(){
+  /*
+		switch (this.strategy){
+			case "FIFO":
+				return IKVServer.CacheStrategy.FIFO;
+			case "LRU":
+				return IKVServer.CacheStrategy.LRU;
+			case "LFU":
+				return IKVServer.CacheStrategy.LFU;
+			default:
+				return IKVServer.CacheStrategy.None;
+		}
+    */
 		// TODO Auto-generated method stub
 		return this.cacheStrategy;
 	}
@@ -73,6 +93,7 @@ public class KVServer implements IKVServer {
 	@Override
     public int getCacheSize(){
 		// TODO Auto-generated method stub
+		//return cache.getCurrentCacheSize();
 		return this.cacheSize;
 	}
 
@@ -85,23 +106,33 @@ public class KVServer implements IKVServer {
 	@Override
     public boolean inCache(String key){
 		// TODO Auto-generated method stub
-		return false;
+		return cache.inCache(key);
 	}
 
 	@Override
     public String getKV(String key) throws Exception{
 		// TODO Auto-generated method stub
-		return "";
+		if (inCache(key)){
+			return cache.getV(key);
+		}
+		else{
+			String val = Storage.getV(key);
+			cache.putKV(key, val);
+			return val
+		}
 	}
 
 	@Override
     public void putKV(String key, String value) throws Exception{
 		// TODO Auto-generated method stub
+		cache.putKV(key, value);
+		// TODO put storage stuff here
 	}
 
 	@Override
     public void clearCache(){
 		// TODO Auto-generated method stub
+		cache.clearCache();
 	}
 
 	@Override
