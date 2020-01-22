@@ -1,25 +1,71 @@
 package client;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import java.net.Socket;
+
+import org.apache.log4j.*;
+import logger.LogSetup;
 import shared.messages.KVMessage;
 
 public class KVStore implements KVCommInterface {
+	private static final String PROMPT = "Client> ";
 	/**
 	 * Initialize KVStore with address and port of KVServer
 	 * @param address the address of the KVServer
 	 * @param port the port of the KVServer
 	 */
+	private Logger logger = Logger.getRootLogger();
+	private String address;
+	private int port;
+
+	private Socket clientSocket;
+	private OutputStream output;
+	private InputStream input;
+
+
 	public KVStore(String address, int port) {
 		// TODO Auto-generated method stub
+		this.port = port;
+		this.address = address;
+		// setRunning(true);
+		logger.info("Connection Established");
 	}
-
+	/**
+	 * @throws Exception
+	 */
 	@Override
 	public void connect() throws Exception {
-		// TODO Auto-generated method stub
+		clientSocket = new Socket(address, port);
+		try{
+			output = clientSocket.getOutputStream();
+			input = clientSocket.getInputStream();
+			logger.info("Connection Successful");
+		}catch (IOException ioe) {
+			logger.error("Connection could not be established!");
+		}
 	}
-
 	@Override
 	public void disconnect() {
-		// TODO Auto-generated method stub
+		logger.info("try to close connection ...");
+		try {
+			tearDownConnection();
+		} catch (Exception e) {
+			logger.error("Unable to close connection! Error:" + e);
+		}
+	}
+	private void tearDownConnection() throws IOException {
+		// setRunning(false);
+		logger.info("tearing down the connection ...");
+		if (clientSocket != null) {
+			input.close();
+			output.close();
+			clientSocket.close();
+			clientSocket = null;
+			logger.info("connection closed!");
+		}
 	}
 
 	@Override
@@ -32,5 +78,46 @@ public class KVStore implements KVCommInterface {
 	public KVMessage get(String key) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean isRunning() throws IOException {
+		if (clientSocket != null && clientSocket.getInetAddress().isReachable(20))
+			return true;
+		else
+			return false;
+	}
+
+	public String setLevel(String levelString) {
+		if(levelString.equals(Level.ALL.toString())) {
+			logger.setLevel(Level.ALL);
+			return Level.ALL.toString();
+		} else if(levelString.equals(Level.DEBUG.toString())) {
+			logger.setLevel(Level.DEBUG);
+			return Level.DEBUG.toString();
+		} else if(levelString.equals(Level.INFO.toString())) {
+			logger.setLevel(Level.INFO);
+			return Level.INFO.toString();
+		} else if(levelString.equals(Level.WARN.toString())) {
+			logger.setLevel(Level.WARN);
+			return Level.WARN.toString();
+		} else if(levelString.equals(Level.ERROR.toString())) {
+			logger.setLevel(Level.ERROR);
+			return Level.ERROR.toString();
+		} else if(levelString.equals(Level.FATAL.toString())) {
+			logger.setLevel(Level.FATAL);
+			return Level.FATAL.toString();
+		} else if(levelString.equals(Level.OFF.toString())) {
+			logger.setLevel(Level.OFF);
+			return Level.OFF.toString();
+		} else {
+			return LogSetup.UNKNOWN_LEVEL;
+		}
+	}
+
+	public void printPossibleLogLevels() {
+		System.out.println(PROMPT
+				+ "Possible log levels are:");
+		System.out.println(PROMPT
+				+ "ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF");
 	}
 }

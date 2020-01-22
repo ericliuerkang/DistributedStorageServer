@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/junit-4.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/json-20190722.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.8.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$APPLICATION_HOME_DIR$/java-json.jar!/" />
+    </SOURCES>
+  </library>
+</component>
