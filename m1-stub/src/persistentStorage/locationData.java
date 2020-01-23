@@ -1,4 +1,4 @@
-package persistent_storage;
+package persistentStorage;
 
 import java.io.Serializable;
 
