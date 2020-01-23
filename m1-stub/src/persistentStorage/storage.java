@@ -91,9 +91,8 @@ public class storage {
         }
     }
 
-    public synchronized long saveToFile(String message, String DBName) throws IOException {
+    public synchronized long writeToFile(String message, String DBName, int location) throws IOException {
         RandomAccessFile serverFile = loadDBFile(DBName);
-        long location = serverFile.length();
         serverFile.seek(location);
         serverFile.write(message.getBytes());
         logger.info("Write to File");
@@ -139,7 +138,7 @@ public class storage {
         }
     }
 
-    public String encodeMessage(String key, String value){
+    public String encodeMessage(storageData s){
         //Convert message from
         /*
         String recordSeparator = "/r/n";
@@ -155,7 +154,6 @@ public class storage {
         byte[] valueBytes =
          */
         Gson gson = new Gson();
-        storageData s = new storageData(key, value);
         String jsonString = gson.toJson(s);
         return jsonString;
     }
@@ -171,18 +169,48 @@ public class storage {
         return sk;
     }
 
-    public String getValue(String Key) throws IOException {
+    public String getValue(String key) throws IOException {
         Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
-        locationData loc = stringlocationDataHashMap.get(Key);
+        locationData loc = stringlocationDataHashMap.get(key);
         RandomAccessFile raf = loadDBFile(DBName);
         byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
         storageData sk = decodeBytes(res);
         return sk.getValue();
     }
 
+    public void putValue(String key, String value){
+        try {
+            Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+            RandomAccessFile raf = loadDBFile(DBName);
+            if (!stringlocationDataHashMap.containsKey(key)) {
+                locationData loc = new locationData(value.length(), (int) raf.length());
+                storageData s = new storageData(key, value);
+                String message = encodeMessage(s);
+                writeToFile(message, DBName, (int) raf.length());
+            }else{
+                locationData loc = stringlocationDataHashMap.get(key);
+                byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
+                storageData s = decodeBytes(res);
+                s.setDeleted(true);
+                String message = encodeMessage(s);
+                writeToFile(message, DBName, loc.getStartPoint());
+
+                storageData newS = new storageData(key, value);
+                message = encodeMessage(newS);
+                writeToFile(message, DBName, (int)raf.length());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void clearFile(){
 
     }
 
+    public static void main(String[] args) {
+
+    }
 
 }
