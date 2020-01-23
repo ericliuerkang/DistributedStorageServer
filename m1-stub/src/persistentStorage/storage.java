@@ -2,6 +2,7 @@ package persistentStorage;
 
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.Collections;
@@ -52,12 +53,12 @@ public class storage {
 
     public Map loadLocationStorage(String locationStorageFileName) {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(locationStorageFileName))) {
-            Map<String, locationData> stringlocationDataHashMap = Collections.synchronizedMap((HashMap<String, locationData>) is.readObject());
+            Map<String, locationData> stringlocationDataHashMap = (Map<String, locationData>) is.readObject();
             is.close();
             return stringlocationDataHashMap;
-        }catch (ClassNotFoundException CNFE) {
-            CNFE.printStackTrace();
-            logger.error("Loading failed, ClassNotFoundException", CNFE);
+        }catch (FileNotFoundException | ClassNotFoundException FNFE) {
+            FNFE.printStackTrace();
+            logger.error("Loading failed, ClassNotFoundException", FNFE);
         }catch (IOException IOE) {
             IOE.printStackTrace();
             logger.error("Loading Failed, IOException", IOE);
@@ -171,18 +172,40 @@ public class storage {
         return sk;
     }
 
-    public String getValue(String Key) throws IOException {
+    public String getValue(String key) throws IOException {
         Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
-        locationData loc = stringlocationDataHashMap.get(Key);
+        locationData loc = stringlocationDataHashMap.get(key);
         RandomAccessFile raf = loadDBFile(DBName);
         byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
         storageData sk = decodeBytes(res);
         return sk.getValue();
     }
 
+    public void putValue(String key, @NotNull String value) throws IOException {
+        Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        RandomAccessFile raf = loadDBFile(DBName);
+        locationData loc = new locationData(value.length(), (int)raf.length());
+        stringlocationDataHashMap.put(key, loc);
+        saveLocationStorage(stringlocationDataHashMap);
+        String message = encodeMessage(key, value);
+        saveToFile(message, DBName);
+    }
+
+    public void deleteValue(String key){
+
+    }
+
     public void clearFile(){
 
     }
 
-
+    public static void main(String[] args) {
+        storage s = new storage(1);
+        try{
+            s.putValue("k","v");
+        }catch (IOException e){
+            System.out.println("error");
+        }
+    }
 }
+
