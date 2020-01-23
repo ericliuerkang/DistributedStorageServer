@@ -52,13 +52,15 @@ public class storage {
 
     public Map loadLocationStorage(String locationStorageFileName) {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(locationStorageFileName))) {
-            Map<String, locationData> stringlocationDataHashMap = Collections.synchronizedMap((HashMap<String, locationData>) is.readObject());
+            Map<String, locationData> stringlocationDataHashMap = Collections.synchronizedMap( (Map<String, locationData>)is.readObject());
             is.close();
             return stringlocationDataHashMap;
         }catch (ClassNotFoundException CNFE) {
             CNFE.printStackTrace();
             logger.error("Loading failed, ClassNotFoundException", CNFE);
-        }catch (IOException IOE) {
+        } catch(FileNotFoundException FNE){
+
+        } catch (IOException IOE) {
             IOE.printStackTrace();
             logger.error("Loading Failed, IOException", IOE);
         }
@@ -165,6 +167,8 @@ public class storage {
          */
         Gson gson = new Gson();
         String s = new String(bytesArray);
+        System.out.println(s);
+        System.out.println(s.length());
         storageData sk = gson.fromJson(s, storageData.class);
         return sk;
     }
@@ -183,21 +187,40 @@ public class storage {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
             if (!stringlocationDataHashMap.containsKey(key)) {
-                locationData loc = new locationData(value.length(), (int) raf.length());
+                byte[] valueByte = value.getBytes();
                 storageData s = new storageData(key, value);
+                String k = encodeMessage(s);
+                int tl = k.length();
+                s.setTotalLength(tl + (int) (Math.log10(tl)));
+                locationData loc = new locationData(s.getTotalLength(), (int) raf.length());
+
+                stringlocationDataHashMap.put(key, loc);
+
                 String message = encodeMessage(s);
                 writeToFile(message, DBName, (int) raf.length());
+                saveLocationStorage(stringlocationDataHashMap);
+
             }else{
                 locationData loc = stringlocationDataHashMap.get(key);
                 byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
                 storageData s = decodeBytes(res);
-                s.setDeleted(true);
-                String message = encodeMessage(s);
-                writeToFile(message, DBName, loc.getStartPoint());
+                if (!s.getValue().equals(value)) {
+                    s.setDeleted(1);
+                    String message = encodeMessage(s);
 
-                storageData newS = new storageData(key, value);
-                message = encodeMessage(newS);
-                writeToFile(message, DBName, (int)raf.length());
+                    writeToFile(message, DBName, loc.getStartPoint());
+                    storageData newS = new storageData(key, value);
+                    String k = encodeMessage(newS);
+                    System.out.println(k);
+                    int tl = k.length();
+                    newS.setTotalLength(tl + (int) (Math.log10(tl)));
+                    message = encodeMessage(newS);
+
+                    loc = new locationData(newS.getTotalLength(), (int) raf.length());
+                    stringlocationDataHashMap.put(key, loc);
+                    saveLocationStorage(stringlocationDataHashMap);
+                    writeToFile(message, DBName, (int) raf.length());
+                }
             }
 
         } catch (IOException e) {
@@ -210,6 +233,9 @@ public class storage {
     }
 
     public static void main(String[] args) {
+        storage s = new storage(1);
+        s.putValue("k", "vv");
+        s.putValue("k", "vvvv");
 
     }
 
