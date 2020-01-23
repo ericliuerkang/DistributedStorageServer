@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class storage {
     private static Logger logger = Logger.getRootLogger();
-    private Map<String, locationData> locationStorage;
+    //private Map<String, locationData> locationStorage;
     private int port;
     private String locationStorageFileName;
     private String DBName;
@@ -23,7 +23,7 @@ public class storage {
         this.port = port;
         this.locationStorageFileName = port+"_look_up_table.txt";
         this.DBName = port + "_persistent_storage.txt";
-        this.locationStorage = Collections.synchronizedMap(new HashMap<String, locationData>());
+        //this.locationStorage = Collections.synchronizedMap(new HashMap<String, locationData>());
         //Maybe use Treemap for better efficency.
     }
 
@@ -37,10 +37,10 @@ public class storage {
         return null;
     }
 
-    public void saveLocationStorage(Map<String, locationData> storage) {
+    public void saveLocationStorage(Map<String, locationData> locationStorage) {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(locationStorageFileName));
-            os.writeObject(storage);
+            os.writeObject(locationStorage);
             os.close();
             logger.info("serialized location data stored in " + locationStorage);
         } catch (FileNotFoundException FNE) {
@@ -69,6 +69,7 @@ public class storage {
 
     public void deleteLocationStorageData(String key) {
         //Only delete the entry from lookup table
+        Map<String, locationData> locationStorage = loadLocationStorage(locationStorageFileName);
         if (locationStorage.containsKey(key)) {
             try {
                 logger.info("Attempting to remove key: " + key);
@@ -84,6 +85,7 @@ public class storage {
     }
 
     public void putLocationStorageData(String key, String Value) {
+        Map<String, locationData> locationStorage = loadLocationStorage(locationStorageFileName);
         if (locationStorage.containsKey(key)) {
             return;
         } else {
@@ -93,7 +95,7 @@ public class storage {
         }
     }
 
-    public synchronized long writeToFile(String message, String DBName, int location) throws IOException {
+    public synchronized long writeCharsToFile(String message, String DBName, int location) throws IOException {
         RandomAccessFile serverFile = loadDBFile(DBName);
         serverFile.seek(location);
         serverFile.write(message.getBytes());
@@ -197,7 +199,7 @@ public class storage {
                 stringlocationDataHashMap.put(key, loc);
 
                 String message = encodeMessage(s);
-                writeToFile(message, DBName, (int) raf.length());
+                writeCharsToFile(message, DBName, (int) raf.length());
                 saveLocationStorage(stringlocationDataHashMap);
 
             }else{
@@ -208,7 +210,7 @@ public class storage {
                     s.setDeleted(1);
                     String message = encodeMessage(s);
 
-                    writeToFile(message, DBName, loc.getStartPoint());
+                    writeCharsToFile(message, DBName, loc.getStartPoint());
                     storageData newS = new storageData(key, value);
                     String k = encodeMessage(newS);
                     System.out.println(k);
@@ -217,26 +219,44 @@ public class storage {
                     message = encodeMessage(newS);
 
                     loc = new locationData(newS.getTotalLength(), (int) raf.length());
+                    stringlocationDataHashMap.remove(key);
+
                     stringlocationDataHashMap.put(key, loc);
                     saveLocationStorage(stringlocationDataHashMap);
-                    writeToFile(message, DBName, (int) raf.length());
+                    writeCharsToFile(message, DBName, (int) raf.length());
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void clearFile(){
-
+    public void deleteValue(String key) throws IOException {
+            Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+            RandomAccessFile raf = loadDBFile(DBName);
+            if (stringlocationDataHashMap.containsKey(key)) {
+                locationData loc = stringlocationDataHashMap.get(key);
+                byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
+                storageData s = decodeBytes(res);
+                s.setDeleted(1);
+                String message = encodeMessage(s);
+                writeCharsToFile(message, DBName, loc.getStartPoint());
+                stringlocationDataHashMap.remove(key);
+                saveLocationStorage(stringlocationDataHashMap);
+            } else {
+                logger.info("The key: " + key +" does not exist.");
+            }
     }
 
     public static void main(String[] args) {
         storage s = new storage(1);
         s.putValue("k", "vv");
         s.putValue("k", "vvvv");
-
+        try {
+            s.deleteValue("k");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
