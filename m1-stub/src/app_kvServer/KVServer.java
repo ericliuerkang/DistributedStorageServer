@@ -1,17 +1,14 @@
 package app_kvServer;
 
 import cache.KVCache;
-
-import shared.communication.*;
-
-import java.net.*;
-import java.io.IOException;
-
 import logger.LogSetup;
-
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import persistentStorage.storage;
+import shared.communication.KVCommunication;
 
+import java.io.IOException;
+import java.net.*;
 import java.util.ArrayList;
 
 
@@ -33,10 +30,11 @@ public class KVServer implements IKVServer {
 	private int cacheSize;
   
 	//private String strategy;
-	//private KVCache cache;
+	private KVCache cache;
 	private CacheStrategy cacheStrategy;
 	private ArrayList<Thread> serverThreadList;
 	private Thread serverThread;
+	private storage Storage;
 
 	public KVServer(int port, int cacheSize, String strategy) {
 		// TODO Auto-generated method stub
@@ -47,6 +45,7 @@ public class KVServer implements IKVServer {
 		this.cacheStrategy = stringToStrategy(strategy);
 		serverThreadList = new ArrayList<Thread>();
 		serverThread = null;
+		this.Storage = new storage(port);
 	}
 
 	@Override
@@ -116,9 +115,9 @@ public class KVServer implements IKVServer {
 			return cache.getV(key);
 		}
 		else{
-			String val = Storage.getV(key);
+			String val = Storage.getValue(key);
 			cache.putKV(key, val);
-			return val
+			return val;
 		}
 	}
 

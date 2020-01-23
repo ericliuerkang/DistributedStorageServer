@@ -1,5 +1,6 @@
 package persistentStorage;
 
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -23,6 +24,7 @@ public class storage {
         this.locationStorageFileName = port+"_look_up_table.txt";
         this.DBName = port + "_persistent_storage.txt";
         this.locationStorage = Collections.synchronizedMap(new HashMap<String, locationData>());
+        //Maybe use Treemap for better efficency.
     }
 
     public RandomAccessFile loadDBFile(String DBName) {
@@ -50,7 +52,7 @@ public class storage {
 
     public Map loadLocationStorage(String locationStorageFileName) {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(locationStorageFileName))) {
-            HashMap<String, locationData> stringlocationDataHashMap = (HashMap<String, locationData>) is.readObject();
+            Map<String, locationData> stringlocationDataHashMap = Collections.synchronizedMap((HashMap<String, locationData>) is.readObject());
             is.close();
             return stringlocationDataHashMap;
         }catch (ClassNotFoundException CNFE) {
@@ -60,7 +62,7 @@ public class storage {
             IOE.printStackTrace();
             logger.error("Loading Failed, IOException", IOE);
         }
-        return new HashMap<String, locationData>();
+        return Collections.synchronizedMap(new HashMap<String, locationData>());
     }
 
     public void deleteLocationStorageData(String key) {
@@ -137,16 +139,48 @@ public class storage {
         }
     }
 
-    public void encodeMessage(String key, String value){
+    public String encodeMessage(String key, String value){
         //Convert message from
+        /*
         String recordSeparator = "/r/n";
         int recordSeparatorLength = recordSeparator.length();
         long valueLength = value.length();
         long keyLength = key.length();
 
+        byte[] keyBytes = key.getBytes();
+        byte[] valueBytes = value.getBytes();
+
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        byte[] keyLengthArray = buffer.putLong(keyLength).array();
+        byte[] valueBytes =
+         */
+        Gson gson = new Gson();
+        storageData s = new storageData(key, value);
+        String jsonString = gson.toJson(s);
+        return jsonString;
     }
 
-    public void decodeMessage(){
+    public storageData decodeBytes(byte[] bytesArray){
+        /*
+        String recordSeparator = "/r/n";
+        int recordSeparatorLength = recordSeparator.length();
+         */
+        Gson gson = new Gson();
+        String s = new String(bytesArray);
+        storageData sk = gson.fromJson(s, storageData.class);
+        return sk;
+    }
+
+    public String getValue(String Key) throws IOException {
+        Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        locationData loc = stringlocationDataHashMap.get(Key);
+        RandomAccessFile raf = loadDBFile(DBName);
+        byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
+        storageData sk = decodeBytes(res);
+        return sk.getValue();
+    }
+
+    public void clearFile(){
 
     }
 

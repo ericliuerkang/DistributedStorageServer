@@ -4,6 +4,8 @@ import app_kvServer.KVServer;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
+import shared.messages.KVMessage;
+import shared.messages.KVMessageImplementation;
 
 import java.io.*;
 import java.net.Socket;
