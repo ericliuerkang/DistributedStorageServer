@@ -13,6 +13,15 @@ import java.util.ArrayList;
 
 
 public class KVServer implements IKVServer {
+	private static Logger logger = Logger.getRootLogger();
+	private int port;
+	private ServerSocket serverSocket;
+	private boolean running;
+	private KVCache cache;
+	private CacheStrategy cacheStrategy;
+	private ArrayList<Thread> serverThreadList;
+	private Thread serverThread;
+
 	/**
 	 * Start KV Server at given port
 	 * @param port given port for storage server to operate
@@ -39,9 +48,7 @@ public class KVServer implements IKVServer {
 	public KVServer(int port, int cacheSize, String strategy) {
 		// TODO Auto-generated method stub
 		this.port = port;
-		this.cacheSize = cacheSize;
-		//this.strategy = strategy;
-		//this.cache = new KVCache(strategy, cacheSize);
+		this.cache = new KVCache(strategy, cacheSize);
 		this.cacheStrategy = stringToStrategy(strategy);
 		serverThreadList = new ArrayList<Thread>();
 		serverThread = null;
@@ -73,27 +80,12 @@ public class KVServer implements IKVServer {
 
 	@Override
     public CacheStrategy getCacheStrategy(){
-  /*
-		switch (this.strategy){
-			case "FIFO":
-				return IKVServer.CacheStrategy.FIFO;
-			case "LRU":
-				return IKVServer.CacheStrategy.LRU;
-			case "LFU":
-				return IKVServer.CacheStrategy.LFU;
-			default:
-				return IKVServer.CacheStrategy.None;
-		}
-    */
-		// TODO Auto-generated method stub
 		return this.cacheStrategy;
 	}
 
 	@Override
     public int getCacheSize(){
-		// TODO Auto-generated method stub
-		//return cache.getCurrentCacheSize();
-		return this.cacheSize;
+		return cache.getCurrentCacheSize();
 	}
 
 	@Override
@@ -104,13 +96,12 @@ public class KVServer implements IKVServer {
 
 	@Override
     public boolean inCache(String key){
-		// TODO Auto-generated method stub
 		return cache.inCache(key);
 	}
 
 	@Override
     public String getKV(String key) throws Exception{
-		// TODO Auto-generated method stub
+		// TODO deal with exception and add storage from Jerry
 		if (inCache(key)){
 			return cache.getV(key);
 		}
@@ -123,7 +114,6 @@ public class KVServer implements IKVServer {
 
 	@Override
     public void putKV(String key, String value) throws Exception{
-		// TODO Auto-generated method stub
 		cache.putKV(key, value);
 		// TODO put storage stuff here
 	}
