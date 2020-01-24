@@ -9,6 +9,7 @@ import java.net.Socket;
 import org.apache.log4j.*;
 import logger.LogSetup;
 import shared.messages.KVMessage;
+import shared.communication.KVCommunication;
 
 public class KVStore implements KVCommInterface {
 	private static final String PROMPT = "Client> ";
@@ -25,12 +26,12 @@ public class KVStore implements KVCommInterface {
 	private OutputStream output;
 	private InputStream input;
 
+	private KVCommunication communicationManager;
 
 	public KVStore(String address, int port) {
 		// TODO Auto-generated method stub
 		this.port = port;
 		this.address = address;
-		// setRunning(true);
 		logger.info("Connection Established");
 	}
 	/**
@@ -42,6 +43,7 @@ public class KVStore implements KVCommInterface {
 		try{
 			output = clientSocket.getOutputStream();
 			input = clientSocket.getInputStream();
+			communicationManager = new KVCommunication(clientSocket, null);
 			logger.info("Connection Successful");
 		}catch (IOException ioe) {
 			logger.error("Connection could not be established!");
@@ -57,7 +59,6 @@ public class KVStore implements KVCommInterface {
 		}
 	}
 	private void tearDownConnection() throws IOException {
-		// setRunning(false);
 		logger.info("tearing down the connection ...");
 		if (clientSocket != null) {
 			input.close();
@@ -71,13 +72,15 @@ public class KVStore implements KVCommInterface {
 	@Override
 	public KVMessage put(String key, String value) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		communicationManager.sendMessage(KVMessage.StatusType.PUT, key, value);
+		return communicationManager.receiveMessage();
 	}
 
 	@Override
 	public KVMessage get(String key) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		communicationManager.sendMessage(KVMessage.StatusType.GET, key, null);
+		return communicationManager.receiveMessage();
 	}
 
 	public boolean isRunning() throws IOException {
