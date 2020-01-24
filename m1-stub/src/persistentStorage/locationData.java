@@ -1,9 +1,9 @@
-package persistent_storage;
+package persistentStorage;
 
 import java.io.Serializable;
 
 public class locationData implements Serializable {
-    private long length;
+    private int length;
     private int startPoint;
 
     public locationData(int length, int startPoint) {
@@ -11,7 +11,7 @@ public class locationData implements Serializable {
         this.startPoint = startPoint;
     }
 
-    public long getLength() {
+    public int getLength() {
         return length;
     }
 
