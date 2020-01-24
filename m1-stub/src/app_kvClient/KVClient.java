@@ -28,7 +28,6 @@ public class KVClient implements IKVClient {
     @Override
     public void newConnection(String hostname, int port) throws Exception{
         // TODO Auto-generated method stub
-        new LogSetup("logs/client.log", Level.ALL);
         kvstore = new KVStore(hostname, port);
         kvstore.connect();
     }
@@ -43,12 +42,15 @@ public class KVClient implements IKVClient {
         System.out.println(PROMPT + "Error! " +  error);
     }
 
-    private void handleCommand(String cmdLine) throws IOException {
+    private void handleCommand(String cmdLine) throws Exception {
         String[] tokens = cmdLine.split("\\s+");
 
         if(tokens[0].equals("quit")) {
             stop = true;
-            kvstore.disconnect();
+            if (kvstore != null) {
+                kvstore.disconnect();
+                kvstore = null;
+            }
             System.out.println(PROMPT + "Application exit!");
             logger.info(PROMPT + "Application exit!");
 
@@ -78,11 +80,21 @@ public class KVClient implements IKVClient {
             if(tokens.length >= 2) {
                 if(kvstore != null && kvstore.isRunning()){
                     String key = tokens[1];
-                    StringBuilder str = new StringBuilder();
-                    for (int i = 2; i < tokens.length; i++)
-                        str.append(tokens[i]);
-                    String value = str.toString();
-                    if (value != null){
+                    String value = null;
+                    if (key.length() > 0)
+                    {
+                        if(tokens.length == 2) // delete case
+                            value = null;
+                        else{
+                            StringBuilder str = new StringBuilder();
+                            for (int i = 2; i < tokens.length; i++){
+                                str.append(tokens[i]);
+                                if (i != tokens.length - 1) {
+                                    str.append(" ");
+                                }
+                            }
+                            value = str.toString();
+                        }
                         try {
                             KVMessage ret = kvstore.put(key, value);
                         } catch (Exception e) {
@@ -94,6 +106,22 @@ public class KVClient implements IKVClient {
                 }
             } else {
                 printError("Invalid number of parameters!!");
+            }
+
+        } else if (tokens[0].equals("get")) {
+            if (tokens.length == 2) {
+                if (kvstore != null && kvstore.isRunning()) {
+                    String key = tokens[1];
+                    try {
+                        KVMessage ret = kvstore.get(key);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    printError("Not connected");
+                }
+            } else {
+                printError("Invalid number of parameters!");
             }
 
         } else if(tokens[0].equals("disconnect")) {
@@ -135,13 +163,26 @@ public class KVClient implements IKVClient {
             } catch (IOException e) {
                 stop = true;
                 printError("Error! Application terminated. ");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         }
     }
 
     private void printHelp(){
         logger.info("connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;");
+    }
+
+    public static void main(String[] args) {
+        try {
+            new LogSetup("logs/client.log", Level.ALL);
+            KVClient client = new KVClient();
+            client.run();
+        } catch (IOException e) {
+            System.out.println("Error! Unable to initialize logger!");
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
 }
