@@ -1,27 +1,31 @@
 package persistentStorage;
 
 public class storageData {
-    private boolean deleted;
+    private int deleted;
     private String key;
     private String value;
-    private long totalLength;
+    private int totalLength;
 
     public storageData(String key, String value) {
         this.key = key;
         this.value = value;
-        this.deleted = false;
+        this.deleted = 0;
     }
 
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(int deleted) {
         this.deleted = deleted;
     }
 
     public String getKey() {
         return key;
+    }
+
+    public int getTotalLength() {
+        return totalLength;
+    }
+
+    public void setTotalLength(int totalLength) {
+        this.totalLength = totalLength;
     }
 
     public void setKey(String key) {
@@ -36,11 +40,4 @@ public class storageData {
         this.value = value;
     }
 
-    public long getTotalLength() {
-        return totalLength;
-    }
-
-    public void setTotalLength(long totalLength) {
-        this.totalLength = totalLength;
-    }
 }
