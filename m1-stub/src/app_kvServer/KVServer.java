@@ -120,6 +120,13 @@ public class KVServer implements IKVServer {
 		storage.putValue(key, value);
 	}
 
+	public void deleteKV(String key) throws Exception{
+		if (inCache(key)) {
+			cache.deleteKV(key);
+		}
+		storage.deleteLocationStorageData(key);
+	}
+
 	@Override
     public void clearCache(){
 		// TODO Auto-generated method stub
