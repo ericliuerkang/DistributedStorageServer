@@ -162,6 +162,11 @@ public class storage {
         return jsonString;
     }
 
+    /**
+     *
+     * @param bytesArray An array of bytes read from the
+     * @return storageData, object that contains key, value, delete information and length of the entry
+     */
     public storageData decodeBytes(byte[] bytesArray){
         /*
         String recordSeparator = "/r/n";
@@ -175,6 +180,12 @@ public class storage {
         return sk;
     }
 
+    /**
+     *
+     * @param key
+     * @return
+     * @throws IOException
+     */
     public String getValue(String key) throws IOException {
         Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
         locationData loc = stringlocationDataHashMap.get(key);
@@ -231,6 +242,7 @@ public class storage {
         }
     }
 
+    /*
     public void deleteValue(String key) throws IOException {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
@@ -248,15 +260,31 @@ public class storage {
             }
     }
 
+     */
+
+    public void clearFile(){
+        File f = new File(DBName);
+        if (f.delete()){
+            logger.info("Deleted Persistent Storage File " + f);
+        }
+        f = new File(locationStorageFileName);
+        if (f.delete()){
+            logger.info("Deleted Location Data Storage File " + f);
+        }
+    }
+
     public static void main(String[] args) {
         storage s = new storage(1);
-        s.putValue("k", "vv");
+        /*.putValue("k", "vv");
         s.putValue("k", "vvvv");
         try {
             s.deleteValue("k");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         */
+        s.clearFile();
     }
 
 }
