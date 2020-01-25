@@ -27,6 +27,11 @@ public class storage {
         //Maybe use Treemap for better efficency.
     }
 
+    /**
+     *
+     * @param DBName
+     * @return
+     */
     public RandomAccessFile loadDBFile(String DBName) {
         try {
             RandomAccessFile serverFile = new RandomAccessFile(DBName, "rw");
@@ -37,7 +42,13 @@ public class storage {
         return null;
     }
 
-    public void saveLocationStorage(Map<String, locationData> locationStorage) {
+    /**
+     * Serialize and save location storage data.
+     * File cannot be opened and read by a text editor.
+     * @param locationStorage
+     * @throws IOException
+     */
+    public void saveLocationStorage(Map<String, locationData> locationStorage) throws IOException {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(locationStorageFileName));
             os.writeObject(locationStorage);
@@ -45,8 +56,6 @@ public class storage {
             logger.info("serialized location data stored in " + locationStorage);
         } catch (FileNotFoundException FNE) {
             logger.error("Saving failed, FileNotFoundException: ", FNE);
-        } catch (IOException IOE) {
-            logger.error("Saving failed, IOException: ", IOE);
         }
     }
 
@@ -81,17 +90,6 @@ public class storage {
             }
         } else {
             logger.debug("Key is not found in locationStorage");
-        }
-    }
-
-    public void putLocationStorageData(String key, String Value) {
-        Map<String, locationData> locationStorage = loadLocationStorage(locationStorageFileName);
-        if (locationStorage.containsKey(key)) {
-            return;
-        } else {
-            int location = 0;
-            locationData _locationData = new locationData(location, Value.length());
-            logger.info("Created Key and Value");
         }
     }
 
@@ -142,21 +140,12 @@ public class storage {
         }
     }
 
+    /**
+     * Encode Message to Json using Gson.
+     * @param s
+     * @return
+     */
     public String encodeMessage(storageData s){
-        //Convert message from
-        /*
-        String recordSeparator = "/r/n";
-        int recordSeparatorLength = recordSeparator.length();
-        long valueLength = value.length();
-        long keyLength = key.length();
-
-        byte[] keyBytes = key.getBytes();
-        byte[] valueBytes = value.getBytes();
-
-        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
-        byte[] keyLengthArray = buffer.putLong(keyLength).array();
-        byte[] valueBytes =
-         */
         Gson gson = new Gson();
         String jsonString = gson.toJson(s);
         return jsonString;
@@ -168,10 +157,6 @@ public class storage {
      * @return storageData, object that contains key, value, delete information and length of the entry
      */
     public storageData decodeBytes(byte[] bytesArray){
-        /*
-        String recordSeparator = "/r/n";
-        int recordSeparatorLength = recordSeparator.length();
-         */
         Gson gson = new Gson();
         String s = new String(bytesArray);
         System.out.println(s);
@@ -186,13 +171,25 @@ public class storage {
      * @return
      * @throws IOException
      */
-    public String getValue(String key) throws IOException {
-        Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
-        locationData loc = stringlocationDataHashMap.get(key);
-        RandomAccessFile raf = loadDBFile(DBName);
-        byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
-        storageData sk = decodeBytes(res);
-        return sk.getValue();
+    public String getValue(String key) {
+        try {
+            Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+            locationData loc = stringlocationDataHashMap.get(key);
+            RandomAccessFile raf = loadDBFile(DBName);
+            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
+            storageData sk = decodeBytes(res);
+            if(sk.getDeleted() != 1){
+                System.out.println(sk.getValue());
+                return sk.getValue();
+            }else{
+                logger.error("Item Already deleted");
+            }
+        }catch(IOException ioe){
+            logger.error(ioe);
+            ioe.printStackTrace();
+            System.out.println("help");
+        }
+        return null;
     }
 
     public void putValue(String key, String value){
@@ -242,7 +239,11 @@ public class storage {
         }
     }
 
-    /*
+    /**
+     *
+     * @param key The key of the entry that is going to get deleted.
+     * @throws IOException
+     */
     public void deleteValue(String key) throws IOException {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
@@ -260,8 +261,10 @@ public class storage {
             }
     }
 
-     */
 
+    /**
+     * Clear look-up table
+     */
     public void clearFile(){
         File f = new File(DBName);
         if (f.delete()){
@@ -275,16 +278,18 @@ public class storage {
 
     public static void main(String[] args) {
         storage s = new storage(1);
-        /*.putValue("k", "vv");
-        s.putValue("k", "vvvv");
         try {
+            s.putValue("k", "vv");
+            s.getValue("k");
+            s.putValue("k", "vvvv");
+            s.getValue("k");
             s.deleteValue("k");
+            s.getValue("k");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-         */
-        s.clearFile();
+        // s.clearFile();
     }
 
 }

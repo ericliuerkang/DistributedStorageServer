@@ -6,10 +6,15 @@ public class storageData {
     private String value;
     private int totalLength;
 
+
     public storageData(String key, String value) {
         this.key = key;
         this.value = value;
         this.deleted = 0;
+    }
+
+    public int getDeleted() {
+        return deleted;
     }
 
     public void setDeleted(int deleted) {
