@@ -124,7 +124,7 @@ public class KVServer implements IKVServer {
 		if (inCache(key)) {
 			cache.deleteKV(key);
 		}
-		storage.deleteLocationStorageData(key);
+		storage.deleteValue(key);
 	}
 
 	@Override
@@ -136,6 +136,7 @@ public class KVServer implements IKVServer {
 	@Override
     public void clearStorage(){
 		// TODO Auto-generated method stub
+		storage.clearFile();
 	}
 
 	@Override
