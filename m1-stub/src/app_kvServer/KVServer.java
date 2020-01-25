@@ -13,6 +13,18 @@ import java.util.ArrayList;
 
 
 public class KVServer implements IKVServer {
+
+	private static Logger logger = Logger.getRootLogger();
+	private int port;
+	private int cacheSize;
+	private ServerSocket serverSocket;
+	private boolean running;
+	private CacheStrategy cacheStrategy;
+	private ArrayList<Thread> serverThreadList;
+	private Thread serverThread;
+	private KVCache cache;
+	private storage storage;
+
 	/**
 	 * Start KV Server at given port
 	 * @param port given port for storage server to operate
@@ -23,29 +35,16 @@ public class KVServer implements IKVServer {
 	 *           currently not contained in the cache. Options are "FIFO", "LRU",
 	 *           and "LFU".
 	 */
-	private static Logger logger = Logger.getRootLogger();
-	private int port;
-	private ServerSocket serverSocket;
-	private boolean running;
-	private int cacheSize;
-  
-	//private String strategy;
-	private KVCache cache;
-	private CacheStrategy cacheStrategy;
-	private ArrayList<Thread> serverThreadList;
-	private Thread serverThread;
-	private storage Storage;
 
 	public KVServer(int port, int cacheSize, String strategy) {
 		// TODO Auto-generated method stub
 		this.port = port;
 		this.cacheSize = cacheSize;
-		//this.strategy = strategy;
-		//this.cache = new KVCache(strategy, cacheSize);
+		this.cache = new KVCache(strategy, cacheSize);
 		this.cacheStrategy = stringToStrategy(strategy);
 		serverThreadList = new ArrayList<Thread>();
 		serverThread = null;
-		this.Storage = new storage(port);
+		this.storage = new storage(port);
 	}
 
 	@Override
@@ -73,59 +72,59 @@ public class KVServer implements IKVServer {
 
 	@Override
     public CacheStrategy getCacheStrategy(){
-  /*
-		switch (this.strategy){
-			case "FIFO":
-				return IKVServer.CacheStrategy.FIFO;
-			case "LRU":
-				return IKVServer.CacheStrategy.LRU;
-			case "LFU":
-				return IKVServer.CacheStrategy.LFU;
-			default:
-				return IKVServer.CacheStrategy.None;
-		}
-    */
-		// TODO Auto-generated method stub
 		return this.cacheStrategy;
 	}
 
 	@Override
     public int getCacheSize(){
-		// TODO Auto-generated method stub
-		//return cache.getCurrentCacheSize();
 		return this.cacheSize;
 	}
 
 	@Override
     public boolean inStorage(String key){
 		// TODO Auto-generated method stub
-		return false;
+		String value = null;
+		try {
+			value = storage.getValue(key);
+		} catch (Exception e){
+			logger.error(e);
+		}
+		if (value != null)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
     public boolean inCache(String key){
-		// TODO Auto-generated method stub
 		return cache.inCache(key);
 	}
 
 	@Override
     public String getKV(String key) throws Exception{
-		// TODO Auto-generated method stub
+		// TODO deal with exception and add storage from Jerry
 		if (inCache(key)){
 			return cache.getV(key);
 		}
 		else{
-			String val = Storage.getValue(key);
-			cache.putKV(key, val);
-			return val;
+			String value = storage.getValue(key);
+			cache.putKV(key, value);
+			return value;
 		}
 	}
 
 	@Override
     public void putKV(String key, String value) throws Exception{
-		// TODO Auto-generated method stub
 		cache.putKV(key, value);
 		// TODO put storage stuff here
+		storage.putValue(key, value);
+	}
+
+	public void deleteKV(String key) throws Exception{
+		if (inCache(key)) {
+			cache.deleteKV(key);
+		}
+		storage.deleteLocationStorageData(key);
 	}
 
 	@Override
@@ -149,7 +148,7 @@ public class KVServer implements IKVServer {
 					Socket client = serverSocket.accept();
 
 					KVCommunication communicationManager = new KVCommunication(client, this);
-					Thread serverThread = new Thread (communicationManager);
+					serverThread = new Thread (communicationManager);
 					serverThread.start();
 					serverThreadList.add(serverThread);
 
@@ -238,7 +237,8 @@ public class KVServer implements IKVServer {
 			} else {
 				int port = Integer.parseInt(args[0]);
 				int cacheSize = Integer.parseInt(args[1]);
-				new KVServer(port, cacheSize, args[2]).run();
+				String cacheStrategy = args[2];
+				new KVServer(port, cacheSize, cacheStrategy).run();
 			}
 		} catch (IOException e) {
 			System.out.println("Error! Unable to initialize logger!");

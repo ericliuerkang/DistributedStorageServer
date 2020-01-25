@@ -38,6 +38,12 @@ public class KVCache{
         }
     }
 
+    public void deleteKV(String key){
+        synchronized (cache) {
+            cache.deleteCache(key);
+        }
+    }
+
     public void clearCache(){
         cache.clearCache();
     }

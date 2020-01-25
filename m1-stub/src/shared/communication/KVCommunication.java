@@ -108,9 +108,12 @@ public class KVCommunication implements Runnable {
             String key = null;
             String value = null;
             String status = null;
-            if (jsonMessage.has("key")) key = jsonMessage.getString("key");
-            if (jsonMessage.has("value")) value = jsonMessage.getString("value");
-            if (jsonMessage.has("status")) status = jsonMessage.getString("status");
+            if (jsonMessage.has("key"))
+                key = jsonMessage.getString("key");
+            if (jsonMessage.has("value"))
+                value = jsonMessage.getString("value");
+            if (jsonMessage.has("status"))
+                status = jsonMessage.getString("status");
 
             messageReceived = new KVMessageImplementation(stringToStatus(status), key, value);
             logger.info("Received Message: Status is " + messageReceived.getStatus() + "; Key is " + messageReceived.getKey() + "; Value is " + messageReceived.getValue());
@@ -132,7 +135,7 @@ public class KVCommunication implements Runnable {
                 KVMessage.StatusType resultStatus;
                 switch (status){
                     case PUT:
-                        if (key.contains(" ") || key.equals("") || key.length() < 1 || key.length() > 20 || (value != null && value.length() > 122880)) {
+                        if (key.contains(" ") || key.equals("") || key.length() < 1 ) {
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
                         }
                         else {
@@ -144,10 +147,20 @@ public class KVCommunication implements Runnable {
                                 server.putKV(key, value);
                                 messageToSend = new KVMessageImplementation(resultStatus, key, value);
                             }
+                            else{
+                                //delete
+                                if (server.inCache(key) || server.inStorage(key)) {
+                                    server.deleteKV(key);
+                                    resultStatus = KVMessage.StatusType.DELETE_SUCCESS;
+                                } else {
+                                    resultStatus = KVMessage.StatusType.DELETE_ERROR;
+                                }
+                                messageToSend = new KVMessageImplementation(resultStatus, key, value);
+                            }
                         }
                         break;
                     case GET:
-                        if (key.length() > 20 || key.length() < 1 ) {
+                        if (key.length() < 1 ) {
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.GET_ERROR, key, null);
                         }
                         else {
