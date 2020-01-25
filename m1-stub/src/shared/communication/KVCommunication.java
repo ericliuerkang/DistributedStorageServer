@@ -25,6 +25,7 @@ public class KVCommunication implements Runnable {
     public KVCommunication(Socket clientSocket, KVServer server) {
         this.clientSocket = clientSocket;
         this.server = server;
+        this.open = true;
         try {
             this.inputStream = clientSocket.getInputStream();
             this.outputStream = clientSocket.getOutputStream();
@@ -139,8 +140,8 @@ public class KVCommunication implements Runnable {
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
                         }
                         else {
-                            if (value != null && !value.equals("null") && !value.equals("")) {
-                                if (server.inCache(key) || server.inStorage(key))
+                            if (value != null && !value.equals("null") && !value.equals("") && !value.equals(" ")) {
+                                if ((server.inCache(key) || server.inStorage(key)) && value != server.getKV(key))
                                     resultStatus = KVMessage.StatusType.PUT_UPDATE;
                                 else
                                     resultStatus = KVMessage.StatusType.PUT_SUCCESS;

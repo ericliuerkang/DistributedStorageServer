@@ -1,0 +1,22 @@
+2020-01-25 17:26:48,305 INFO  [main] root: Connection Established
+2020-01-25 17:26:48,310 INFO  [main] root: Connection Successful
+2020-01-25 17:26:56,777 INFO  [main] root: Sent Message: Status is PUT; Key is hey; Value is hhhh
+2020-01-25 17:26:56,781 ERROR [main] root: java.net.SocketException: Broken pipe (Write failed)
+2020-01-25 17:28:18,635 INFO  [main] root: Connection Established
+2020-01-25 17:28:18,640 INFO  [main] root: Connection Successful
+2020-01-25 17:28:41,563 INFO  [main] root: Sent Message: Status is PUT; Key is {}; Value is null
+2020-01-25 17:28:41,567 ERROR [main] root: java.net.SocketException: Broken pipe (Write failed)
+2020-01-25 17:29:10,146 INFO  [main] root: Sent Message: Status is PUT; Key is {key; Value is = sss,value = www}
+2020-01-25 17:29:10,147 ERROR [main] root: java.net.SocketException: Broken pipe (Write failed)
+2020-01-25 17:29:30,459 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
+2020-01-25 17:29:46,979 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
+2020-01-25 17:29:49,083 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
+2020-01-25 17:29:51,619 INFO  [main] root: try to close connection ...
+2020-01-25 17:29:51,619 INFO  [main] root: tearing down the connection ...
+2020-01-25 17:29:51,619 INFO  [main] root: connection closed!
+2020-01-25 17:29:51,619 INFO  [main] root: Client> Application exit!
+2020-01-25 17:33:28,368 INFO  [main] root: Connection Established
+2020-01-25 17:33:28,373 INFO  [main] root: Connection Successful
+2020-01-25 17:33:32,110 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
+2020-01-25 17:33:35,359 INFO  [main] root: Sent Message: Status is PUT; Key is aaa; Value is sss
+2020-01-25 17:33:35,448 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is aaa; Value is sss

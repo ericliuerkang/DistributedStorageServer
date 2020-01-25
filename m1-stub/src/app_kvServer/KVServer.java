@@ -140,8 +140,12 @@ public class KVServer implements IKVServer {
 	}
 
 	@Override
-    public void run(){
+	public void run(){
 		// TODO Auto-generated method stub
+		new KVServerThread(this);
+	}
+	
+    public void connection(){
 		running = initializeServer();
 		if (serverSocket != null) {
 			while (isRunning()) {
@@ -149,9 +153,9 @@ public class KVServer implements IKVServer {
 					Socket client = serverSocket.accept();
 
 					KVCommunication communicationManager = new KVCommunication(client, this);
-					serverThread = new Thread (communicationManager);
-					serverThread.start();
-					serverThreadList.add(serverThread);
+					Thread communication = new Thread (communicationManager);
+					communication.start();
+					serverThreadList.add(communication);
 
 					logger.info("Connected to "
 							+ client.getInetAddress().getHostName()

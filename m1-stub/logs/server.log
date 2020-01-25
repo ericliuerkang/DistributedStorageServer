@@ -1,0 +1,16 @@
+2020-01-25 17:24:55,519 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 17:24:55,522 INFO  [Thread-0] root: Server listening on port: 1555
+2020-01-25 17:26:48,324 INFO  [Thread-0] root: Connected to localhost on port 41722
+2020-01-25 17:28:18,640 INFO  [Thread-0] root: Connected to localhost on port 41738
+2020-01-25 17:32:59,782 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 17:32:59,785 ERROR [Thread-0] root: Error! Cannot open server socket:
+2020-01-25 17:32:59,785 ERROR [Thread-0] root: Port 1555 is already bound!
+2020-01-25 17:32:59,785 INFO  [Thread-0] root: Server terminated.
+2020-01-25 17:33:12,036 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 17:33:12,039 INFO  [Thread-0] root: Server listening on port: 1595
+2020-01-25 17:33:28,377 INFO  [Thread-0] root: Connected to localhost on port 34360
+2020-01-25 17:33:35,367 INFO  [Thread-1] root: Received Message: Status is PUT; Key is aaa; Value is sss
+2020-01-25 17:33:35,404 ERROR [Thread-1] root: java.lang.NullPointerException
+2020-01-25 17:33:35,434 INFO  [Thread-1] root: Write to File
+2020-01-25 17:33:35,446 INFO  [Thread-1] root: serialized location data stored in {aaa=persistentStorage.locationData@f4e0a88}
+2020-01-25 17:33:35,446 INFO  [Thread-1] root: Sent Message: Status is PUT_SUCCESS; Key is aaa; Value is sss
