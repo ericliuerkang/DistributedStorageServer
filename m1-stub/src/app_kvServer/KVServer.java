@@ -113,7 +113,7 @@ public class KVServer implements IKVServer {
 			}
 		}
 		else{
-			logger.info("No Cache");
+			logger.info("No Cache during pull");
 			String value = storage.getValue(key);
 			return null;
 		}
@@ -126,7 +126,7 @@ public class KVServer implements IKVServer {
 			storage.putValue(key, value);
 		}
 		else{
-			logger.info("No Cache");
+			logger.info("No Cache during put");
 			storage.putValue(key, value);
 		}
 	}
@@ -140,8 +140,12 @@ public class KVServer implements IKVServer {
 
 	@Override
     public void clearCache(){
-		// TODO Auto-generated method stub
-		cache.clearCache();
+		if (cache!=null){
+			cache.clearCache();
+		}
+		else{
+			logger.info("No Cache to clear");
+		}
 	}
 
 	@Override
