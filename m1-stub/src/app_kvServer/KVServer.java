@@ -61,11 +61,10 @@ public class KVServer implements IKVServer {
 	@Override
     public String getHostname(){
 		// TODO Auto-generated method stub
-		try {
-			InetAddress host = InetAddress.getLocalHost();
-			return host.getHostName();
-		} catch (UnknownHostException uhe) {
-			logger.error("Error! Failed to get host name.", uhe);
+		if (serverSocket != null)
+			return serverSocket.getInetAddress().getHostName();
+		else {
+			System.out.println("Error! Failed to get host name.");
 			return null;
 		}
 	}
@@ -136,6 +135,7 @@ public class KVServer implements IKVServer {
 	@Override
     public void clearStorage(){
 		// TODO Auto-generated method stub
+		cache.clearCache();
 		storage.clearFile();
 	}
 

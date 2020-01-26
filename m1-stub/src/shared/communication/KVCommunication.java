@@ -136,12 +136,12 @@ public class KVCommunication implements Runnable {
                 KVMessage.StatusType resultStatus;
                 switch (status){
                     case PUT:
-                        if (key.contains(" ") || key.equals("") || key.length() < 1 ) {
+                        if (key == null || key.contains(" ") || key.equals("") || key.length() < 1 || key.length() > 20) {
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
                         }
                         else {
-                            if (value != null && !value.equals("null") && !value.equals("") && !value.equals(" ")) {
-                                if ((server.inCache(key) || server.inStorage(key)) && value != server.getKV(key))
+                            if (value != null && !value.equals("null") && !value.equals("") && value.length() <= 120) {
+                                if (server.inCache(key) || server.inStorage(key))
                                     resultStatus = KVMessage.StatusType.PUT_UPDATE;
                                 else
                                     resultStatus = KVMessage.StatusType.PUT_SUCCESS;
@@ -161,15 +161,18 @@ public class KVCommunication implements Runnable {
                         }
                         break;
                     case GET:
-                        if (key.length() < 1 ) {
+                        if (key == null || key.contains(" ") || key.equals("") || key.length() < 1 || key.length() > 20 || key.equals(null) || key.equals("null")) {
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.GET_ERROR, key, null);
                         }
                         else {
+                        	System.out.print("hi3"); 
                             String valueToSend = server.getKV(key);
-                            if (valueToSend != null)
+                            if (valueToSend != null){
                                 resultStatus = KVMessage.StatusType.GET_SUCCESS;
-                            else
+                            }
+                            else{
                                 resultStatus = KVMessage.StatusType.GET_ERROR;
+                            }
                             messageToSend = new KVMessageImplementation(resultStatus, key, valueToSend);
                         }
                         break;
@@ -180,6 +183,7 @@ public class KVCommunication implements Runnable {
                 }
             }
         } catch (Exception e) {
+        	e.printStackTrace(); 
             messageToSend = new KVMessageImplementation(KVMessage.StatusType.FAILED, null, null);
         }
 

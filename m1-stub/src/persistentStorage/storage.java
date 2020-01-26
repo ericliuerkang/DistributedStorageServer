@@ -109,7 +109,7 @@ public class storage {
         serverFile.close();
         return bytes;
     }
-
+    /*
     public void deleteFromFile(long location) {
         try{
             RandomAccessFile serverFile = loadDBFile(DBName);
@@ -139,6 +139,7 @@ public class storage {
             logger.error("");
         }
     }
+     */
 
     /**
      * Encode Message to Json using Gson.
@@ -174,20 +175,26 @@ public class storage {
     public String getValue(String key) {
         try {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
-            locationData loc = stringlocationDataHashMap.get(key);
-            RandomAccessFile raf = loadDBFile(DBName);
-            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
-            storageData sk = decodeBytes(res);
-            if(sk.getDeleted() != 1){
-                System.out.println(sk.getValue());
-                return sk.getValue();
-            }else{
-                logger.error("Item Already deleted");
+            if(stringlocationDataHashMap.containsKey(key)){
+	            locationData loc = stringlocationDataHashMap.get(key);
+	            RandomAccessFile raf = loadDBFile(DBName);
+	            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
+	            storageData sk = decodeBytes(res);
+	            if(sk.getDeleted() != 1){
+	                System.out.println(sk.getValue());
+	                return sk.getValue();
+	            }else{
+	                logger.error("Item Already deleted");
+	            }
             }
         }catch(IOException ioe){
             logger.error(ioe);
             ioe.printStackTrace();
             System.out.println("help");
+        }catch(NullPointerException NPE){
+        	logger.error(NPE); 
+        	NPE.printStackTrace(); 
+        	
         }
         return null;
     }
@@ -196,6 +203,9 @@ public class storage {
         try {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
+	    if(value == null || value == ""){
+	    	deleteValue(key);
+            }
             if (!stringlocationDataHashMap.containsKey(key)) {
                 byte[] valueByte = value.getBytes();
                 storageData s = new storageData(key, value);
@@ -261,6 +271,11 @@ public class storage {
             }
     }
 
+    public boolean inStorage(String key){
+        Map<String, locationData> stringLocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        return stringLocationDataHashMap.containsKey(key);
+    }
+
 
     /**
      * Clear look-up table
@@ -282,6 +297,10 @@ public class storage {
             s.putValue("k", "vv");
             s.getValue("k");
             s.putValue("k", "vvvv");
+            s.putValue("k", "vvvv");
+            s.putValue("k", "vvvv");
+            s.putValue("k", "vvvv");
+
             s.getValue("k");
             s.deleteValue("k");
             s.getValue("k");
@@ -293,3 +312,4 @@ public class storage {
     }
 
 }
+
