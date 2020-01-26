@@ -167,6 +167,14 @@ public class storage {
 
     /**
      *
+     */
+    public boolean inStorage(String key){
+        Map<String, locationData> stringLocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        return stringLocationDataHashMap.containsKey(key);
+    }
+
+    /**
+     *
      * @param key
      * @return
      * @throws IOException
@@ -260,7 +268,6 @@ public class storage {
                 logger.info("The key: " + key +" does not exist.");
             }
     }
-
 
     /**
      * Clear look-up table
