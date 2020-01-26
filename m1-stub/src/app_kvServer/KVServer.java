@@ -113,9 +113,9 @@ public class KVServer implements IKVServer {
 			}
 		}
 		else{
-			logger.info("No Cache during pull");
+			logger.info("No Cache during get");
 			String value = storage.getValue(key);
-			return null;
+			return value;
 		}
 	}
 
@@ -123,18 +123,20 @@ public class KVServer implements IKVServer {
     public void putKV(String key, String value) throws Exception{
 		if (cache!=null){
 			cache.putKV(key, value);
-			storage.putValue(key, value);
 		}
 		else{
 			logger.info("No Cache during put");
-			storage.putValue(key, value);
 		}
+		storage.putValue(key, value);
 	}
 
 	public void deleteKV(String key) throws Exception{
-		if (inCache(key)) {
-			cache.deleteKV(key);
+		if (cache!=null){
+			if (inCache(key)) {
+				cache.deleteKV(key);
+			}
 		}
+		else{ logger.info("No Cache during delete");}
 		storage.deleteValue(key);
 	}
 
