@@ -82,16 +82,7 @@ public class KVServer implements IKVServer {
 	@Override
     public boolean inStorage(String key){
 		// TODO Auto-generated method stub
-		String value = null;
-		try {
-			value = storage.getValue(key);
-		} catch (Exception e){
-			logger.error(e);
-		}
-		if (value != null)
-			return true;
-		else
-			return false;
+		return storage.inStorage(key);
 	}
 
 	@Override

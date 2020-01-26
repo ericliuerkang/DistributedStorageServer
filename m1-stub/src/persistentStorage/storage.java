@@ -271,7 +271,6 @@ public class storage {
         return stringLocationDataHashMap.containsKey(key);
     }
 
-
     /**
      * Clear look-up table
      */
