@@ -200,14 +200,17 @@ public class storage {
         return null;
     }
 
-    public void putValue(String key, String value) throws IOException {
+    public void putValue(String key, String value) throws Exception {
         Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
         RandomAccessFile raf = loadDBFile(DBName);
-        try{
-            if(value == null || value == ""){
-                deleteValue(key);
-            }
-            if (!stringlocationDataHashMap.containsKey(key)) {
+        if (!stringlocationDataHashMap.containsKey(key)) {
+        	System.out.println("in putvalue");
+        	System.out.println(value.length());
+            if(value == null || value.equals("") || value.length() == 0|| value.equals(" ")){
+            	System.out.println("Throwing Exception");
+            	throw new Exception("Invalid Delete");
+            }else{
+            	System.out.println("in else");
                 byte[] valueByte = value.getBytes();
                 storageData s = new storageData(key, value);
                 String k = encodeMessage(s);
@@ -218,34 +221,32 @@ public class storage {
                 String message = encodeMessage(s);
                 writeCharsToFile(message, DBName, (int) raf.length());
                 saveLocationStorage(stringlocationDataHashMap);
-            }else{
-                locationData loc = stringlocationDataHashMap.get(key);
-                byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
-                storageData s = decodeBytes(res);
-                if (!s.getValue().equals(value)) {
-                    s.setDeleted(1);
-                    String message = encodeMessage(s);
+            }
+        }else{
+            locationData loc = stringlocationDataHashMap.get(key);
+            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
+            storageData s = decodeBytes(res);
+            if (!s.getValue().equals(value)) {
+                s.setDeleted(1);
+                String message = encodeMessage(s);
+                writeCharsToFile(message, DBName, loc.getStartPoint());
+                storageData newS = new storageData(key, value);
+                String k = encodeMessage(newS);
+                //System.out.println(k);
+                int tl = k.length();
+                newS.setTotalLength(tl + (int) (Math.log10(tl)));
+                message = encodeMessage(newS);
 
-                        writeCharsToFile(message, DBName, loc.getStartPoint());
-                        storageData newS = new storageData(key, value);
-                        String k = encodeMessage(newS);
-                        //System.out.println(k);
-                        int tl = k.length();
-                        newS.setTotalLength(tl + (int) (Math.log10(tl)));
-                        message = encodeMessage(newS);
+                loc = new locationData(newS.getTotalLength(), (int) raf.length());
+                stringlocationDataHashMap.remove(key);
 
-                        loc = new locationData(newS.getTotalLength(), (int) raf.length());
-                        stringlocationDataHashMap.remove(key);
-
-                        stringlocationDataHashMap.put(key, loc);
-                        saveLocationStorage(stringlocationDataHashMap);
-                        writeCharsToFile(message, DBName, (int) raf.length());
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+                stringlocationDataHashMap.put(key, loc);
+                saveLocationStorage(stringlocationDataHashMap);
+                writeCharsToFile(message, DBName, (int) raf.length());
+            }
         }
     }
+
 
     /**
      *
@@ -290,7 +291,7 @@ public class storage {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         storage s = new storage(1);
         try {
             s.putValue("k", "vv");

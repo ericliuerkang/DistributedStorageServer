@@ -111,38 +111,40 @@ public class KVServer implements IKVServer {
 
 	@Override
     public void putKV(String key, String value) throws Exception{
-//		System.out.println(key +" "+ value);
-//		System.out.println("Checking for put");
-		if (cache!=null && cache.getMaxCacheSize() > 0){
-			cache.putKV(key, value);
+		try{
+			System.out.println("Key, Value: " + key + " | "+ value);
+			if (cache!=null && cache.getMaxCacheSize() != 0){
+				cache.putKV(key, value);
+			}
+			else{
+				logger.info("No Cache during put");
+			}
+			//System.out.println("Checking Storage for put");
+			storage.putValue(key, value);
+		}catch(Exception e){
+			System.out.print("error");
 		}
-		else{
-			logger.info("No Cache during put");
-		}
-		//System.out.println("Checking Storage for put");
-		storage.putValue(key, value);
 	}
 
-	public void deleteKV(String key) throws Exception{
+	public StatusType deleteKV(String key) throws Exception{
 		if (cache!=null && cache.getMaxCacheSize() > 0){
 			if (inCache(key)) {
 				cache.deleteKV(key);
 			}
 		}
 		else{ logger.info("No Cache during delete");}
-		System.out.println("Checking Storage for deletion");
+		//System.out.println("Checking Storage for deletion");
 		storage.deleteValue(key);
 	}
 
 	@Override
     public void clearCache(){
-		if (cache!=null){
+		if (cache!=null && cache.getCurrentCacheSize() >0){
 			cache.clearCache();
 		}
 		else{
 			logger.info("No Cache to clear");
 		}
-
 	}
 
 	@Override

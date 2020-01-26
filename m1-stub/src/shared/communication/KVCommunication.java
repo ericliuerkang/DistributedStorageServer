@@ -142,7 +142,6 @@ public class KVCommunication implements Runnable {
                         }
                         else {
                             if (value != null && !value.equals("") && value.length() <= 120) {
-                            	System.out.println("PUTsdsdsdsdsd"); 
                                 if (server.inCache(key) || server.inStorage(key))
                                     resultStatus = KVMessage.StatusType.PUT_UPDATE;
                                 else

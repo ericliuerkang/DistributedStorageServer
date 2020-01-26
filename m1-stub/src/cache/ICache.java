@@ -42,10 +42,8 @@ public abstract class ICache{
     }
 
     protected void deleteCache(String key) {
-        if (cache.containsKey(key)){
-            cache.remove(key);
-            currentCacheSize --;
-        }
+        cache.remove(key);
+        currentCacheSize --;
     }
 
     protected boolean inCache(String key) {
@@ -53,8 +51,8 @@ public abstract class ICache{
     }
 
     protected void clearCache() {
-        cache.clear();
         currentCacheSize = 0;
+    	cache.clear();
     }
 
     public int getMaxCacheSize() {
