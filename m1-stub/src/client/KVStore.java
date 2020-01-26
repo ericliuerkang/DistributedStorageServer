@@ -85,7 +85,7 @@ public class KVStore implements KVCommInterface {
 	}
 
 	public boolean isRunning() throws IOException {
-		return clientSocket != null && clientSocket.getInetAddress().isReachable(200);
+		return clientSocket != null && clientSocket.getInetAddress().isReachable(100);
 	}
 
 	public String setLevel(String levelString) {

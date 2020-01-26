@@ -80,5 +80,10 @@ public class KVCache{
     public int getCurrentCacheSize() {
         synchronized (cache) {return cache.currentCacheSize;}
     }
+    
+    public int getMaxCacheSize(){
+        synchronized (cache) {return cache.maxCacheSize;}
+
+    }
 
 }

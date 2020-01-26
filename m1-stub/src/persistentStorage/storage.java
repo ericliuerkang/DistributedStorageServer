@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -207,7 +208,6 @@ public class storage {
                 deleteValue(key);
             }
             if (!stringlocationDataHashMap.containsKey(key)) {
-                System.out.println("hiiii");
                 byte[] valueByte = value.getBytes();
                 storageData s = new storageData(key, value);
                 String k = encodeMessage(s);
@@ -252,7 +252,7 @@ public class storage {
      * @param key The key of the entry that is going to get deleted.
      * @throws IOException
      */
-    public boolean deleteValue(String key) throws IOException {
+    public boolean deleteValue(String key) throws IOException, NoSuchElementException {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
             if (stringlocationDataHashMap.containsKey(key)) {
