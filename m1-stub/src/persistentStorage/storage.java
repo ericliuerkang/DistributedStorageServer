@@ -206,7 +206,7 @@ public class storage {
         if (!stringlocationDataHashMap.containsKey(key)) {
         	System.out.println("in putvalue");
         	System.out.println(value.length());
-            if(value == null || value.equals("") || value.length() == 0|| value.equals(" ")){
+            if(value == null || value.equals("") || value.length() == 0|| value.matches(".*\\w.*")){
             	System.out.println("Throwing Exception");
             	throw new Exception("Invalid Delete");
             }else{
