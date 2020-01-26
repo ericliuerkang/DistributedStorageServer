@@ -161,8 +161,8 @@ public class storage {
     public storageData decodeBytes(byte[] bytesArray){
         Gson gson = new Gson();
         String s = new String(bytesArray);
-        System.out.println(s);
-        System.out.println(s.length());
+        //System.out.println(s);
+        //System.out.println(s.length());
         storageData sk = gson.fromJson(s, storageData.class);
         return sk;
     }
@@ -182,7 +182,7 @@ public class storage {
 	            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
 	            storageData sk = decodeBytes(res);
 	            if(sk.getDeleted() != 1){
-	                System.out.println(sk.getValue());
+	                //System.out.println(sk.getValue());
 	                return sk.getValue();
 	            }else{
 	                logger.error("Item Already deleted");
@@ -191,7 +191,7 @@ public class storage {
         }catch(IOException ioe){
             logger.error(ioe);
             ioe.printStackTrace();
-            System.out.println("help");
+            //System.out.println("help");
         }catch(NullPointerException NPE){
         	logger.error(NPE); 
         	NPE.printStackTrace(); 
@@ -229,7 +229,7 @@ public class storage {
                         writeCharsToFile(message, DBName, loc.getStartPoint());
                         storageData newS = new storageData(key, value);
                         String k = encodeMessage(newS);
-                        System.out.println(k);
+                        //System.out.println(k);
                         int tl = k.length();
                         newS.setTotalLength(tl + (int) (Math.log10(tl)));
                         message = encodeMessage(newS);

@@ -31,7 +31,7 @@ public class KVCache{
                 logger.info("Unknown strategy");
         }
         if (size <= 0){
-            System.out.println("Invalid Cache size: "+size);
+            //System.out.println("Invalid Cache size: "+size);
             logger.info("Invalid Cache size");
             cache = null;
         }
