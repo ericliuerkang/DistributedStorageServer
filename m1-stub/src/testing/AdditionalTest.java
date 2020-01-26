@@ -1,20 +1,17 @@
 package testing;
 
 import cache.KVCache;
-import client.KVStore;
-import org.junit.Test;
-
 import junit.framework.TestCase;
-import shared.messages.KVMessage;
+import org.junit.Test;
 
 public class AdditionalTest extends TestCase {
 
    private KVCache FIFO;
    private KVCache LRU;
    private KVCache LFU;
-   
+
    // TODO add your test cases, at least 3
-   
+
    @Test
    public void FIFOTest() {
       FIFO = new KVCache("FIFO", 2);

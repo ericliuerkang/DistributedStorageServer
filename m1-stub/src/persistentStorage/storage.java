@@ -109,7 +109,7 @@ public class storage {
         serverFile.close();
         return bytes;
     }
-
+    /*
     public void deleteFromFile(long location) {
         try{
             RandomAccessFile serverFile = loadDBFile(DBName);
@@ -139,6 +139,7 @@ public class storage {
             logger.error("");
         }
     }
+     */
 
     /**
      * Encode Message to Json using Gson.
@@ -265,6 +266,11 @@ public class storage {
             }
     }
 
+    public boolean inStorage(String key){
+        Map<String, locationData> stringLocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        return stringLocationDataHashMap.containsKey(key);
+    }
+
 
     /**
      * Clear look-up table
@@ -286,6 +292,10 @@ public class storage {
             s.putValue("k", "vv");
             s.getValue("k");
             s.putValue("k", "vvvv");
+            s.putValue("k", "vvvv");
+            s.putValue("k", "vvvv");
+            s.putValue("k", "vvvv");
+
             s.getValue("k");
             s.deleteValue("k");
             s.getValue("k");
