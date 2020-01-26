@@ -67,7 +67,6 @@ public class LFUCache extends ICache{
         if (!cache.containsKey(key)) {
             if (currentCacheSize == maxCacheSize){
                 evict();
-                currentCacheSize --;
             }
             cache.put(key, value);
             currentCacheSize ++;

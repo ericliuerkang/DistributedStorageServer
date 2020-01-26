@@ -17,12 +17,12 @@ public class KVCache{
                         " cache with cache size: " + size);
                 break;
             case("LRU"):
-                cache = new LRUCache(size-1);
+                cache = new LRUCache(size);
                 logger.info("Initialize " + strategy +
                         " cache with cache size: " + size);
                 break;
             case("LFU"):
-                cache = new LFUCache(size-1);
+                cache = new LFUCache(size);
                 logger.info("Initialize " + strategy +
                         " cache with cache size: " + size);
                 break;
