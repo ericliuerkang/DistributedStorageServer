@@ -45,3 +45,32 @@
 2020-01-25 20:13:50,369 INFO  [Thread-0] root: Connected to localhost on port 36838
 2020-01-25 20:13:58,200 INFO  [Thread-1] root: Received Message: Status is GET; Key is test; Value is null
 2020-01-25 20:13:58,236 INFO  [Thread-1] root: Sent Message: Status is FAILED; Key is null; Value is null
+2020-01-25 20:47:49,994 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 20:47:49,996 INFO  [Thread-0] root: Server listening on port: 8888
+2020-01-25 20:48:22,210 INFO  [Thread-0] root: Connected to localhost on port 45372
+2020-01-25 20:48:48,425 INFO  [Thread-1] root: Received Message: Status is PUT; Key is test; Value is test string
+2020-01-25 20:48:48,462 ERROR [Thread-1] root: java.lang.NullPointerException
+2020-01-25 20:48:48,492 INFO  [Thread-1] root: Write to File
+2020-01-25 20:48:48,504 INFO  [Thread-1] root: serialized location data stored in {test=persistentStorage.locationData@5a947d06}
+2020-01-25 20:48:48,504 INFO  [Thread-1] root: Sent Message: Status is PUT_SUCCESS; Key is test; Value is test string
+2020-01-25 20:57:38,734 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 20:58:11,871 ERROR [main] root: Invalid Cache Strategy!
+2020-01-25 20:58:11,873 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 20:58:11,875 INFO  [Thread-0] root: Server listening on port: 8888
+2020-01-25 20:58:40,963 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 20:58:40,966 ERROR [Thread-0] root: Error! Cannot open server socket:
+2020-01-25 20:58:40,966 ERROR [Thread-0] root: Port 8888 is already bound!
+2020-01-25 20:58:40,966 INFO  [Thread-0] root: Server terminated.
+2020-01-25 20:58:52,481 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 20:58:52,483 INFO  [Thread-0] root: Server listening on port: 6666
+2020-01-25 20:59:19,852 INFO  [Thread-0] root: Connected to localhost on port 40432
+2020-01-25 20:59:27,347 INFO  [Thread-1] root: Received Message: Status is PUT; Key is test; Value is test string
+2020-01-25 20:59:27,384 ERROR [Thread-1] root: java.lang.NullPointerException
+2020-01-25 20:59:27,414 INFO  [Thread-1] root: Write to File
+2020-01-25 20:59:27,426 INFO  [Thread-1] root: serialized location data stored in {test=persistentStorage.locationData@5a947d06}
+2020-01-25 20:59:27,426 INFO  [Thread-1] root: Sent Message: Status is PUT_SUCCESS; Key is test; Value is test string
+2020-01-25 21:00:28,716 INFO  [Thread-1] root: Received Message: Status is PUT; Key is test; Value is test str
+2020-01-25 21:00:28,721 INFO  [Thread-1] root: Write to File
+2020-01-25 21:00:28,723 INFO  [Thread-1] root: serialized location data stored in {test=persistentStorage.locationData@7b8c801}
+2020-01-25 21:00:28,724 INFO  [Thread-1] root: Write to File
+2020-01-25 21:00:28,724 INFO  [Thread-1] root: Sent Message: Status is PUT_UPDATE; Key is test; Value is test str

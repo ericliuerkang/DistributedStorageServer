@@ -9,18 +9,19 @@ public abstract class ICache{
     Map<String, String> cache;
 
     public ICache(int size, boolean accessOrder){
+        System.out.println("ICache size: "+size);
         this.maxCacheSize = size;
         this.currentCacheSize = 0;
         this.cache = (Map<String, String>) Collections.synchronizedMap(
-                        new LinkedHashMap<String, String>(size, 0.75f, accessOrder));
+                        new LinkedHashMap<String, String>(this.maxCacheSize, 0.75f, accessOrder));
     }
 
     protected String readCache(String key) {
-        String value =  cache.getOrDefault(key, null);
-        if (value == null){
-            System.out.println("Key not found in Cache");
+        String value = null;
+        if (cache.containsKey(key)){
+            return cache.get(key);
         }
-        return value;
+        else{ return null; }
     }
 
     protected void writeCache(String key, String value) {

@@ -175,15 +175,17 @@ public class storage {
     public String getValue(String key) {
         try {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
-            locationData loc = stringlocationDataHashMap.get(key);
-            RandomAccessFile raf = loadDBFile(DBName);
-            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
-            storageData sk = decodeBytes(res);
-            if(sk.getDeleted() != 1){
-                System.out.println(sk.getValue());
-                return sk.getValue();
-            }else{
-                logger.error("Item Already deleted");
+            if(stringlocationDataHashMap.containsKey(key)){
+	            locationData loc = stringlocationDataHashMap.get(key);
+	            RandomAccessFile raf = loadDBFile(DBName);
+	            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
+	            storageData sk = decodeBytes(res);
+	            if(sk.getDeleted() != 1){
+	                System.out.println(sk.getValue());
+	                return sk.getValue();
+	            }else{
+	                logger.error("Item Already deleted");
+	            }
             }
         }catch(IOException ioe){
             logger.error(ioe);
@@ -201,6 +203,9 @@ public class storage {
         try {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
+	    if(value == null || value == ""){
+	    	deleteValue(key);
+            }
             if (!stringlocationDataHashMap.containsKey(key)) {
                 byte[] valueByte = value.getBytes();
                 storageData s = new storageData(key, value);
@@ -306,3 +311,4 @@ public class storage {
     }
 
 }
+
