@@ -42,8 +42,10 @@ public abstract class ICache{
     }
 
     protected void deleteCache(String key) {
-        cache.remove(key);
-        currentCacheSize --;
+        if (cache.containsKey(key)){
+            cache.remove(key);
+            currentCacheSize --;
+        }
     }
 
     protected boolean inCache(String key) {

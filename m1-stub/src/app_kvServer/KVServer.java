@@ -136,7 +136,7 @@ public class KVServer implements IKVServer {
 
 	@Override
     public void clearCache(){
-		if (cache!=null && cache.getCurrentCacheSize() >0){
+		if (cache!=null){
 			cache.clearCache();
 		}
 		else{
