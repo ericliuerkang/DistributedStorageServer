@@ -167,14 +167,6 @@ public class storage {
 
     /**
      *
-     */
-    public boolean inStorage(String key){
-        Map<String, locationData> stringLocationDataHashMap = loadLocationStorage(locationStorageFileName);
-        return stringLocationDataHashMap.containsKey(key);
-    }
-
-    /**
-     *
      * @param key
      * @return
      * @throws IOException
@@ -196,6 +188,10 @@ public class storage {
             logger.error(ioe);
             ioe.printStackTrace();
             System.out.println("help");
+        }catch(NullPointerException NPE){
+        	logger.error(NPE); 
+        	NPE.printStackTrace(); 
+        	
         }
         return null;
     }
@@ -268,6 +264,7 @@ public class storage {
                 logger.info("The key: " + key +" does not exist.");
             }
     }
+
 
     /**
      * Clear look-up table
