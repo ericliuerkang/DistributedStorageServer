@@ -30,11 +30,6 @@ public class KVCache{
                 cache = null;
                 logger.info("Unknown strategy");
         }
-        if (size <= 0){
-            System.out.println("Invalid Cache size: "+size);
-            logger.info("Invalid Cache size");
-            cache = null;
-        }
     }
 
     public void putKV(String key, String value){
