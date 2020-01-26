@@ -199,27 +199,25 @@ public class storage {
         return null;
     }
 
-    public void putValue(String key, String value){
-        try {
-            Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
-            RandomAccessFile raf = loadDBFile(DBName);
-	    if(value == null || value == ""){
-	    	deleteValue(key);
+    public void putValue(String key, String value) throws IOException {
+        Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        RandomAccessFile raf = loadDBFile(DBName);
+        try{
+            if(value == null || value == ""){
+                deleteValue(key);
             }
             if (!stringlocationDataHashMap.containsKey(key)) {
+                System.out.println("hiiii");
                 byte[] valueByte = value.getBytes();
                 storageData s = new storageData(key, value);
                 String k = encodeMessage(s);
                 int tl = k.length();
                 s.setTotalLength(tl + (int) (Math.log10(tl)));
                 locationData loc = new locationData(s.getTotalLength(), (int) raf.length());
-
                 stringlocationDataHashMap.put(key, loc);
-
                 String message = encodeMessage(s);
                 writeCharsToFile(message, DBName, (int) raf.length());
                 saveLocationStorage(stringlocationDataHashMap);
-
             }else{
                 locationData loc = stringlocationDataHashMap.get(key);
                 byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
@@ -228,24 +226,24 @@ public class storage {
                     s.setDeleted(1);
                     String message = encodeMessage(s);
 
-                    writeCharsToFile(message, DBName, loc.getStartPoint());
-                    storageData newS = new storageData(key, value);
-                    String k = encodeMessage(newS);
-                    System.out.println(k);
-                    int tl = k.length();
-                    newS.setTotalLength(tl + (int) (Math.log10(tl)));
-                    message = encodeMessage(newS);
+                        writeCharsToFile(message, DBName, loc.getStartPoint());
+                        storageData newS = new storageData(key, value);
+                        String k = encodeMessage(newS);
+                        System.out.println(k);
+                        int tl = k.length();
+                        newS.setTotalLength(tl + (int) (Math.log10(tl)));
+                        message = encodeMessage(newS);
 
-                    loc = new locationData(newS.getTotalLength(), (int) raf.length());
-                    stringlocationDataHashMap.remove(key);
+                        loc = new locationData(newS.getTotalLength(), (int) raf.length());
+                        stringlocationDataHashMap.remove(key);
 
-                    stringlocationDataHashMap.put(key, loc);
-                    saveLocationStorage(stringlocationDataHashMap);
-                    writeCharsToFile(message, DBName, (int) raf.length());
+                        stringlocationDataHashMap.put(key, loc);
+                        saveLocationStorage(stringlocationDataHashMap);
+                        writeCharsToFile(message, DBName, (int) raf.length());
+                    }
                 }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
         }
     }
 
@@ -254,7 +252,7 @@ public class storage {
      * @param key The key of the entry that is going to get deleted.
      * @throws IOException
      */
-    public void deleteValue(String key) throws IOException {
+    public boolean deleteValue(String key) throws IOException {
             Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
             if (stringlocationDataHashMap.containsKey(key)) {
@@ -266,8 +264,10 @@ public class storage {
                 writeCharsToFile(message, DBName, loc.getStartPoint());
                 stringlocationDataHashMap.remove(key);
                 saveLocationStorage(stringlocationDataHashMap);
+                return true;
             } else {
                 logger.info("The key: " + key +" does not exist.");
+                return false;
             }
     }
 
@@ -311,4 +311,3 @@ public class storage {
     }
 
 }
-

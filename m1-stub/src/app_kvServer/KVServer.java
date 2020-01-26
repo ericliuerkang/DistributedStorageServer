@@ -156,6 +156,7 @@ public class KVServer implements IKVServer {
 	
     public void connection(){
 		running = initializeServer();
+		//System.out.println("help");
 		if (serverSocket != null) {
 			while (isRunning()) {
 				try {

@@ -45,32 +45,1260 @@
 2020-01-25 20:13:50,369 INFO  [Thread-0] root: Connected to localhost on port 36838
 2020-01-25 20:13:58,200 INFO  [Thread-1] root: Received Message: Status is GET; Key is test; Value is null
 2020-01-25 20:13:58,236 INFO  [Thread-1] root: Sent Message: Status is FAILED; Key is null; Value is null
-2020-01-25 20:47:49,994 INFO  [Thread-0] root: Initialize server ...
-2020-01-25 20:47:49,996 INFO  [Thread-0] root: Server listening on port: 8888
-2020-01-25 20:48:22,210 INFO  [Thread-0] root: Connected to localhost on port 45372
-2020-01-25 20:48:48,425 INFO  [Thread-1] root: Received Message: Status is PUT; Key is test; Value is test string
-2020-01-25 20:48:48,462 ERROR [Thread-1] root: java.lang.NullPointerException
-2020-01-25 20:48:48,492 INFO  [Thread-1] root: Write to File
-2020-01-25 20:48:48,504 INFO  [Thread-1] root: serialized location data stored in {test=persistentStorage.locationData@5a947d06}
-2020-01-25 20:48:48,504 INFO  [Thread-1] root: Sent Message: Status is PUT_SUCCESS; Key is test; Value is test string
-2020-01-25 20:57:38,734 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
-2020-01-25 20:58:11,871 ERROR [main] root: Invalid Cache Strategy!
-2020-01-25 20:58:11,873 INFO  [Thread-0] root: Initialize server ...
-2020-01-25 20:58:11,875 INFO  [Thread-0] root: Server listening on port: 8888
-2020-01-25 20:58:40,963 INFO  [Thread-0] root: Initialize server ...
-2020-01-25 20:58:40,966 ERROR [Thread-0] root: Error! Cannot open server socket:
-2020-01-25 20:58:40,966 ERROR [Thread-0] root: Port 8888 is already bound!
-2020-01-25 20:58:40,966 INFO  [Thread-0] root: Server terminated.
-2020-01-25 20:58:52,481 INFO  [Thread-0] root: Initialize server ...
-2020-01-25 20:58:52,483 INFO  [Thread-0] root: Server listening on port: 6666
-2020-01-25 20:59:19,852 INFO  [Thread-0] root: Connected to localhost on port 40432
-2020-01-25 20:59:27,347 INFO  [Thread-1] root: Received Message: Status is PUT; Key is test; Value is test string
-2020-01-25 20:59:27,384 ERROR [Thread-1] root: java.lang.NullPointerException
-2020-01-25 20:59:27,414 INFO  [Thread-1] root: Write to File
-2020-01-25 20:59:27,426 INFO  [Thread-1] root: serialized location data stored in {test=persistentStorage.locationData@5a947d06}
-2020-01-25 20:59:27,426 INFO  [Thread-1] root: Sent Message: Status is PUT_SUCCESS; Key is test; Value is test string
-2020-01-25 21:00:28,716 INFO  [Thread-1] root: Received Message: Status is PUT; Key is test; Value is test str
-2020-01-25 21:00:28,721 INFO  [Thread-1] root: Write to File
-2020-01-25 21:00:28,723 INFO  [Thread-1] root: serialized location data stored in {test=persistentStorage.locationData@7b8c801}
-2020-01-25 21:00:28,724 INFO  [Thread-1] root: Write to File
-2020-01-25 21:00:28,724 INFO  [Thread-1] root: Sent Message: Status is PUT_UPDATE; Key is test; Value is test str
+2020-01-25 23:33:56,593 INFO  [Thread-0] root: Initialize server ...
+2020-01-25 23:33:56,603 INFO  [Thread-0] root: Server listening on port: 200
+2020-01-25 23:34:12,403 INFO  [Thread-0] root: Connected to localhost on port 64366
+2020-01-25 23:34:12,867 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:34:29,224 INFO  [Thread-0] root: Connected to localhost on port 64377
+2020-01-25 23:34:29,233 INFO  [Thread-0] root: Connected to localhost on port 64378
+2020-01-25 23:34:29,252 INFO  [Thread-3] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:34:29,383 INFO  [Thread-3] root: Write to File
+2020-01-25 23:34:29,397 INFO  [Thread-3] root: serialized location data stored in {foo2=persistentStorage.locationData@2d7ec4db}
+2020-01-25 23:34:29,397 INFO  [Thread-3] root: Sent Message: Status is PUT_SUCCESS; Key is foo2; Value is bar2
+2020-01-25 23:34:29,399 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:34:29,404 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:34:29,405 INFO  [Thread-0] root: Connected to localhost on port 64379
+2020-01-25 23:34:29,405 INFO  [Thread-5] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:34:29,406 INFO  [Thread-0] root: Connected to localhost on port 64380
+2020-01-25 23:34:29,417 INFO  [Thread-5] root: Write to File
+2020-01-25 23:34:29,418 INFO  [Thread-5] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@291a007c, foo2=persistentStorage.locationData@15b0f86f}
+2020-01-25 23:34:29,418 INFO  [Thread-5] root: Sent Message: Status is PUT_SUCCESS; Key is updateTestValue; Value is initial
+2020-01-25 23:34:29,420 INFO  [Thread-5] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:34:29,429 INFO  [Thread-5] root: Write to File
+2020-01-25 23:34:29,430 INFO  [Thread-5] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@35ab669f, foo2=persistentStorage.locationData@3f05b940}
+2020-01-25 23:34:29,431 INFO  [Thread-5] root: Write to File
+2020-01-25 23:34:29,431 INFO  [Thread-5] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:34:29,433 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:34:29,436 INFO  [Thread-6] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:34:29,437 INFO  [Thread-0] root: Connected to localhost on port 64381
+2020-01-25 23:34:29,442 INFO  [Thread-6] root: Write to File
+2020-01-25 23:34:29,443 INFO  [Thread-6] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@59559b09, updateTestValue=persistentStorage.locationData@141963b6, foo2=persistentStorage.locationData@4251b5a0}
+2020-01-25 23:34:29,443 INFO  [Thread-6] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:34:29,444 INFO  [Thread-6] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:34:29,445 INFO  [Thread-6] root: Write to File
+2020-01-25 23:34:29,446 INFO  [Thread-6] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@3b5ba140, foo2=persistentStorage.locationData@da263b2}
+2020-01-25 23:34:29,446 INFO  [Thread-6] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:34:29,447 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:34:29,449 INFO  [Thread-7] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:34:29,452 INFO  [Thread-0] root: Connected to localhost on port 64382
+2020-01-25 23:34:29,458 INFO  [Thread-7] root: Write to File
+2020-01-25 23:34:29,463 INFO  [Thread-7] root: serialized location data stored in {foo=persistentStorage.locationData@6d11107c, updateTestValue=persistentStorage.locationData@6b2e260b, foo2=persistentStorage.locationData@5ccf9104}
+2020-01-25 23:34:29,464 INFO  [Thread-7] root: Sent Message: Status is PUT_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:34:29,466 INFO  [Thread-7] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:34:29,466 INFO  [Thread-7] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:34:29,467 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:34:29,468 INFO  [Thread-8] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:34:29,468 INFO  [Thread-8] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:34:29,468 ERROR [Thread-8] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:34:29,469 INFO  [Thread-0] root: Connected to localhost on port 64383
+2020-01-25 23:34:29,833 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:35:16,669 INFO  [Thread-0] root: Connected to localhost on port 64398
+2020-01-25 23:35:16,681 INFO  [Thread-9] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:35:16,683 INFO  [Thread-9] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:35:16,688 ERROR [Thread-9] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:38:49,247 INFO  [Thread-0] root: Connected to localhost on port 64414
+2020-01-25 23:38:49,256 INFO  [Thread-10] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:38:49,258 INFO  [Thread-10] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:38:49,261 ERROR [Thread-10] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:39:52,546 INFO  [Thread-0] root: Connected to localhost on port 64423
+2020-01-25 23:39:52,553 INFO  [Thread-11] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:39:52,554 INFO  [Thread-11] root: Write to File
+2020-01-25 23:39:52,554 INFO  [Thread-11] root: serialized location data stored in {foo2=persistentStorage.locationData@346efc22}
+2020-01-25 23:39:52,554 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:39:52,558 ERROR [Thread-11] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:41:12,213 INFO  [Thread-0] root: Connected to localhost on port 64447
+2020-01-25 23:41:12,220 INFO  [Thread-12] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:41:12,221 INFO  [Thread-12] root: Write to File
+2020-01-25 23:41:12,222 INFO  [Thread-12] root: serialized location data stored in {foo2=persistentStorage.locationData@ec1fc69}
+2020-01-25 23:41:12,222 INFO  [Thread-12] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:41:12,225 ERROR [Thread-12] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:41:30,952 INFO  [Thread-0] root: Connected to localhost on port 64453
+2020-01-25 23:41:30,972 INFO  [Thread-13] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:41:30,977 INFO  [Thread-13] root: Write to File
+2020-01-25 23:41:30,979 INFO  [Thread-13] root: serialized location data stored in {foo2=persistentStorage.locationData@3683fc85}
+2020-01-25 23:41:30,979 INFO  [Thread-13] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:41:30,984 ERROR [Thread-13] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:41:31,009 INFO  [Thread-14] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:41:31,011 INFO  [Thread-0] root: Connected to localhost on port 64454
+2020-01-25 23:41:31,018 INFO  [Thread-14] root: Write to File
+2020-01-25 23:41:31,022 INFO  [Thread-14] root: serialized location data stored in {foo=persistentStorage.locationData@71feed19, foo2=persistentStorage.locationData@9842bac}
+2020-01-25 23:41:31,023 INFO  [Thread-14] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:41:31,025 INFO  [Thread-14] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:41:31,025 INFO  [Thread-14] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:41:31,026 ERROR [Thread-14] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:41:31,028 ERROR [Thread-15] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:41:31,030 INFO  [Thread-0] root: Connected to localhost on port 64455
+2020-01-25 23:41:31,034 INFO  [Thread-16] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:41:31,037 INFO  [Thread-0] root: Connected to localhost on port 64456
+2020-01-25 23:41:31,039 INFO  [Thread-16] root: Write to File
+2020-01-25 23:41:31,041 INFO  [Thread-16] root: serialized location data stored in {foo=persistentStorage.locationData@978ac4e, updateTestValue=persistentStorage.locationData@58250ef4, foo2=persistentStorage.locationData@766a62b7}
+2020-01-25 23:41:31,041 INFO  [Thread-16] root: Sent Message: Status is PUT_SUCCESS; Key is updateTestValue; Value is initial
+2020-01-25 23:41:31,041 INFO  [Thread-16] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:41:31,049 INFO  [Thread-16] root: Write to File
+2020-01-25 23:41:31,055 INFO  [Thread-16] root: serialized location data stored in {foo=persistentStorage.locationData@5b22e646, updateTestValue=persistentStorage.locationData@2dbd99e0, foo2=persistentStorage.locationData@34b8f8bd}
+2020-01-25 23:41:31,055 INFO  [Thread-16] root: Write to File
+2020-01-25 23:41:31,055 INFO  [Thread-16] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:41:31,056 ERROR [Thread-16] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:41:31,059 INFO  [Thread-17] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:41:31,059 INFO  [Thread-0] root: Connected to localhost on port 64457
+2020-01-25 23:41:31,066 INFO  [Thread-17] root: Write to File
+2020-01-25 23:41:31,068 INFO  [Thread-17] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@3b1d3cbc, foo=persistentStorage.locationData@5b426fe2, updateTestValue=persistentStorage.locationData@423fb660, foo2=persistentStorage.locationData@3fc37187}
+2020-01-25 23:41:31,068 INFO  [Thread-17] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:41:31,069 INFO  [Thread-17] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:41:31,071 INFO  [Thread-17] root: Write to File
+2020-01-25 23:41:31,072 INFO  [Thread-17] root: serialized location data stored in {foo=persistentStorage.locationData@6f630ab2, updateTestValue=persistentStorage.locationData@6a39af43, foo2=persistentStorage.locationData@2b2ca570}
+2020-01-25 23:41:31,072 INFO  [Thread-17] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:41:31,073 ERROR [Thread-17] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:41:31,076 INFO  [Thread-18] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:41:31,077 INFO  [Thread-18] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:41:31,079 INFO  [Thread-0] root: Connected to localhost on port 64458
+2020-01-25 23:41:31,079 ERROR [Thread-18] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:42:28,133 INFO  [Thread-0] root: Connected to localhost on port 64463
+2020-01-25 23:42:28,165 INFO  [Thread-19] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:42:28,166 INFO  [Thread-19] root: Write to File
+2020-01-25 23:42:28,167 INFO  [Thread-19] root: serialized location data stored in {foo2=persistentStorage.locationData@2e7bcbd6}
+2020-01-25 23:42:28,167 INFO  [Thread-19] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:42:28,169 ERROR [Thread-19] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:42:28,176 ERROR [Thread-20] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:42:28,180 INFO  [Thread-0] root: Connected to localhost on port 64464
+2020-01-25 23:42:28,185 INFO  [Thread-21] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:42:28,187 INFO  [Thread-0] root: Connected to localhost on port 64465
+2020-01-25 23:42:28,194 INFO  [Thread-21] root: Write to File
+2020-01-25 23:42:28,199 INFO  [Thread-21] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@6ee92a5c, foo2=persistentStorage.locationData@3fd3090b}
+2020-01-25 23:42:28,200 INFO  [Thread-21] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:42:28,201 INFO  [Thread-21] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:42:28,205 INFO  [Thread-21] root: Write to File
+2020-01-25 23:42:28,208 INFO  [Thread-21] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@7fd9b32f, foo2=persistentStorage.locationData@3eea7a55}
+2020-01-25 23:42:28,208 INFO  [Thread-21] root: Write to File
+2020-01-25 23:42:28,208 INFO  [Thread-21] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:42:28,209 ERROR [Thread-21] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:42:28,215 INFO  [Thread-22] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:42:28,216 INFO  [Thread-0] root: Connected to localhost on port 64466
+2020-01-25 23:42:28,227 INFO  [Thread-22] root: Write to File
+2020-01-25 23:42:28,230 INFO  [Thread-22] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@297627fe, updateTestValue=persistentStorage.locationData@4a9399d6, foo2=persistentStorage.locationData@32724e99}
+2020-01-25 23:42:28,231 INFO  [Thread-22] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:42:28,234 INFO  [Thread-22] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:42:28,237 INFO  [Thread-22] root: Write to File
+2020-01-25 23:42:28,239 INFO  [Thread-22] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@13dccdc6, foo2=persistentStorage.locationData@60bc2534}
+2020-01-25 23:42:28,240 INFO  [Thread-22] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:42:28,240 ERROR [Thread-22] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:42:28,245 INFO  [Thread-23] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:42:28,248 INFO  [Thread-0] root: Connected to localhost on port 64467
+2020-01-25 23:42:28,251 INFO  [Thread-23] root: Write to File
+2020-01-25 23:42:28,254 INFO  [Thread-23] root: serialized location data stored in {foo=persistentStorage.locationData@5e24f61e, updateTestValue=persistentStorage.locationData@5a2d59ac, foo2=persistentStorage.locationData@5cf888c1}
+2020-01-25 23:42:28,255 INFO  [Thread-23] root: Sent Message: Status is PUT_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:42:28,257 INFO  [Thread-23] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:42:28,258 INFO  [Thread-23] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:42:28,258 ERROR [Thread-23] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:42:28,264 INFO  [Thread-24] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:42:28,265 INFO  [Thread-24] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:42:28,266 INFO  [Thread-0] root: Connected to localhost on port 64468
+2020-01-25 23:42:28,266 ERROR [Thread-24] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:05,726 INFO  [Thread-0] root: Connected to localhost on port 64474
+2020-01-25 23:43:05,738 INFO  [Thread-25] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:43:05,739 INFO  [Thread-25] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:43:05,740 INFO  [Thread-25] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:43:05,740 INFO  [Thread-25] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:43:05,741 ERROR [Thread-25] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:05,742 INFO  [Thread-26] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:43:05,743 INFO  [Thread-0] root: Connected to localhost on port 64475
+2020-01-25 23:43:05,746 INFO  [Thread-26] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:43:05,748 ERROR [Thread-26] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:05,759 INFO  [Thread-27] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:43:05,762 INFO  [Thread-27] root: Write to File
+2020-01-25 23:43:05,767 INFO  [Thread-27] root: serialized location data stored in {foo=persistentStorage.locationData@28877a54, updateTestValue=persistentStorage.locationData@54254227, foo2=persistentStorage.locationData@464bd2ff}
+2020-01-25 23:43:05,768 INFO  [Thread-27] root: Write to File
+2020-01-25 23:43:05,768 INFO  [Thread-27] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:43:05,769 INFO  [Thread-27] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:43:05,770 INFO  [Thread-0] root: Connected to localhost on port 64476
+2020-01-25 23:43:05,776 INFO  [Thread-27] root: Write to File
+2020-01-25 23:43:05,781 INFO  [Thread-27] root: serialized location data stored in {foo=persistentStorage.locationData@48481abf, updateTestValue=persistentStorage.locationData@1542eb63, foo2=persistentStorage.locationData@87a8fc1}
+2020-01-25 23:43:05,783 INFO  [Thread-27] root: Write to File
+2020-01-25 23:43:05,783 INFO  [Thread-27] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:43:05,784 ERROR [Thread-27] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:05,786 ERROR [Thread-28] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:05,789 INFO  [Thread-0] root: Connected to localhost on port 64477
+2020-01-25 23:43:05,790 INFO  [Thread-29] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:43:05,790 INFO  [Thread-0] root: Connected to localhost on port 64478
+2020-01-25 23:43:05,797 INFO  [Thread-29] root: Write to File
+2020-01-25 23:43:05,803 INFO  [Thread-29] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@305c4f97, foo=persistentStorage.locationData@28b240bc, updateTestValue=persistentStorage.locationData@50b57c3d, foo2=persistentStorage.locationData@746883b}
+2020-01-25 23:43:05,803 INFO  [Thread-29] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:43:05,804 INFO  [Thread-29] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:43:05,806 INFO  [Thread-29] root: Write to File
+2020-01-25 23:43:05,807 INFO  [Thread-29] root: serialized location data stored in {foo=persistentStorage.locationData@52b76587, updateTestValue=persistentStorage.locationData@c03f614, foo2=persistentStorage.locationData@492c8b19}
+2020-01-25 23:43:05,807 INFO  [Thread-29] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:43:05,808 ERROR [Thread-29] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:05,813 INFO  [Thread-30] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:43:05,814 INFO  [Thread-30] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:43:05,815 ERROR [Thread-30] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:05,815 INFO  [Thread-0] root: Connected to localhost on port 64479
+2020-01-25 23:43:58,548 INFO  [Thread-0] root: Connected to localhost on port 64488
+2020-01-25 23:43:58,560 INFO  [Thread-31] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:43:58,561 INFO  [Thread-31] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:43:58,563 ERROR [Thread-31] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:58,569 ERROR [Thread-32] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:58,573 INFO  [Thread-0] root: Connected to localhost on port 64489
+2020-01-25 23:43:58,577 INFO  [Thread-33] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:43:58,579 INFO  [Thread-0] root: Connected to localhost on port 64490
+2020-01-25 23:43:58,586 INFO  [Thread-33] root: Write to File
+2020-01-25 23:43:58,594 INFO  [Thread-33] root: serialized location data stored in {foo=persistentStorage.locationData@59777842, updateTestValue=persistentStorage.locationData@173f4cb3, foo2=persistentStorage.locationData@16e2f2bb}
+2020-01-25 23:43:58,594 INFO  [Thread-33] root: Write to File
+2020-01-25 23:43:58,595 INFO  [Thread-33] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:43:58,596 INFO  [Thread-33] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:43:58,600 INFO  [Thread-33] root: Write to File
+2020-01-25 23:43:58,602 INFO  [Thread-33] root: serialized location data stored in {foo=persistentStorage.locationData@48a394f9, updateTestValue=persistentStorage.locationData@2277861, foo2=persistentStorage.locationData@724016b4}
+2020-01-25 23:43:58,603 INFO  [Thread-33] root: Write to File
+2020-01-25 23:43:58,603 INFO  [Thread-33] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:43:58,603 ERROR [Thread-33] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:58,608 INFO  [Thread-34] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:43:58,611 INFO  [Thread-0] root: Connected to localhost on port 64491
+2020-01-25 23:43:58,613 INFO  [Thread-34] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:43:58,616 INFO  [Thread-34] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:43:58,617 INFO  [Thread-34] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:43:58,620 ERROR [Thread-34] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:58,625 INFO  [Thread-35] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:43:58,628 INFO  [Thread-0] root: Connected to localhost on port 64492
+2020-01-25 23:43:58,638 INFO  [Thread-35] root: Write to File
+2020-01-25 23:43:58,641 INFO  [Thread-35] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@62eb91f, foo=persistentStorage.locationData@7ace27e2, updateTestValue=persistentStorage.locationData@1c687d5f, foo2=persistentStorage.locationData@25b1abb1}
+2020-01-25 23:43:58,641 INFO  [Thread-35] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:43:58,642 INFO  [Thread-35] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:43:58,645 INFO  [Thread-35] root: Write to File
+2020-01-25 23:43:58,648 INFO  [Thread-35] root: serialized location data stored in {foo=persistentStorage.locationData@6c359305, updateTestValue=persistentStorage.locationData@4261f4, foo2=persistentStorage.locationData@1e1cfd46}
+2020-01-25 23:43:58,648 INFO  [Thread-35] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:43:58,650 ERROR [Thread-35] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:43:58,653 INFO  [Thread-36] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:43:58,653 INFO  [Thread-36] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:43:58,655 INFO  [Thread-0] root: Connected to localhost on port 64493
+2020-01-25 23:43:58,656 ERROR [Thread-36] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:05,892 INFO  [Thread-0] root: Connected to localhost on port 64498
+2020-01-25 23:44:05,905 INFO  [Thread-37] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:44:05,906 INFO  [Thread-37] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:44:05,907 ERROR [Thread-37] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:05,914 INFO  [Thread-38] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:44:05,917 INFO  [Thread-0] root: Connected to localhost on port 64499
+2020-01-25 23:44:05,921 INFO  [Thread-38] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:44:05,924 INFO  [Thread-38] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:44:05,925 INFO  [Thread-38] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:44:05,927 ERROR [Thread-38] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:05,933 ERROR [Thread-39] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:05,934 INFO  [Thread-0] root: Connected to localhost on port 64500
+2020-01-25 23:44:05,935 INFO  [Thread-40] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:44:05,937 INFO  [Thread-0] root: Connected to localhost on port 64501
+2020-01-25 23:44:05,939 INFO  [Thread-40] root: Write to File
+2020-01-25 23:44:05,945 INFO  [Thread-40] root: serialized location data stored in {foo=persistentStorage.locationData@6e7f5780, updateTestValue=persistentStorage.locationData@400ca784, foo2=persistentStorage.locationData@74adcaf8}
+2020-01-25 23:44:05,947 INFO  [Thread-40] root: Write to File
+2020-01-25 23:44:05,947 INFO  [Thread-40] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:44:05,950 INFO  [Thread-40] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:44:05,959 INFO  [Thread-40] root: Write to File
+2020-01-25 23:44:05,961 INFO  [Thread-40] root: serialized location data stored in {foo=persistentStorage.locationData@42809eba, updateTestValue=persistentStorage.locationData@331f30f2, foo2=persistentStorage.locationData@36465344}
+2020-01-25 23:44:05,962 INFO  [Thread-40] root: Write to File
+2020-01-25 23:44:05,962 INFO  [Thread-40] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:44:05,963 ERROR [Thread-40] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:05,965 INFO  [Thread-41] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:05,966 INFO  [Thread-0] root: Connected to localhost on port 64502
+2020-01-25 23:44:05,973 INFO  [Thread-41] root: Write to File
+2020-01-25 23:44:05,978 INFO  [Thread-41] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@6dba04bf, foo=persistentStorage.locationData@445245f6, updateTestValue=persistentStorage.locationData@2bc04438, foo2=persistentStorage.locationData@7af8061}
+2020-01-25 23:44:05,978 INFO  [Thread-41] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:05,978 INFO  [Thread-41] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:44:05,985 INFO  [Thread-41] root: Write to File
+2020-01-25 23:44:05,987 INFO  [Thread-41] root: serialized location data stored in {foo=persistentStorage.locationData@67c1dac3, updateTestValue=persistentStorage.locationData@5f852335, foo2=persistentStorage.locationData@38469ea0}
+2020-01-25 23:44:05,988 INFO  [Thread-41] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:44:05,989 ERROR [Thread-41] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:05,996 INFO  [Thread-42] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:44:05,996 INFO  [Thread-42] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:44:05,997 INFO  [Thread-0] root: Connected to localhost on port 64503
+2020-01-25 23:44:05,997 ERROR [Thread-42] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:21,469 INFO  [Thread-0] root: Connected to localhost on port 64509
+2020-01-25 23:44:21,479 INFO  [Thread-43] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:44:21,480 INFO  [Thread-43] root: Write to File
+2020-01-25 23:44:21,480 INFO  [Thread-43] root: serialized location data stored in {foo2=persistentStorage.locationData@ad8eabf}
+2020-01-25 23:44:21,480 INFO  [Thread-43] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:44:21,482 ERROR [Thread-43] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:21,487 ERROR [Thread-44] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:21,492 INFO  [Thread-0] root: Connected to localhost on port 64510
+2020-01-25 23:44:21,495 INFO  [Thread-45] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:44:21,498 INFO  [Thread-0] root: Connected to localhost on port 64511
+2020-01-25 23:44:21,501 INFO  [Thread-45] root: Write to File
+2020-01-25 23:44:21,505 INFO  [Thread-45] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@63bd1728, foo2=persistentStorage.locationData@1b9e0a55}
+2020-01-25 23:44:21,506 INFO  [Thread-45] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:44:21,508 INFO  [Thread-45] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:44:21,511 INFO  [Thread-45] root: Write to File
+2020-01-25 23:44:21,515 INFO  [Thread-45] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@711c181e, foo2=persistentStorage.locationData@2177d02d}
+2020-01-25 23:44:21,519 INFO  [Thread-45] root: Write to File
+2020-01-25 23:44:21,521 INFO  [Thread-45] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:44:21,524 ERROR [Thread-45] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:21,530 INFO  [Thread-46] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:21,532 INFO  [Thread-0] root: Connected to localhost on port 64512
+2020-01-25 23:44:21,534 INFO  [Thread-46] root: Write to File
+2020-01-25 23:44:21,536 INFO  [Thread-46] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@3af7b950, updateTestValue=persistentStorage.locationData@505874a3, foo2=persistentStorage.locationData@21f374b5}
+2020-01-25 23:44:21,536 INFO  [Thread-46] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:21,537 INFO  [Thread-46] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:44:21,542 INFO  [Thread-46] root: Write to File
+2020-01-25 23:44:21,545 INFO  [Thread-46] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@11b47453, foo2=persistentStorage.locationData@3d3017ef}
+2020-01-25 23:44:21,545 INFO  [Thread-46] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:44:21,545 ERROR [Thread-46] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:21,550 INFO  [Thread-47] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:44:21,553 INFO  [Thread-0] root: Connected to localhost on port 64513
+2020-01-25 23:44:21,554 INFO  [Thread-47] root: Write to File
+2020-01-25 23:44:21,555 INFO  [Thread-47] root: serialized location data stored in {foo=persistentStorage.locationData@1f164ec3, updateTestValue=persistentStorage.locationData@2e58582d, foo2=persistentStorage.locationData@42a67e90}
+2020-01-25 23:44:21,555 INFO  [Thread-47] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:44:21,556 INFO  [Thread-47] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:44:21,557 INFO  [Thread-47] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:44:21,558 ERROR [Thread-47] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:21,559 INFO  [Thread-48] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:44:21,559 INFO  [Thread-48] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:44:21,559 ERROR [Thread-48] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:21,560 INFO  [Thread-0] root: Connected to localhost on port 64514
+2020-01-25 23:44:25,586 INFO  [Thread-0] root: Connected to localhost on port 64518
+2020-01-25 23:44:25,593 ERROR [Thread-49] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:25,601 INFO  [Thread-50] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:44:25,604 INFO  [Thread-0] root: Connected to localhost on port 64519
+2020-01-25 23:44:25,608 INFO  [Thread-50] root: Write to File
+2020-01-25 23:44:25,609 INFO  [Thread-50] root: serialized location data stored in {foo=persistentStorage.locationData@1e68fea2, updateTestValue=persistentStorage.locationData@f054063, foo2=persistentStorage.locationData@76b5e207}
+2020-01-25 23:44:25,609 INFO  [Thread-50] root: Write to File
+2020-01-25 23:44:25,609 INFO  [Thread-50] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:44:25,612 INFO  [Thread-50] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:44:25,619 INFO  [Thread-50] root: Write to File
+2020-01-25 23:44:25,620 INFO  [Thread-50] root: serialized location data stored in {foo=persistentStorage.locationData@506a9fe6, updateTestValue=persistentStorage.locationData@807bf0c, foo2=persistentStorage.locationData@ee6d678}
+2020-01-25 23:44:25,620 INFO  [Thread-50] root: Write to File
+2020-01-25 23:44:25,620 INFO  [Thread-50] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:44:25,624 ERROR [Thread-50] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:25,629 INFO  [Thread-51] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:44:25,630 INFO  [Thread-0] root: Connected to localhost on port 64520
+2020-01-25 23:44:25,631 INFO  [Thread-51] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:44:25,632 INFO  [Thread-51] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:44:25,633 INFO  [Thread-51] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:44:25,634 ERROR [Thread-51] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:25,641 INFO  [Thread-52] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:25,644 INFO  [Thread-0] root: Connected to localhost on port 64521
+2020-01-25 23:44:25,651 INFO  [Thread-52] root: Write to File
+2020-01-25 23:44:25,654 INFO  [Thread-52] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@57ef8628, foo=persistentStorage.locationData@b2495ed, updateTestValue=persistentStorage.locationData@45dbf8f6, foo2=persistentStorage.locationData@3f217ba8}
+2020-01-25 23:44:25,654 INFO  [Thread-52] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:25,655 INFO  [Thread-52] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:44:25,661 INFO  [Thread-52] root: Write to File
+2020-01-25 23:44:25,664 INFO  [Thread-52] root: serialized location data stored in {foo=persistentStorage.locationData@21e0e9a2, updateTestValue=persistentStorage.locationData@2598c765, foo2=persistentStorage.locationData@4eba4087}
+2020-01-25 23:44:25,664 INFO  [Thread-52] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:44:25,665 ERROR [Thread-52] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:25,671 INFO  [Thread-53] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:44:25,671 INFO  [Thread-53] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:44:25,672 ERROR [Thread-53] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:25,672 INFO  [Thread-0] root: Connected to localhost on port 64522
+2020-01-25 23:44:25,675 INFO  [Thread-54] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:44:25,676 INFO  [Thread-0] root: Connected to localhost on port 64523
+2020-01-25 23:44:25,680 INFO  [Thread-54] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:44:25,682 ERROR [Thread-54] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:45,674 INFO  [Thread-0] root: Connected to localhost on port 64528
+2020-01-25 23:44:45,688 INFO  [Thread-55] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:44:45,689 INFO  [Thread-55] root: Write to File
+2020-01-25 23:44:45,689 INFO  [Thread-55] root: serialized location data stored in {foo2=persistentStorage.locationData@55a68ae0}
+2020-01-25 23:44:45,689 INFO  [Thread-55] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:44:45,691 ERROR [Thread-55] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:45,714 ERROR [Thread-56] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:45,715 INFO  [Thread-0] root: Connected to localhost on port 64529
+2020-01-25 23:44:45,716 INFO  [Thread-57] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:44:45,717 INFO  [Thread-0] root: Connected to localhost on port 64530
+2020-01-25 23:44:45,718 INFO  [Thread-57] root: Write to File
+2020-01-25 23:44:45,720 INFO  [Thread-57] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@2e647c59, foo2=persistentStorage.locationData@56195ef7}
+2020-01-25 23:44:45,720 INFO  [Thread-57] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:44:45,722 INFO  [Thread-57] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:44:45,726 INFO  [Thread-57] root: Write to File
+2020-01-25 23:44:45,732 INFO  [Thread-57] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@1968cc75, foo2=persistentStorage.locationData@1587c847}
+2020-01-25 23:44:45,732 INFO  [Thread-57] root: Write to File
+2020-01-25 23:44:45,733 INFO  [Thread-57] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:44:45,733 ERROR [Thread-57] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:45,739 INFO  [Thread-58] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:45,742 INFO  [Thread-0] root: Connected to localhost on port 64531
+2020-01-25 23:44:45,747 INFO  [Thread-58] root: Write to File
+2020-01-25 23:44:45,748 INFO  [Thread-58] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@6539836b, updateTestValue=persistentStorage.locationData@21f87537, foo2=persistentStorage.locationData@7e3d8dcd}
+2020-01-25 23:44:45,748 INFO  [Thread-58] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:45,749 INFO  [Thread-58] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:44:45,753 INFO  [Thread-58] root: Write to File
+2020-01-25 23:44:45,753 INFO  [Thread-58] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@5a7641c8, foo2=persistentStorage.locationData@4d72b1a2}
+2020-01-25 23:44:45,753 INFO  [Thread-58] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:44:45,754 ERROR [Thread-58] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:45,761 INFO  [Thread-59] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:44:45,764 INFO  [Thread-0] root: Connected to localhost on port 64532
+2020-01-25 23:44:45,767 INFO  [Thread-59] root: Write to File
+2020-01-25 23:44:45,768 INFO  [Thread-59] root: serialized location data stored in {foo=persistentStorage.locationData@4ff34050, updateTestValue=persistentStorage.locationData@466c9cb2, foo2=persistentStorage.locationData@46021659}
+2020-01-25 23:44:45,768 INFO  [Thread-59] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:44:45,768 INFO  [Thread-59] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:44:45,768 INFO  [Thread-59] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:44:45,769 ERROR [Thread-59] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:45,771 INFO  [Thread-60] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:44:45,772 INFO  [Thread-60] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:44:45,773 ERROR [Thread-60] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:45,773 INFO  [Thread-0] root: Connected to localhost on port 64533
+2020-01-25 23:44:50,648 INFO  [Thread-0] root: Connected to localhost on port 64537
+2020-01-25 23:44:50,655 ERROR [Thread-61] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:50,664 INFO  [Thread-62] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:44:50,666 INFO  [Thread-0] root: Connected to localhost on port 64538
+2020-01-25 23:44:50,669 INFO  [Thread-62] root: Write to File
+2020-01-25 23:44:50,673 INFO  [Thread-62] root: serialized location data stored in {foo=persistentStorage.locationData@5b6622da, updateTestValue=persistentStorage.locationData@194373dd, foo2=persistentStorage.locationData@3b98f70c}
+2020-01-25 23:44:50,674 INFO  [Thread-62] root: Write to File
+2020-01-25 23:44:50,674 INFO  [Thread-62] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:44:50,676 INFO  [Thread-62] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:44:50,677 INFO  [Thread-62] root: Write to File
+2020-01-25 23:44:50,678 INFO  [Thread-62] root: serialized location data stored in {foo=persistentStorage.locationData@1496dbce, updateTestValue=persistentStorage.locationData@7d4e109f, foo2=persistentStorage.locationData@4943ff5d}
+2020-01-25 23:44:50,678 INFO  [Thread-62] root: Write to File
+2020-01-25 23:44:50,678 INFO  [Thread-62] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:44:50,679 ERROR [Thread-62] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:50,686 INFO  [Thread-63] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:50,687 INFO  [Thread-0] root: Connected to localhost on port 64539
+2020-01-25 23:44:50,688 INFO  [Thread-63] root: Write to File
+2020-01-25 23:44:50,690 INFO  [Thread-63] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@561d4264, foo=persistentStorage.locationData@6fee7aca, updateTestValue=persistentStorage.locationData@754b8966, foo2=persistentStorage.locationData@5fd1ed1b}
+2020-01-25 23:44:50,690 INFO  [Thread-63] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:44:50,691 INFO  [Thread-63] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:44:50,692 INFO  [Thread-63] root: Write to File
+2020-01-25 23:44:50,693 INFO  [Thread-63] root: serialized location data stored in {foo=persistentStorage.locationData@4ef67a09, updateTestValue=persistentStorage.locationData@415ad424, foo2=persistentStorage.locationData@2ce16e49}
+2020-01-25 23:44:50,694 INFO  [Thread-63] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:44:50,694 ERROR [Thread-63] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:50,700 INFO  [Thread-64] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:44:50,702 INFO  [Thread-0] root: Connected to localhost on port 64540
+2020-01-25 23:44:50,704 INFO  [Thread-64] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:44:50,707 INFO  [Thread-64] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:44:50,707 INFO  [Thread-64] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:44:50,708 ERROR [Thread-64] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:50,710 INFO  [Thread-65] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:44:50,710 INFO  [Thread-65] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:44:50,712 ERROR [Thread-65] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:44:50,712 INFO  [Thread-0] root: Connected to localhost on port 64541
+2020-01-25 23:44:50,716 INFO  [Thread-66] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:44:50,719 INFO  [Thread-0] root: Connected to localhost on port 64542
+2020-01-25 23:44:50,722 INFO  [Thread-66] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:44:50,725 ERROR [Thread-66] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:46:41,200 INFO  [Thread-0] root: Connected to localhost on port 64575
+2020-01-25 23:46:41,218 INFO  [Thread-67] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:46:41,220 INFO  [Thread-67] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:46:41,240 ERROR [Thread-67] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:47:10,475 INFO  [Thread-0] root: Connected to localhost on port 64586
+2020-01-25 23:47:10,511 INFO  [Thread-68] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:47:10,516 INFO  [Thread-68] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:47:10,528 ERROR [Thread-68] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:48:54,261 INFO  [Thread-0] root: Connected to localhost on port 64597
+2020-01-25 23:48:54,280 INFO  [Thread-69] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:48:54,281 INFO  [Thread-69] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:48:54,284 ERROR [Thread-69] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:49:33,130 INFO  [Thread-0] root: Connected to localhost on port 64603
+2020-01-25 23:49:33,137 INFO  [Thread-70] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:49:33,138 INFO  [Thread-70] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:49:33,141 ERROR [Thread-70] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:50:15,060 INFO  [Thread-0] root: Connected to localhost on port 64620
+2020-01-25 23:50:15,067 INFO  [Thread-71] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:50:15,068 INFO  [Thread-71] root: Write to File
+2020-01-25 23:50:15,068 INFO  [Thread-71] root: serialized location data stored in {foo2=persistentStorage.locationData@3921ca55}
+2020-01-25 23:50:15,068 INFO  [Thread-71] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:50:15,071 ERROR [Thread-71] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:53:37,303 INFO  [Thread-0] root: Connected to localhost on port 64648
+2020-01-25 23:53:37,311 INFO  [Thread-72] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:53:37,312 INFO  [Thread-72] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:53:37,315 ERROR [Thread-72] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:53:52,178 INFO  [Thread-0] root: Connected to localhost on port 64653
+2020-01-25 23:53:52,185 INFO  [Thread-73] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:53:52,186 INFO  [Thread-73] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:53:52,188 ERROR [Thread-73] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:54:17,755 INFO  [Thread-0] root: Connected to localhost on port 64657
+2020-01-25 23:54:17,762 INFO  [Thread-74] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:54:17,763 INFO  [Thread-74] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:54:17,766 ERROR [Thread-74] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:54:52,337 INFO  [Thread-0] root: Connected to localhost on port 64663
+2020-01-25 23:54:52,344 INFO  [Thread-75] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:54:52,344 INFO  [Thread-75] root: Write to File
+2020-01-25 23:54:52,345 INFO  [Thread-75] root: serialized location data stored in {foo2=persistentStorage.locationData@332d052e}
+2020-01-25 23:54:52,345 INFO  [Thread-75] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:54:52,347 ERROR [Thread-75] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:55:38,569 INFO  [Thread-0] root: Connected to localhost on port 64676
+2020-01-25 23:55:38,581 INFO  [Thread-0] root: Connected to localhost on port 64677
+2020-01-25 23:55:38,601 INFO  [Thread-77] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:55:38,607 INFO  [Thread-77] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:55:38,611 ERROR [Thread-77] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:55:38,632 ERROR [Thread-78] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:55:38,634 INFO  [Thread-0] root: Connected to localhost on port 64678
+2020-01-25 23:55:38,635 INFO  [Thread-79] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-25 23:55:38,636 INFO  [Thread-0] root: Connected to localhost on port 64679
+2020-01-25 23:55:38,639 INFO  [Thread-79] root: Write to File
+2020-01-25 23:55:38,641 INFO  [Thread-79] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@583261e1, foo2=persistentStorage.locationData@202c06ad}
+2020-01-25 23:55:38,642 INFO  [Thread-79] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-25 23:55:38,643 INFO  [Thread-79] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-25 23:55:38,648 INFO  [Thread-79] root: Write to File
+2020-01-25 23:55:38,649 INFO  [Thread-79] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@425db2c0, foo2=persistentStorage.locationData@494a2098}
+2020-01-25 23:55:38,650 INFO  [Thread-79] root: Write to File
+2020-01-25 23:55:38,650 INFO  [Thread-79] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-25 23:55:38,652 ERROR [Thread-79] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:55:38,657 INFO  [Thread-80] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:55:38,659 INFO  [Thread-0] root: Connected to localhost on port 64680
+2020-01-25 23:55:38,661 INFO  [Thread-80] root: Write to File
+2020-01-25 23:55:38,662 INFO  [Thread-80] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@58de57d, updateTestValue=persistentStorage.locationData@2527ca88, foo2=persistentStorage.locationData@1e8929af}
+2020-01-25 23:55:38,662 INFO  [Thread-80] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-25 23:55:38,662 INFO  [Thread-80] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-25 23:55:38,667 INFO  [Thread-80] root: Write to File
+2020-01-25 23:55:38,669 INFO  [Thread-80] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@7e41f64d, foo2=persistentStorage.locationData@3462d757}
+2020-01-25 23:55:38,669 INFO  [Thread-80] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-25 23:55:38,672 ERROR [Thread-80] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:55:38,677 INFO  [Thread-81] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 23:55:38,680 INFO  [Thread-0] root: Connected to localhost on port 64681
+2020-01-25 23:55:38,682 INFO  [Thread-81] root: Write to File
+2020-01-25 23:55:38,683 INFO  [Thread-81] root: serialized location data stored in {foo=persistentStorage.locationData@73f0d598, updateTestValue=persistentStorage.locationData@19e11669, foo2=persistentStorage.locationData@3cb446a4}
+2020-01-25 23:55:38,683 INFO  [Thread-81] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-25 23:55:38,684 INFO  [Thread-81] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-25 23:55:38,685 INFO  [Thread-81] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 23:55:38,685 ERROR [Thread-81] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:55:38,687 INFO  [Thread-82] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-25 23:55:38,687 INFO  [Thread-82] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-25 23:55:38,687 ERROR [Thread-82] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:55:38,688 INFO  [Thread-0] root: Connected to localhost on port 64682
+2020-01-25 23:55:39,051 ERROR [Thread-76] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:58:50,860 INFO  [Thread-0] root: Connected to localhost on port 64715
+2020-01-25 23:58:50,867 INFO  [Thread-83] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:58:50,867 INFO  [Thread-83] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:58:50,870 ERROR [Thread-83] root: Error! Server or client lost.java.io.EOFException
+2020-01-25 23:59:39,922 INFO  [Thread-0] root: Connected to localhost on port 64722
+2020-01-25 23:59:39,930 INFO  [Thread-84] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 23:59:39,930 INFO  [Thread-84] root: Write to File
+2020-01-25 23:59:39,930 INFO  [Thread-84] root: serialized location data stored in {foo2=persistentStorage.locationData@2753d6a5}
+2020-01-25 23:59:39,930 INFO  [Thread-84] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-25 23:59:39,933 ERROR [Thread-84] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:08,181 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 00:05:08,189 INFO  [Thread-0] root: Server listening on port: 200
+2020-01-26 00:05:23,690 INFO  [Thread-0] root: Connected to localhost on port 64798
+2020-01-26 00:05:23,694 INFO  [Thread-0] root: Connected to localhost on port 64799
+2020-01-26 00:05:23,741 INFO  [Thread-2] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:05:24,085 INFO  [Thread-2] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:05:24,088 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:24,093 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:24,094 INFO  [Thread-0] root: Connected to localhost on port 64800
+2020-01-26 00:05:24,095 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:05:24,096 INFO  [Thread-0] root: Connected to localhost on port 64801
+2020-01-26 00:05:24,124 INFO  [Thread-4] root: Write to File
+2020-01-26 00:05:24,126 INFO  [Thread-4] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@dcec618, foo2=persistentStorage.locationData@431f14b7}
+2020-01-26 00:05:24,126 INFO  [Thread-4] root: Sent Message: Status is PUT_SUCCESS; Key is updateTestValue; Value is initial
+2020-01-26 00:05:24,126 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:05:24,128 INFO  [Thread-4] root: Write to File
+2020-01-26 00:05:24,129 INFO  [Thread-4] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@3110a92a, foo2=persistentStorage.locationData@2d7d090}
+2020-01-26 00:05:24,129 INFO  [Thread-4] root: Write to File
+2020-01-26 00:05:24,129 INFO  [Thread-4] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:05:24,130 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:24,131 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:05:24,132 INFO  [Thread-0] root: Connected to localhost on port 64802
+2020-01-26 00:05:24,141 INFO  [Thread-5] root: Write to File
+2020-01-26 00:05:24,144 INFO  [Thread-5] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@2b0c9e88, updateTestValue=persistentStorage.locationData@21472887, foo2=persistentStorage.locationData@3008d67f}
+2020-01-26 00:05:24,144 INFO  [Thread-5] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:05:24,145 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:05:24,149 INFO  [Thread-5] root: Write to File
+2020-01-26 00:05:24,153 INFO  [Thread-5] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@4d0d437d, foo2=persistentStorage.locationData@422869c8}
+2020-01-26 00:05:24,154 INFO  [Thread-5] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:05:24,156 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:24,160 INFO  [Thread-6] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:05:24,162 INFO  [Thread-0] root: Connected to localhost on port 64803
+2020-01-26 00:05:24,167 INFO  [Thread-6] root: Write to File
+2020-01-26 00:05:24,173 INFO  [Thread-6] root: serialized location data stored in {foo=persistentStorage.locationData@3c050126, updateTestValue=persistentStorage.locationData@1fb8c14b, foo2=persistentStorage.locationData@307297a4}
+2020-01-26 00:05:24,173 INFO  [Thread-6] root: Sent Message: Status is PUT_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:05:24,176 INFO  [Thread-6] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:05:24,177 INFO  [Thread-6] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:05:24,179 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:24,186 INFO  [Thread-7] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:05:24,187 INFO  [Thread-7] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:05:24,188 INFO  [Thread-0] root: Connected to localhost on port 64804
+2020-01-26 00:05:24,188 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:24,547 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:43,519 INFO  [Thread-0] root: Connected to localhost on port 64808
+2020-01-26 00:05:43,531 INFO  [Thread-0] root: Connected to localhost on port 64809
+2020-01-26 00:05:43,547 INFO  [Thread-9] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:05:43,554 INFO  [Thread-9] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:05:43,557 ERROR [Thread-9] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:43,577 ERROR [Thread-10] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:43,579 INFO  [Thread-0] root: Connected to localhost on port 64810
+2020-01-26 00:05:43,579 INFO  [Thread-11] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:05:43,581 INFO  [Thread-0] root: Connected to localhost on port 64811
+2020-01-26 00:05:43,584 INFO  [Thread-11] root: Write to File
+2020-01-26 00:05:43,593 INFO  [Thread-11] root: serialized location data stored in {foo=persistentStorage.locationData@670e1915, updateTestValue=persistentStorage.locationData@37297ca0, foo2=persistentStorage.locationData@62c550b}
+2020-01-26 00:05:43,594 INFO  [Thread-11] root: Write to File
+2020-01-26 00:05:43,595 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 00:05:43,596 INFO  [Thread-11] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:05:43,603 INFO  [Thread-11] root: Write to File
+2020-01-26 00:05:43,607 INFO  [Thread-11] root: serialized location data stored in {foo=persistentStorage.locationData@7e670518, updateTestValue=persistentStorage.locationData@661a9d70, foo2=persistentStorage.locationData@38b03dc1}
+2020-01-26 00:05:43,608 INFO  [Thread-11] root: Write to File
+2020-01-26 00:05:43,608 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:05:43,608 ERROR [Thread-11] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:43,610 INFO  [Thread-12] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:05:43,612 INFO  [Thread-0] root: Connected to localhost on port 64812
+2020-01-26 00:05:43,625 INFO  [Thread-12] root: Write to File
+2020-01-26 00:05:43,630 INFO  [Thread-12] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@b4d6f9c, foo=persistentStorage.locationData@1a0c3144, updateTestValue=persistentStorage.locationData@25ae5ada, foo2=persistentStorage.locationData@1b3cc068}
+2020-01-26 00:05:43,630 INFO  [Thread-12] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:05:43,631 INFO  [Thread-12] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:05:43,638 INFO  [Thread-12] root: Write to File
+2020-01-26 00:05:43,641 INFO  [Thread-12] root: serialized location data stored in {foo=persistentStorage.locationData@307ff41c, updateTestValue=persistentStorage.locationData@5d7caac9, foo2=persistentStorage.locationData@2f7b32f7}
+2020-01-26 00:05:43,641 INFO  [Thread-12] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:05:43,642 ERROR [Thread-12] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:43,644 INFO  [Thread-13] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:05:43,645 INFO  [Thread-0] root: Connected to localhost on port 64813
+2020-01-26 00:05:43,647 INFO  [Thread-13] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 00:05:43,650 INFO  [Thread-13] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:05:43,651 INFO  [Thread-13] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:05:43,652 ERROR [Thread-13] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:43,658 INFO  [Thread-14] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:05:43,659 INFO  [Thread-14] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:05:43,660 INFO  [Thread-0] root: Connected to localhost on port 64814
+2020-01-26 00:05:43,660 ERROR [Thread-14] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:05:44,010 ERROR [Thread-8] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:21,372 INFO  [Thread-0] root: Connected to localhost on port 64920
+2020-01-26 00:19:21,386 INFO  [Thread-15] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:19:21,387 INFO  [Thread-15] root: Write to File
+2020-01-26 00:19:21,387 INFO  [Thread-15] root: serialized location data stored in {foo2=persistentStorage.locationData@52b4dfd9}
+2020-01-26 00:19:21,387 INFO  [Thread-15] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:19:21,389 ERROR [Thread-15] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:21,403 INFO  [Thread-16] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:19:21,405 INFO  [Thread-0] root: Connected to localhost on port 64921
+2020-01-26 00:19:21,411 INFO  [Thread-16] root: Write to File
+2020-01-26 00:19:21,414 INFO  [Thread-16] root: serialized location data stored in {foo=persistentStorage.locationData@52990d97, foo2=persistentStorage.locationData@2a531f3e}
+2020-01-26 00:19:21,415 INFO  [Thread-16] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 00:19:21,415 INFO  [Thread-16] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:19:21,415 INFO  [Thread-16] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:19:21,416 ERROR [Thread-16] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:21,418 ERROR [Thread-17] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:21,420 INFO  [Thread-0] root: Connected to localhost on port 64922
+2020-01-26 00:19:21,425 INFO  [Thread-18] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:19:21,426 INFO  [Thread-0] root: Connected to localhost on port 64923
+2020-01-26 00:19:21,433 INFO  [Thread-18] root: Write to File
+2020-01-26 00:19:21,435 INFO  [Thread-18] root: serialized location data stored in {foo=persistentStorage.locationData@3917bdb4, updateTestValue=persistentStorage.locationData@68fa68b9, foo2=persistentStorage.locationData@3a8e796e}
+2020-01-26 00:19:21,436 INFO  [Thread-18] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 00:19:21,439 INFO  [Thread-18] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:19:21,443 INFO  [Thread-18] root: Write to File
+2020-01-26 00:19:21,444 INFO  [Thread-18] root: serialized location data stored in {foo=persistentStorage.locationData@625bcd5f, updateTestValue=persistentStorage.locationData@579181be, foo2=persistentStorage.locationData@3b925bdd}
+2020-01-26 00:19:21,445 INFO  [Thread-18] root: Write to File
+2020-01-26 00:19:21,445 INFO  [Thread-18] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:19:21,446 ERROR [Thread-18] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:21,448 INFO  [Thread-19] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:19:21,449 INFO  [Thread-0] root: Connected to localhost on port 64924
+2020-01-26 00:19:21,451 INFO  [Thread-19] root: Write to File
+2020-01-26 00:19:21,453 INFO  [Thread-19] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@517af8ce, foo=persistentStorage.locationData@4fa2dd10, updateTestValue=persistentStorage.locationData@5534c51d, foo2=persistentStorage.locationData@40019fe1}
+2020-01-26 00:19:21,454 INFO  [Thread-19] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:19:21,456 INFO  [Thread-19] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:19:21,466 INFO  [Thread-19] root: Write to File
+2020-01-26 00:19:21,467 INFO  [Thread-19] root: serialized location data stored in {foo=persistentStorage.locationData@14c0e662, updateTestValue=persistentStorage.locationData@1228550c, foo2=persistentStorage.locationData@47e1b936}
+2020-01-26 00:19:21,467 INFO  [Thread-19] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:19:21,468 ERROR [Thread-19] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:21,471 INFO  [Thread-20] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:19:21,471 INFO  [Thread-20] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:19:21,474 INFO  [Thread-0] root: Connected to localhost on port 64925
+2020-01-26 00:19:21,474 ERROR [Thread-20] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:57,363 INFO  [Thread-0] root: Connected to localhost on port 64947
+2020-01-26 00:19:57,374 INFO  [Thread-21] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:19:57,375 INFO  [Thread-21] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:19:57,377 ERROR [Thread-21] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:57,384 INFO  [Thread-22] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:19:57,386 INFO  [Thread-0] root: Connected to localhost on port 64948
+2020-01-26 00:19:57,390 INFO  [Thread-22] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 00:19:57,392 INFO  [Thread-22] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:19:57,393 INFO  [Thread-22] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:19:57,395 ERROR [Thread-22] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:57,398 ERROR [Thread-23] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:57,398 INFO  [Thread-0] root: Connected to localhost on port 64949
+2020-01-26 00:19:57,399 INFO  [Thread-24] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:19:57,399 INFO  [Thread-0] root: Connected to localhost on port 64950
+2020-01-26 00:19:57,401 INFO  [Thread-24] root: Write to File
+2020-01-26 00:19:57,407 INFO  [Thread-24] root: serialized location data stored in {foo=persistentStorage.locationData@80fe16c, updateTestValue=persistentStorage.locationData@282f7cb4, foo2=persistentStorage.locationData@592746f5}
+2020-01-26 00:19:57,408 INFO  [Thread-24] root: Write to File
+2020-01-26 00:19:57,408 INFO  [Thread-24] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 00:19:57,409 INFO  [Thread-24] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:19:57,416 INFO  [Thread-24] root: Write to File
+2020-01-26 00:19:57,424 INFO  [Thread-24] root: serialized location data stored in {foo=persistentStorage.locationData@60f7f6d0, updateTestValue=persistentStorage.locationData@3156acf9, foo2=persistentStorage.locationData@16ec6467}
+2020-01-26 00:19:57,426 INFO  [Thread-24] root: Write to File
+2020-01-26 00:19:57,426 INFO  [Thread-24] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:19:57,428 ERROR [Thread-24] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:57,432 INFO  [Thread-25] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:19:57,432 INFO  [Thread-0] root: Connected to localhost on port 64951
+2020-01-26 00:19:57,436 INFO  [Thread-25] root: Write to File
+2020-01-26 00:19:57,440 INFO  [Thread-25] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@edef120, foo=persistentStorage.locationData@58f62b8e, updateTestValue=persistentStorage.locationData@47754c65, foo2=persistentStorage.locationData@46afe0ee}
+2020-01-26 00:19:57,441 INFO  [Thread-25] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:19:57,443 INFO  [Thread-25] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:19:57,450 INFO  [Thread-25] root: Write to File
+2020-01-26 00:19:57,451 INFO  [Thread-25] root: serialized location data stored in {foo=persistentStorage.locationData@501e01d5, updateTestValue=persistentStorage.locationData@55a6b4da, foo2=persistentStorage.locationData@3af55a59}
+2020-01-26 00:19:57,451 INFO  [Thread-25] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:19:57,452 ERROR [Thread-25] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:57,454 INFO  [Thread-26] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:19:57,454 INFO  [Thread-26] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:19:57,455 ERROR [Thread-26] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:19:57,455 INFO  [Thread-0] root: Connected to localhost on port 64952
+2020-01-26 00:20:28,736 INFO  [Thread-0] root: Connected to localhost on port 64968
+2020-01-26 00:20:28,754 INFO  [Thread-27] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:20:28,757 INFO  [Thread-27] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:20:28,760 ERROR [Thread-27] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:28,779 INFO  [Thread-0] root: Connected to localhost on port 64969
+2020-01-26 00:20:28,792 ERROR [Thread-28] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:28,792 INFO  [Thread-29] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:20:28,792 INFO  [Thread-0] root: Connected to localhost on port 64970
+2020-01-26 00:20:28,798 INFO  [Thread-29] root: Write to File
+2020-01-26 00:20:28,808 INFO  [Thread-29] root: serialized location data stored in {foo=persistentStorage.locationData@38b93ae0, updateTestValue=persistentStorage.locationData@171c86b0, foo2=persistentStorage.locationData@10f70c2e}
+2020-01-26 00:20:28,810 INFO  [Thread-29] root: Write to File
+2020-01-26 00:20:28,811 INFO  [Thread-29] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 00:20:28,813 INFO  [Thread-29] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:20:28,816 INFO  [Thread-29] root: Write to File
+2020-01-26 00:20:28,823 INFO  [Thread-29] root: serialized location data stored in {foo=persistentStorage.locationData@4308c3b3, updateTestValue=persistentStorage.locationData@1ff2a380, foo2=persistentStorage.locationData@355a885a}
+2020-01-26 00:20:28,825 INFO  [Thread-29] root: Write to File
+2020-01-26 00:20:28,826 INFO  [Thread-29] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:20:28,828 ERROR [Thread-29] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:28,832 INFO  [Thread-30] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:20:28,834 INFO  [Thread-0] root: Connected to localhost on port 64971
+2020-01-26 00:20:28,836 INFO  [Thread-30] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 00:20:28,839 INFO  [Thread-30] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:20:28,840 INFO  [Thread-30] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:20:28,842 ERROR [Thread-30] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:28,844 INFO  [Thread-31] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:20:28,845 INFO  [Thread-0] root: Connected to localhost on port 64972
+2020-01-26 00:20:28,850 INFO  [Thread-31] root: Write to File
+2020-01-26 00:20:28,853 INFO  [Thread-31] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@410dca83, foo=persistentStorage.locationData@5d820478, updateTestValue=persistentStorage.locationData@13e8d489, foo2=persistentStorage.locationData@7318802}
+2020-01-26 00:20:28,853 INFO  [Thread-31] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:20:28,855 INFO  [Thread-31] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:20:28,862 INFO  [Thread-31] root: Write to File
+2020-01-26 00:20:28,866 INFO  [Thread-31] root: serialized location data stored in {foo=persistentStorage.locationData@6f6fbad5, updateTestValue=persistentStorage.locationData@6af024ff, foo2=persistentStorage.locationData@141008f5}
+2020-01-26 00:20:28,867 INFO  [Thread-31] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:20:28,868 ERROR [Thread-31] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:28,870 INFO  [Thread-32] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:20:28,871 INFO  [Thread-32] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:20:28,872 ERROR [Thread-32] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:28,872 INFO  [Thread-0] root: Connected to localhost on port 64973
+2020-01-26 00:20:47,469 INFO  [Thread-0] root: Connected to localhost on port 64982
+2020-01-26 00:20:47,483 INFO  [Thread-33] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:20:47,484 INFO  [Thread-33] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:20:47,485 ERROR [Thread-33] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:47,503 ERROR [Thread-34] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:47,506 INFO  [Thread-0] root: Connected to localhost on port 64983
+2020-01-26 00:20:47,511 INFO  [Thread-35] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:20:47,513 INFO  [Thread-0] root: Connected to localhost on port 64984
+2020-01-26 00:20:47,516 INFO  [Thread-35] root: Write to File
+2020-01-26 00:20:47,519 INFO  [Thread-35] root: serialized location data stored in {foo=persistentStorage.locationData@593e411b, updateTestValue=persistentStorage.locationData@3ba74ee, foo2=persistentStorage.locationData@60cd5671}
+2020-01-26 00:20:47,519 INFO  [Thread-35] root: Write to File
+2020-01-26 00:20:47,519 INFO  [Thread-35] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 00:20:47,522 INFO  [Thread-35] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:20:47,530 INFO  [Thread-35] root: Write to File
+2020-01-26 00:20:47,538 INFO  [Thread-35] root: serialized location data stored in {foo=persistentStorage.locationData@5f4ad42, updateTestValue=persistentStorage.locationData@4908308d, foo2=persistentStorage.locationData@59df1bd8}
+2020-01-26 00:20:47,538 INFO  [Thread-35] root: Write to File
+2020-01-26 00:20:47,538 INFO  [Thread-35] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:20:47,539 ERROR [Thread-35] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:47,543 INFO  [Thread-36] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:20:47,544 INFO  [Thread-0] root: Connected to localhost on port 64985
+2020-01-26 00:20:47,548 INFO  [Thread-36] root: Write to File
+2020-01-26 00:20:47,552 INFO  [Thread-36] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@1c78e8e6, foo=persistentStorage.locationData@3d89929e, updateTestValue=persistentStorage.locationData@711d9c4b, foo2=persistentStorage.locationData@4b7cf93b}
+2020-01-26 00:20:47,553 INFO  [Thread-36] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:20:47,554 INFO  [Thread-36] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:20:47,561 INFO  [Thread-36] root: Write to File
+2020-01-26 00:20:47,565 INFO  [Thread-36] root: serialized location data stored in {foo=persistentStorage.locationData@2a0d3697, updateTestValue=persistentStorage.locationData@5d2340f6, foo2=persistentStorage.locationData@50858f0e}
+2020-01-26 00:20:47,566 INFO  [Thread-36] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:20:47,567 ERROR [Thread-36] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:47,573 INFO  [Thread-37] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:20:47,574 INFO  [Thread-0] root: Connected to localhost on port 64986
+2020-01-26 00:20:47,576 INFO  [Thread-37] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 00:20:47,577 INFO  [Thread-37] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:20:47,577 INFO  [Thread-37] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:20:47,578 ERROR [Thread-37] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:47,583 INFO  [Thread-38] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:20:47,584 INFO  [Thread-38] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:20:47,585 ERROR [Thread-38] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:20:47,585 INFO  [Thread-0] root: Connected to localhost on port 64987
+2020-01-26 00:23:10,443 INFO  [Thread-0] root: Connected to localhost on port 65007
+2020-01-26 00:23:10,450 INFO  [Thread-39] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:23:10,451 INFO  [Thread-39] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:23:10,454 ERROR [Thread-39] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:23:20,604 INFO  [Thread-0] root: Connected to localhost on port 65017
+2020-01-26 00:23:20,613 INFO  [Thread-40] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:23:20,615 INFO  [Thread-40] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:23:20,619 ERROR [Thread-40] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:26:23,074 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 00:26:23,081 INFO  [Thread-0] root: Server listening on port: 200
+2020-01-26 00:26:28,813 INFO  [Thread-0] root: Connected to localhost on port 65050
+2020-01-26 00:26:28,823 INFO  [Thread-1] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:26:28,933 INFO  [Thread-1] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:26:28,937 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:27:48,160 INFO  [Thread-0] root: Connected to localhost on port 65157
+2020-01-26 00:27:54,310 INFO  [Thread-2] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:27:54,313 INFO  [Thread-2] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:28:05,644 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:28:07,794 INFO  [Thread-0] root: Connected to localhost on port 65162
+2020-01-26 00:28:38,142 INFO  [Thread-3] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:28:38,145 INFO  [Thread-3] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:28:51,101 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:29:32,207 INFO  [Thread-0] root: Connected to localhost on port 65183
+2020-01-26 00:29:32,214 INFO  [Thread-4] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:29:32,215 INFO  [Thread-4] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:29:32,219 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:30:30,926 INFO  [Thread-0] root: Connected to localhost on port 65209
+2020-01-26 00:30:37,871 INFO  [Thread-5] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:30:37,881 INFO  [Thread-5] root: Write to File
+2020-01-26 00:30:37,884 INFO  [Thread-5] root: serialized location data stored in {foo2=persistentStorage.locationData@b86427}
+2020-01-26 00:30:37,884 INFO  [Thread-5] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:30:47,187 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:48:20,390 INFO  [Thread-0] root: Connected to localhost on port 65355
+2020-01-26 00:48:20,404 INFO  [Thread-6] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:48:20,405 INFO  [Thread-6] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:48:20,409 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:48:34,315 INFO  [Thread-0] root: Connected to localhost on port 65366
+2020-01-26 00:48:34,355 INFO  [Thread-7] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:48:34,357 INFO  [Thread-7] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:48:34,365 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:49:34,928 INFO  [Thread-0] root: Connected to localhost on port 65382
+2020-01-26 00:49:34,935 INFO  [Thread-8] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:49:34,936 INFO  [Thread-8] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:49:34,938 ERROR [Thread-8] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:49:56,001 INFO  [Thread-0] root: Connected to localhost on port 65388
+2020-01-26 00:49:56,036 INFO  [Thread-9] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:49:56,044 INFO  [Thread-9] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:49:56,052 ERROR [Thread-9] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:57:05,398 INFO  [Thread-0] root: Connected to localhost on port 65447
+2020-01-26 00:57:05,405 INFO  [Thread-10] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:57:05,406 INFO  [Thread-10] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:57:05,407 ERROR [Thread-10] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:02,907 INFO  [main] root: Initialize FIFO cache with cache size: 20
+2020-01-26 00:58:02,909 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 00:58:02,922 INFO  [Thread-0] root: Server listening on port: 200
+2020-01-26 00:58:24,463 INFO  [Thread-0] root: Connected to localhost on port 65473
+2020-01-26 00:58:24,465 INFO  [Thread-0] root: Connected to localhost on port 65474
+2020-01-26 00:58:24,481 INFO  [Thread-2] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:58:24,559 INFO  [Thread-2] root: Finished put; key: foo2, value: bar2
+2020-01-26 00:58:24,600 INFO  [Thread-2] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:58:24,603 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:24,608 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:24,609 INFO  [Thread-0] root: Connected to localhost on port 65475
+2020-01-26 00:58:24,609 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:58:24,609 INFO  [Thread-0] root: Connected to localhost on port 65476
+2020-01-26 00:58:24,610 INFO  [Thread-4] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 00:58:24,635 INFO  [Thread-4] root: Write to File
+2020-01-26 00:58:24,637 INFO  [Thread-4] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@744e5dc, foo2=persistentStorage.locationData@69b31b7e}
+2020-01-26 00:58:24,638 INFO  [Thread-4] root: Sent Message: Status is PUT_SUCCESS; Key is updateTestValue; Value is initial
+2020-01-26 00:58:24,639 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:58:24,639 INFO  [Thread-4] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 00:58:24,641 INFO  [Thread-4] root: Write to File
+2020-01-26 00:58:24,642 INFO  [Thread-4] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@7865e82a, foo2=persistentStorage.locationData@453e80e3}
+2020-01-26 00:58:24,643 INFO  [Thread-4] root: Write to File
+2020-01-26 00:58:24,643 INFO  [Thread-4] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:58:24,645 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:24,648 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:58:24,648 INFO  [Thread-0] root: Connected to localhost on port 65477
+2020-01-26 00:58:24,649 INFO  [Thread-5] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 00:58:24,650 INFO  [Thread-5] root: Write to File
+2020-01-26 00:58:24,651 INFO  [Thread-5] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@655c695, updateTestValue=persistentStorage.locationData@6331da5d, foo2=persistentStorage.locationData@1d510ac7}
+2020-01-26 00:58:24,651 INFO  [Thread-5] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:58:24,652 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:58:24,653 INFO  [Thread-5] root: Key deleted; key: deleteTestValue
+2020-01-26 00:58:24,659 INFO  [Thread-5] root: Write to File
+2020-01-26 00:58:24,661 INFO  [Thread-5] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@6f4f4b14, foo2=persistentStorage.locationData@14a7840c}
+2020-01-26 00:58:24,662 INFO  [Thread-5] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:58:24,664 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:24,666 INFO  [Thread-6] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:58:24,667 INFO  [Thread-0] root: Connected to localhost on port 65478
+2020-01-26 00:58:24,667 INFO  [Thread-6] root: Finished put; key: foo, value: bar
+2020-01-26 00:58:24,670 INFO  [Thread-6] root: Write to File
+2020-01-26 00:58:24,676 INFO  [Thread-6] root: serialized location data stored in {foo=persistentStorage.locationData@1b41d372, updateTestValue=persistentStorage.locationData@6d8158db, foo2=persistentStorage.locationData@753485dd}
+2020-01-26 00:58:24,676 INFO  [Thread-6] root: Sent Message: Status is PUT_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:58:24,677 INFO  [Thread-6] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:58:24,677 INFO  [Thread-6] root: Finished put; key: foo
+2020-01-26 00:58:24,677 INFO  [Thread-6] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:58:24,678 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:24,680 INFO  [Thread-7] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:58:24,681 INFO  [Thread-7] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:58:24,682 INFO  [Thread-0] root: Connected to localhost on port 65479
+2020-01-26 00:58:24,683 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:25,049 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:49,789 INFO  [Thread-0] root: Connected to localhost on port 65487
+2020-01-26 00:58:49,810 INFO  [Thread-0] root: Connected to localhost on port 65488
+2020-01-26 00:58:49,822 INFO  [Thread-9] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:58:49,823 INFO  [Thread-9] root: Finished put; key: foo2, value: bar2
+2020-01-26 00:58:49,829 INFO  [Thread-9] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:58:49,831 ERROR [Thread-9] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:49,849 ERROR [Thread-10] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:49,851 INFO  [Thread-0] root: Connected to localhost on port 65489
+2020-01-26 00:58:49,852 INFO  [Thread-11] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:58:49,852 INFO  [Thread-11] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 00:58:49,852 INFO  [Thread-0] root: Connected to localhost on port 65490
+2020-01-26 00:58:49,855 INFO  [Thread-11] root: Write to File
+2020-01-26 00:58:49,857 INFO  [Thread-11] root: serialized location data stored in {foo=persistentStorage.locationData@6395748d, updateTestValue=persistentStorage.locationData@21686fbc, foo2=persistentStorage.locationData@42b4f812}
+2020-01-26 00:58:49,857 INFO  [Thread-11] root: Write to File
+2020-01-26 00:58:49,857 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 00:58:49,858 INFO  [Thread-11] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:58:49,858 INFO  [Thread-11] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 00:58:49,860 INFO  [Thread-11] root: Write to File
+2020-01-26 00:58:49,861 INFO  [Thread-11] root: serialized location data stored in {foo=persistentStorage.locationData@3a627b1c, updateTestValue=persistentStorage.locationData@540ef573, foo2=persistentStorage.locationData@299728fc}
+2020-01-26 00:58:49,861 INFO  [Thread-11] root: Write to File
+2020-01-26 00:58:49,861 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:58:49,862 ERROR [Thread-11] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:49,864 INFO  [Thread-12] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:58:49,866 INFO  [Thread-0] root: Connected to localhost on port 65492
+2020-01-26 00:58:49,867 INFO  [Thread-12] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 00:58:49,873 INFO  [Thread-12] root: Write to File
+2020-01-26 00:58:49,876 INFO  [Thread-12] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@68020ab5, foo=persistentStorage.locationData@23d8fa54, updateTestValue=persistentStorage.locationData@1f32b45c, foo2=persistentStorage.locationData@6947ba6}
+2020-01-26 00:58:49,876 INFO  [Thread-12] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:58:49,879 INFO  [Thread-12] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:58:49,880 INFO  [Thread-12] root: Key deleted; key: deleteTestValue
+2020-01-26 00:58:49,888 INFO  [Thread-12] root: Write to File
+2020-01-26 00:58:49,889 INFO  [Thread-12] root: serialized location data stored in {foo=persistentStorage.locationData@69ca5496, updateTestValue=persistentStorage.locationData@47a1733d, foo2=persistentStorage.locationData@30f54062}
+2020-01-26 00:58:49,889 INFO  [Thread-12] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:58:49,890 ERROR [Thread-12] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:49,893 INFO  [Thread-13] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:58:49,893 INFO  [Thread-13] root: Finished put; key: foo, value: bar
+2020-01-26 00:58:49,894 INFO  [Thread-0] root: Connected to localhost on port 65493
+2020-01-26 00:58:49,895 INFO  [Thread-13] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 00:58:49,896 INFO  [Thread-13] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:58:49,896 INFO  [Thread-13] root: Finished put; key: foo
+2020-01-26 00:58:49,896 INFO  [Thread-13] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:58:49,898 ERROR [Thread-13] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:49,903 INFO  [Thread-14] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:58:49,904 INFO  [Thread-14] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:58:49,906 INFO  [Thread-0] root: Connected to localhost on port 65494
+2020-01-26 00:58:49,908 ERROR [Thread-14] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:58:50,276 ERROR [Thread-8] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:59:01,578 INFO  [Thread-0] root: Connected to localhost on port 65504
+2020-01-26 00:59:01,591 INFO  [Thread-0] root: Connected to localhost on port 65505
+2020-01-26 00:59:01,608 INFO  [Thread-16] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 00:59:01,609 INFO  [Thread-16] root: Finished put; key: foo2, value: bar2
+2020-01-26 00:59:01,612 INFO  [Thread-16] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 00:59:01,616 ERROR [Thread-16] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:59:01,633 ERROR [Thread-17] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:59:01,636 INFO  [Thread-0] root: Connected to localhost on port 65506
+2020-01-26 00:59:01,639 INFO  [Thread-18] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 00:59:01,639 INFO  [Thread-18] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 00:59:01,640 INFO  [Thread-0] root: Connected to localhost on port 65507
+2020-01-26 00:59:01,641 INFO  [Thread-18] root: Write to File
+2020-01-26 00:59:01,642 INFO  [Thread-18] root: serialized location data stored in {foo=persistentStorage.locationData@7c81ac7c, updateTestValue=persistentStorage.locationData@1af969da, foo2=persistentStorage.locationData@a0984a0}
+2020-01-26 00:59:01,642 INFO  [Thread-18] root: Write to File
+2020-01-26 00:59:01,643 INFO  [Thread-18] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 00:59:01,643 INFO  [Thread-18] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 00:59:01,644 INFO  [Thread-18] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 00:59:01,648 INFO  [Thread-18] root: Write to File
+2020-01-26 00:59:01,652 INFO  [Thread-18] root: serialized location data stored in {foo=persistentStorage.locationData@25595ab3, updateTestValue=persistentStorage.locationData@3549079b, foo2=persistentStorage.locationData@72ea1065}
+2020-01-26 00:59:01,653 INFO  [Thread-18] root: Write to File
+2020-01-26 00:59:01,653 INFO  [Thread-18] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 00:59:01,655 ERROR [Thread-18] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:59:01,658 INFO  [Thread-19] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:59:01,660 INFO  [Thread-0] root: Connected to localhost on port 65508
+2020-01-26 00:59:01,661 INFO  [Thread-19] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 00:59:01,667 INFO  [Thread-19] root: Write to File
+2020-01-26 00:59:01,668 INFO  [Thread-19] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@3eea7a55, foo=persistentStorage.locationData@116f5ac8, updateTestValue=persistentStorage.locationData@1e7166ed, foo2=persistentStorage.locationData@38d9c6f2}
+2020-01-26 00:59:01,668 INFO  [Thread-19] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 00:59:01,669 INFO  [Thread-19] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 00:59:01,669 INFO  [Thread-19] root: Key deleted; key: deleteTestValue
+2020-01-26 00:59:01,673 INFO  [Thread-19] root: Write to File
+2020-01-26 00:59:01,677 INFO  [Thread-19] root: serialized location data stored in {foo=persistentStorage.locationData@32551154, updateTestValue=persistentStorage.locationData@6228a5b7, foo2=persistentStorage.locationData@4b31a48b}
+2020-01-26 00:59:01,678 INFO  [Thread-19] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 00:59:01,679 ERROR [Thread-19] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:59:01,686 INFO  [Thread-20] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 00:59:01,686 INFO  [Thread-20] root: Finished put; key: foo, value: bar
+2020-01-26 00:59:01,688 INFO  [Thread-0] root: Connected to localhost on port 65509
+2020-01-26 00:59:01,693 INFO  [Thread-20] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 00:59:01,694 INFO  [Thread-20] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 00:59:01,694 INFO  [Thread-20] root: Finished put; key: foo
+2020-01-26 00:59:01,694 INFO  [Thread-20] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 00:59:01,695 ERROR [Thread-20] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:59:01,698 INFO  [Thread-21] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 00:59:01,698 INFO  [Thread-21] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 00:59:01,701 ERROR [Thread-21] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 00:59:01,702 INFO  [Thread-0] root: Connected to localhost on port 65510
+2020-01-26 00:59:02,054 ERROR [Thread-15] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:14,097 INFO  [Thread-0] root: Connected to localhost on port 65532
+2020-01-26 01:00:14,208 INFO  [Thread-0] root: Connected to localhost on port 65533
+2020-01-26 01:00:14,227 INFO  [Thread-23] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:00:14,227 INFO  [Thread-23] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:00:14,230 INFO  [Thread-23] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 01:00:14,231 ERROR [Thread-23] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:14,244 ERROR [Thread-24] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:14,246 INFO  [Thread-0] root: Connected to localhost on port 65534
+2020-01-26 01:00:14,247 INFO  [Thread-25] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 01:00:14,247 INFO  [Thread-25] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 01:00:14,247 INFO  [Thread-0] root: Connected to localhost on port 65535
+2020-01-26 01:00:14,249 INFO  [Thread-25] root: Write to File
+2020-01-26 01:00:14,252 INFO  [Thread-25] root: serialized location data stored in {foo=persistentStorage.locationData@6996bb34, updateTestValue=persistentStorage.locationData@5106fc28, foo2=persistentStorage.locationData@515ac880}
+2020-01-26 01:00:14,253 INFO  [Thread-25] root: Write to File
+2020-01-26 01:00:14,254 INFO  [Thread-25] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 01:00:14,256 INFO  [Thread-25] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 01:00:14,256 INFO  [Thread-25] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 01:00:14,264 INFO  [Thread-25] root: Write to File
+2020-01-26 01:00:14,269 INFO  [Thread-25] root: serialized location data stored in {foo=persistentStorage.locationData@2142d5aa, updateTestValue=persistentStorage.locationData@7fbaeff, foo2=persistentStorage.locationData@44fa21d0}
+2020-01-26 01:00:14,269 INFO  [Thread-25] root: Write to File
+2020-01-26 01:00:14,270 INFO  [Thread-25] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 01:00:14,270 ERROR [Thread-25] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:14,272 INFO  [Thread-26] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:00:14,273 INFO  [Thread-0] root: Connected to localhost on port 49152
+2020-01-26 01:00:14,284 INFO  [Thread-26] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 01:00:14,289 INFO  [Thread-26] root: Write to File
+2020-01-26 01:00:14,292 INFO  [Thread-26] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@367bd159, foo=persistentStorage.locationData@634c6671, updateTestValue=persistentStorage.locationData@34e83f12, foo2=persistentStorage.locationData@2f62f7fb}
+2020-01-26 01:00:14,292 INFO  [Thread-26] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:00:14,292 INFO  [Thread-26] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 01:00:14,292 INFO  [Thread-26] root: Key deleted; key: deleteTestValue
+2020-01-26 01:00:14,295 INFO  [Thread-26] root: Write to File
+2020-01-26 01:00:14,296 INFO  [Thread-26] root: serialized location data stored in {foo=persistentStorage.locationData@19072d5b, updateTestValue=persistentStorage.locationData@19079763, foo2=persistentStorage.locationData@72e44937}
+2020-01-26 01:00:14,296 INFO  [Thread-26] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 01:00:14,297 ERROR [Thread-26] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:14,303 INFO  [Thread-27] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 01:00:14,303 INFO  [Thread-27] root: Finished put; key: foo, value: bar
+2020-01-26 01:00:14,303 INFO  [Thread-0] root: Connected to localhost on port 49153
+2020-01-26 01:00:14,307 INFO  [Thread-27] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 01:00:14,309 INFO  [Thread-27] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 01:00:14,309 INFO  [Thread-27] root: Finished put; key: foo
+2020-01-26 01:00:14,309 INFO  [Thread-27] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 01:00:14,310 ERROR [Thread-27] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:14,311 INFO  [Thread-28] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 01:00:14,312 INFO  [Thread-28] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 01:00:14,312 ERROR [Thread-28] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:14,313 INFO  [Thread-0] root: Connected to localhost on port 49154
+2020-01-26 01:00:14,665 ERROR [Thread-22] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:30,541 INFO  [Thread-0] root: Connected to localhost on port 49167
+2020-01-26 01:00:30,564 INFO  [Thread-0] root: Connected to localhost on port 49168
+2020-01-26 01:00:30,590 INFO  [Thread-30] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:00:30,590 INFO  [Thread-30] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:00:30,594 INFO  [Thread-30] root: Write to File
+2020-01-26 01:00:30,597 INFO  [Thread-30] root: serialized location data stored in {foo2=persistentStorage.locationData@36dd4b10}
+2020-01-26 01:00:30,597 INFO  [Thread-30] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 01:00:30,598 ERROR [Thread-30] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:30,611 ERROR [Thread-31] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:30,613 INFO  [Thread-0] root: Connected to localhost on port 49169
+2020-01-26 01:00:30,617 INFO  [Thread-32] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 01:00:30,618 INFO  [Thread-32] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 01:00:30,619 INFO  [Thread-0] root: Connected to localhost on port 49170
+2020-01-26 01:00:30,621 INFO  [Thread-32] root: Write to File
+2020-01-26 01:00:30,622 INFO  [Thread-32] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@49a91288, foo2=persistentStorage.locationData@31b4d457}
+2020-01-26 01:00:30,622 INFO  [Thread-32] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 01:00:30,623 INFO  [Thread-32] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 01:00:30,623 INFO  [Thread-32] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 01:00:30,629 INFO  [Thread-32] root: Write to File
+2020-01-26 01:00:30,635 INFO  [Thread-32] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@484d79f2, foo2=persistentStorage.locationData@543c171b}
+2020-01-26 01:00:30,636 INFO  [Thread-32] root: Write to File
+2020-01-26 01:00:30,636 INFO  [Thread-32] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 01:00:30,637 ERROR [Thread-32] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:30,642 INFO  [Thread-33] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:00:30,644 INFO  [Thread-33] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 01:00:30,644 INFO  [Thread-0] root: Connected to localhost on port 49171
+2020-01-26 01:00:30,646 INFO  [Thread-33] root: Write to File
+2020-01-26 01:00:30,647 INFO  [Thread-33] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@34376e6a, updateTestValue=persistentStorage.locationData@4819eb45, foo2=persistentStorage.locationData@2f336276}
+2020-01-26 01:00:30,648 INFO  [Thread-33] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:00:30,649 INFO  [Thread-33] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 01:00:30,650 INFO  [Thread-33] root: Key deleted; key: deleteTestValue
+2020-01-26 01:00:30,656 INFO  [Thread-33] root: Write to File
+2020-01-26 01:00:30,660 INFO  [Thread-33] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@56744598, foo2=persistentStorage.locationData@458c4281}
+2020-01-26 01:00:30,660 INFO  [Thread-33] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 01:00:30,661 ERROR [Thread-33] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:30,666 INFO  [Thread-34] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 01:00:30,667 INFO  [Thread-34] root: Finished put; key: foo, value: bar
+2020-01-26 01:00:30,668 INFO  [Thread-0] root: Connected to localhost on port 49172
+2020-01-26 01:00:30,670 INFO  [Thread-34] root: Write to File
+2020-01-26 01:00:30,671 INFO  [Thread-34] root: serialized location data stored in {foo=persistentStorage.locationData@511f33d8, updateTestValue=persistentStorage.locationData@34ddaf54, foo2=persistentStorage.locationData@4961ef69}
+2020-01-26 01:00:30,672 INFO  [Thread-34] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 01:00:30,672 INFO  [Thread-34] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 01:00:30,672 INFO  [Thread-34] root: Finished put; key: foo
+2020-01-26 01:00:30,672 INFO  [Thread-34] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 01:00:30,674 ERROR [Thread-34] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:30,679 INFO  [Thread-35] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 01:00:30,679 INFO  [Thread-35] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 01:00:30,680 ERROR [Thread-35] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:00:30,680 INFO  [Thread-0] root: Connected to localhost on port 49173
+2020-01-26 01:00:31,020 ERROR [Thread-29] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:02:24,307 INFO  [main] root: Initialize FIFO cache with cache size: 20
+2020-01-26 01:02:24,309 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 01:02:24,317 INFO  [Thread-0] root: Server listening on port: 2000
+2020-01-26 01:02:41,250 INFO  [Thread-0] root: Connected to localhost on port 49206
+2020-01-26 01:02:41,262 INFO  [Thread-1] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:02:41,319 INFO  [Thread-1] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:02:41,381 INFO  [Thread-1] root: Write to File
+2020-01-26 01:02:41,396 INFO  [Thread-1] root: serialized location data stored in {foo2=persistentStorage.locationData@112234dd}
+2020-01-26 01:02:41,396 INFO  [Thread-1] root: Sent Message: Status is PUT_SUCCESS; Key is foo2; Value is bar2
+2020-01-26 01:02:41,399 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:02:41,400 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:02:41,400 INFO  [Thread-0] root: Connected to localhost on port 49207
+2020-01-26 01:02:41,402 INFO  [Thread-3] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 01:02:41,404 INFO  [Thread-0] root: Connected to localhost on port 49208
+2020-01-26 01:02:41,408 INFO  [Thread-3] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 01:02:41,413 INFO  [Thread-3] root: Write to File
+2020-01-26 01:02:41,415 INFO  [Thread-3] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@291a007c, foo2=persistentStorage.locationData@15b0f86f}
+2020-01-26 01:02:41,416 INFO  [Thread-3] root: Sent Message: Status is PUT_SUCCESS; Key is updateTestValue; Value is initial
+2020-01-26 01:02:41,418 INFO  [Thread-3] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 01:02:41,418 INFO  [Thread-3] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 01:02:41,422 INFO  [Thread-3] root: Write to File
+2020-01-26 01:02:41,424 INFO  [Thread-3] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@35ab669f, foo2=persistentStorage.locationData@3f05b940}
+2020-01-26 01:02:41,425 INFO  [Thread-3] root: Write to File
+2020-01-26 01:02:41,425 INFO  [Thread-3] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 01:02:41,427 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:02:41,430 INFO  [Thread-4] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:02:41,432 INFO  [Thread-0] root: Connected to localhost on port 49209
+2020-01-26 01:02:41,435 INFO  [Thread-4] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 01:02:41,437 INFO  [Thread-4] root: Write to File
+2020-01-26 01:02:41,438 INFO  [Thread-4] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@326a458d, updateTestValue=persistentStorage.locationData@1f7d20ce, foo2=persistentStorage.locationData@296ea969}
+2020-01-26 01:02:41,438 INFO  [Thread-4] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:02:41,440 INFO  [Thread-4] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 01:02:41,441 INFO  [Thread-4] root: Key deleted; key: deleteTestValue
+2020-01-26 01:02:41,445 INFO  [Thread-4] root: Write to File
+2020-01-26 01:02:41,446 INFO  [Thread-4] root: serialized location data stored in {updateTestValue=persistentStorage.locationData@652f8194, foo2=persistentStorage.locationData@76704ca8}
+2020-01-26 01:02:41,446 INFO  [Thread-4] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 01:02:41,446 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:02:41,449 INFO  [Thread-5] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 01:02:41,449 INFO  [Thread-0] root: Connected to localhost on port 49210
+2020-01-26 01:02:41,451 INFO  [Thread-5] root: Finished put; key: foo, value: bar
+2020-01-26 01:02:41,456 INFO  [Thread-5] root: Write to File
+2020-01-26 01:02:41,462 INFO  [Thread-5] root: serialized location data stored in {foo=persistentStorage.locationData@6b9914f4, updateTestValue=persistentStorage.locationData@21fd7e9a, foo2=persistentStorage.locationData@eb57583}
+2020-01-26 01:02:41,462 INFO  [Thread-5] root: Sent Message: Status is PUT_SUCCESS; Key is foo; Value is bar
+2020-01-26 01:02:41,463 INFO  [Thread-5] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 01:02:41,463 INFO  [Thread-5] root: Finished put; key: foo
+2020-01-26 01:02:41,463 INFO  [Thread-5] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 01:02:41,463 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:02:41,465 INFO  [Thread-6] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 01:02:41,466 INFO  [Thread-6] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 01:02:41,466 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:02:41,466 INFO  [Thread-0] root: Connected to localhost on port 49211
+2020-01-26 01:04:09,606 INFO  [Thread-0] root: Connected to localhost on port 49244
+2020-01-26 01:04:10,639 INFO  [Thread-0] root: Connected to localhost on port 49248
+2020-01-26 01:04:10,648 INFO  [Thread-8] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:04:10,648 INFO  [Thread-8] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:04:10,653 INFO  [Thread-8] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 01:04:10,656 ERROR [Thread-8] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:04:10,672 INFO  [Thread-9] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 01:04:10,672 INFO  [Thread-9] root: Finished put; key: foo, value: bar
+2020-01-26 01:04:10,673 INFO  [Thread-0] root: Connected to localhost on port 49249
+2020-01-26 01:04:10,674 INFO  [Thread-9] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 01:04:10,675 INFO  [Thread-9] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 01:04:10,675 INFO  [Thread-9] root: Finished put; key: foo
+2020-01-26 01:04:10,675 INFO  [Thread-9] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 01:04:10,676 ERROR [Thread-9] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:04:10,678 ERROR [Thread-10] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:04:10,681 INFO  [Thread-0] root: Connected to localhost on port 49250
+2020-01-26 01:04:10,683 INFO  [Thread-11] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 01:04:10,683 INFO  [Thread-11] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 01:04:10,684 INFO  [Thread-0] root: Connected to localhost on port 49251
+2020-01-26 01:04:10,690 INFO  [Thread-11] root: Write to File
+2020-01-26 01:04:10,696 INFO  [Thread-11] root: serialized location data stored in {foo=persistentStorage.locationData@3e4e29b6, updateTestValue=persistentStorage.locationData@5eb80e6e, foo2=persistentStorage.locationData@143f2c0}
+2020-01-26 01:04:10,697 INFO  [Thread-11] root: Write to File
+2020-01-26 01:04:10,697 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 01:04:10,697 INFO  [Thread-11] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 01:04:10,698 INFO  [Thread-11] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 01:04:10,700 INFO  [Thread-11] root: Write to File
+2020-01-26 01:04:10,703 INFO  [Thread-11] root: serialized location data stored in {foo=persistentStorage.locationData@681839fa, updateTestValue=persistentStorage.locationData@54a06b6b, foo2=persistentStorage.locationData@6ee6c4d8}
+2020-01-26 01:04:10,704 INFO  [Thread-11] root: Write to File
+2020-01-26 01:04:10,705 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 01:04:10,707 ERROR [Thread-11] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:04:10,711 INFO  [Thread-12] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:04:10,714 INFO  [Thread-0] root: Connected to localhost on port 49252
+2020-01-26 01:04:10,715 INFO  [Thread-12] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 01:04:10,717 INFO  [Thread-12] root: Write to File
+2020-01-26 01:04:10,718 INFO  [Thread-12] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@57fab58b, foo=persistentStorage.locationData@6265595d, updateTestValue=persistentStorage.locationData@9ea66c9, foo2=persistentStorage.locationData@6e61afb1}
+2020-01-26 01:04:10,718 INFO  [Thread-12] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:04:10,719 INFO  [Thread-12] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 01:04:10,720 INFO  [Thread-12] root: Key deleted; key: deleteTestValue
+2020-01-26 01:04:10,726 INFO  [Thread-12] root: Write to File
+2020-01-26 01:04:10,730 INFO  [Thread-12] root: serialized location data stored in {foo=persistentStorage.locationData@216be2be, updateTestValue=persistentStorage.locationData@554c6baa, foo2=persistentStorage.locationData@35537178}
+2020-01-26 01:04:10,731 INFO  [Thread-12] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 01:04:10,732 ERROR [Thread-12] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:04:10,734 INFO  [Thread-13] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 01:04:10,734 INFO  [Thread-13] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 01:04:10,734 ERROR [Thread-13] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:04:10,734 INFO  [Thread-0] root: Connected to localhost on port 49253
+2020-01-26 01:04:11,086 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:07:38,097 INFO  [main] root: Initialize FIFO cache with cache size: 2000
+2020-01-26 01:07:38,098 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 01:07:38,106 INFO  [Thread-0] root: Server listening on port: 2000
+2020-01-26 01:08:31,531 INFO  [Thread-0] root: Connected to localhost on port 49351
+2020-01-26 01:08:31,547 INFO  [Thread-0] root: Connected to localhost on port 49352
+2020-01-26 01:08:31,578 INFO  [Thread-2] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:08:31,665 INFO  [Thread-2] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:08:31,715 INFO  [Thread-2] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 01:08:31,718 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:08:31,723 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:08:31,725 INFO  [Thread-0] root: Connected to localhost on port 49353
+2020-01-26 01:08:31,727 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 01:08:31,729 INFO  [Thread-0] root: Connected to localhost on port 49354
+2020-01-26 01:08:31,732 INFO  [Thread-4] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 01:08:31,754 INFO  [Thread-4] root: Write to File
+2020-01-26 01:08:31,759 INFO  [Thread-4] root: serialized location data stored in {foo=persistentStorage.locationData@3180e9ce, updateTestValue=persistentStorage.locationData@1dc735bb, foo2=persistentStorage.locationData@67ecd2f8}
+2020-01-26 01:08:31,759 INFO  [Thread-4] root: Write to File
+2020-01-26 01:08:31,759 INFO  [Thread-4] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 01:08:31,760 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 01:08:31,760 INFO  [Thread-4] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 01:08:31,762 INFO  [Thread-4] root: Write to File
+2020-01-26 01:08:31,764 INFO  [Thread-4] root: serialized location data stored in {foo=persistentStorage.locationData@1b1d7597, updateTestValue=persistentStorage.locationData@2644c108, foo2=persistentStorage.locationData@6132bc9d}
+2020-01-26 01:08:31,764 INFO  [Thread-4] root: Write to File
+2020-01-26 01:08:31,764 INFO  [Thread-4] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 01:08:31,765 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:08:31,766 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:08:31,767 INFO  [Thread-0] root: Connected to localhost on port 49355
+2020-01-26 01:08:31,770 INFO  [Thread-5] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 01:08:31,778 INFO  [Thread-5] root: Write to File
+2020-01-26 01:08:31,780 INFO  [Thread-5] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@37b331bd, foo=persistentStorage.locationData@7022494b, updateTestValue=persistentStorage.locationData@6d4de277, foo2=persistentStorage.locationData@63f13b71}
+2020-01-26 01:08:31,780 INFO  [Thread-5] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:08:31,781 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 01:08:31,781 INFO  [Thread-5] root: Key deleted; key: deleteTestValue
+2020-01-26 01:08:31,784 INFO  [Thread-5] root: Write to File
+2020-01-26 01:08:31,789 INFO  [Thread-5] root: serialized location data stored in {foo=persistentStorage.locationData@6baaf453, updateTestValue=persistentStorage.locationData@6f95b578, foo2=persistentStorage.locationData@6caa9abd}
+2020-01-26 01:08:31,789 INFO  [Thread-5] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 01:08:31,790 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:08:31,791 INFO  [Thread-6] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 01:08:31,792 INFO  [Thread-0] root: Connected to localhost on port 49356
+2020-01-26 01:08:31,793 INFO  [Thread-6] root: Finished put; key: foo, value: bar
+2020-01-26 01:08:31,798 INFO  [Thread-6] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 01:08:31,800 INFO  [Thread-6] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 01:08:31,800 INFO  [Thread-6] root: Finished put; key: foo
+2020-01-26 01:08:31,801 INFO  [Thread-6] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 01:08:31,803 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:08:31,807 INFO  [Thread-7] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 01:08:31,808 INFO  [Thread-7] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 01:08:31,808 INFO  [Thread-0] root: Connected to localhost on port 49357
+2020-01-26 01:08:31,808 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:08:32,168 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:11:15,310 INFO  [main] root: Initialize FIFO cache with cache size: 2000
+2020-01-26 01:11:15,312 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 01:11:15,320 INFO  [Thread-0] root: Server listening on port: 2000
+2020-01-26 01:11:30,050 INFO  [Thread-0] root: Connected to localhost on port 49391
+2020-01-26 01:11:30,064 INFO  [Thread-0] root: Connected to localhost on port 49392
+2020-01-26 01:11:30,075 INFO  [Thread-2] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:11:30,137 INFO  [Thread-2] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:11:30,179 INFO  [Thread-2] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 01:11:30,182 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:11:30,187 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:11:30,188 INFO  [Thread-0] root: Connected to localhost on port 49394
+2020-01-26 01:11:30,188 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 01:11:30,189 INFO  [Thread-0] root: Connected to localhost on port 49395
+2020-01-26 01:11:30,190 INFO  [Thread-4] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 01:11:30,200 INFO  [Thread-4] root: Write to File
+2020-01-26 01:11:30,205 INFO  [Thread-4] root: serialized location data stored in {foo=persistentStorage.locationData@690bb6da, updateTestValue=persistentStorage.locationData@53e75f82, foo2=persistentStorage.locationData@6858b75b}
+2020-01-26 01:11:30,205 INFO  [Thread-4] root: Write to File
+2020-01-26 01:11:30,205 INFO  [Thread-4] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 01:11:30,205 INFO  [Thread-4] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 01:11:30,206 INFO  [Thread-4] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 01:11:30,208 INFO  [Thread-4] root: Write to File
+2020-01-26 01:11:30,210 INFO  [Thread-4] root: serialized location data stored in {foo=persistentStorage.locationData@461641c, updateTestValue=persistentStorage.locationData@7d396f6f, foo2=persistentStorage.locationData@470fb677}
+2020-01-26 01:11:30,229 INFO  [Thread-4] root: Write to File
+2020-01-26 01:11:30,229 INFO  [Thread-4] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 01:11:30,230 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:11:30,233 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:11:30,235 INFO  [Thread-0] root: Connected to localhost on port 49396
+2020-01-26 01:11:30,236 INFO  [Thread-5] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 01:11:30,239 INFO  [Thread-5] root: Write to File
+2020-01-26 01:11:30,240 INFO  [Thread-5] root: serialized location data stored in {deleteTestValue=persistentStorage.locationData@72dbf3ab, foo=persistentStorage.locationData@ffe1c64, updateTestValue=persistentStorage.locationData@eac2812, foo2=persistentStorage.locationData@26d46853}
+2020-01-26 01:11:30,241 INFO  [Thread-5] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 01:11:30,246 INFO  [Thread-5] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 01:11:30,247 INFO  [Thread-5] root: Key deleted; key: deleteTestValue
+2020-01-26 01:11:30,249 INFO  [Thread-5] root: Write to File
+2020-01-26 01:11:30,251 INFO  [Thread-5] root: serialized location data stored in {foo=persistentStorage.locationData@6bab2f44, updateTestValue=persistentStorage.locationData@2d6552f0, foo2=persistentStorage.locationData@75502194}
+2020-01-26 01:11:30,251 INFO  [Thread-5] root: Sent Message: Status is DELETE_SUCCESS; Key is deleteTestValue; Value is null
+2020-01-26 01:11:30,251 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:11:30,253 INFO  [Thread-6] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 01:11:30,253 INFO  [Thread-0] root: Connected to localhost on port 49397
+2020-01-26 01:11:30,254 INFO  [Thread-6] root: Finished put; key: foo, value: bar
+2020-01-26 01:11:30,256 INFO  [Thread-6] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 01:11:30,256 INFO  [Thread-6] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 01:11:30,256 INFO  [Thread-6] root: Finished put; key: foo
+2020-01-26 01:11:30,256 INFO  [Thread-6] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 01:11:30,257 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:11:30,258 INFO  [Thread-0] root: Connected to localhost on port 49398
+2020-01-26 01:11:30,258 INFO  [Thread-7] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 01:11:30,260 INFO  [Thread-7] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 01:11:30,260 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:11:30,611 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:13:27,207 INFO  [Thread-0] root: Connected to localhost on port 49409
+2020-01-26 01:13:27,215 INFO  [Thread-8] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:13:27,215 INFO  [Thread-8] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:13:27,216 INFO  [Thread-8] root: Write to File
+2020-01-26 01:13:27,217 INFO  [Thread-8] root: serialized location data stored in {foo2=persistentStorage.locationData@216f3219}
+2020-01-26 01:13:27,217 INFO  [Thread-8] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 01:13:27,220 ERROR [Thread-8] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 01:15:51,756 INFO  [main] root: Initialize FIFO cache with cache size: 2000
+2020-01-26 01:15:51,758 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 01:15:51,769 INFO  [Thread-0] root: Server listening on port: 2000
+2020-01-26 01:15:57,407 INFO  [Thread-0] root: Connected to localhost on port 49445
+2020-01-26 01:15:57,415 INFO  [Thread-1] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 01:15:57,489 INFO  [Thread-1] root: Finished put; key: foo2, value: bar2
+2020-01-26 01:15:57,529 INFO  [Thread-1] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 01:15:57,533 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
