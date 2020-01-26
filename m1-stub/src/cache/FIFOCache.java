@@ -8,7 +8,7 @@ import java.util.Map;
 public class FIFOCache extends ICache {
 
     public FIFOCache (int size){
-        super(size+1,false);
+        super(size,false);
     }
 //
 //    @Override

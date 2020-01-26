@@ -17,17 +17,18 @@ public class KVCache{
                         " cache with cache size: " + size);
                 break;
             case("LRU"):
-                cache = new LRUCache(size);
+                cache = new LRUCache(size-1);
                 logger.info("Initialize " + strategy +
                         " cache with cache size: " + size);
                 break;
             case("LFU"):
-                cache = new LFUCache(size);
+                cache = new LFUCache(size-1);
                 logger.info("Initialize " + strategy +
                         " cache with cache size: " + size);
                 break;
             default:
                 cache = null;
+                logger.info("Unknown strategy");
         }
     }
 

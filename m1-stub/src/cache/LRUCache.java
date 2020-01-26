@@ -8,8 +8,36 @@ import java.util.Map;
 public class LRUCache extends ICache {
 
     public LRUCache (int size){
-        super(size+1, true);
+        super(size, true);
     }
+
+//    @Override
+//    protected String readCache(String key) {
+//        if (cache.containsKey(key)){
+//            System.out.println("yes");
+//            String value = cache.get(key);
+//            cache.remove(key);
+//            cache.put(key, value);
+//            return value;
+//        }
+//        else{ return null; }
+//    }
+//
+//    @Override
+//    protected void writeCache(String key, String value) {
+//        if (!cache.containsKey(key)) {
+//            if (currentCacheSize == maxCacheSize){
+//                evict();
+//                currentCacheSize --;
+//            }
+//            cache.put(key, value);
+//            currentCacheSize ++;
+//        }
+//        else {
+//            cache.remove(key);
+//            cache.put(key, value);
+//        }
+//    }
 
 //    @Override
 //    protected String readCache(String key) {

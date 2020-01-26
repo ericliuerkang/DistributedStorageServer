@@ -10,10 +10,20 @@ public class LFUCache extends ICache{
     protected TreeSet<Node> freq_list;
 
     public LFUCache (int size){
-        super(size+1,true);
+        super(size,true);
         tick = 0;
-        TreeSet<Node> set = new TreeSet<Node>((a, b) -> a.freq == b.freq ? b.tick - a.tick : b.freq - a.freq);
-        freq_list = (TreeSet<Node>) Collections.synchronizedSortedSet(set);
+        //freq_list = new TreeSet<Node>((a, b) -> a.freq == b.freq ? b.tick - a.tick : b.freq - a.freq);
+        //freq_list = (TreeSet<Node>) Collections.synchronizedSortedSet(set);
+        freq_list = new TreeSet<Node>(new Comparator<Node>(){
+            public int compare(Node a , Node b){
+                if(a.key == b.key){
+                    return 0;
+                }
+                int s = (a.freq - b.freq);
+                if(s!=0) return s;
+                else return a.tick-b.tick > 0 ? 1 :-1;
+            }
+        });
     }
 
 
