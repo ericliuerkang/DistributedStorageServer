@@ -20,42 +20,21 @@
 2020-01-25 17:33:32,110 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
 2020-01-25 17:33:35,359 INFO  [main] root: Sent Message: Status is PUT; Key is aaa; Value is sss
 2020-01-25 17:33:35,448 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is aaa; Value is sss
-2020-01-25 19:38:04,319 INFO  [main] root: Connection Established
-2020-01-25 19:38:04,324 INFO  [main] root: Connection Successful
-2020-01-25 19:38:36,030 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 19:38:41,094 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 19:38:51,919 INFO  [main] root: Sent Message: Status is PUT; Key is test; Value is test string
-2020-01-25 19:38:52,008 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is test; Value is test string
-2020-01-25 19:39:02,518 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 19:39:08,286 INFO  [main] root: Sent Message: Status is PUT; Key is test; Value is test string
-2020-01-25 19:39:08,292 INFO  [main] root: Received Message: Status is PUT_UPDATE; Key is test; Value is test string
-2020-01-25 19:39:14,758 INFO  [main] root: Sent Message: Status is GET; Key is test; Value is null
-2020-01-25 19:39:14,801 INFO  [main] root: Received Message: Status is GET_SUCCESS; Key is test; Value is test string
-2020-01-25 19:39:28,254 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 19:39:37,407 INFO  [main] root: Sent Message: Status is PUT; Key is test; Value is string
-2020-01-25 19:39:37,454 INFO  [main] root: Received Message: Status is PUT_UPDATE; Key is test; Value is string
-2020-01-25 19:39:52,367 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 19:39:55,207 INFO  [main] root: Sent Message: Status is PUT; Key is tews; Value is null
-2020-01-25 19:39:55,250 INFO  [main] root: Received Message: Status is DELETE_ERROR; Key is tews; Value is null
-2020-01-25 19:40:00,415 INFO  [main] root: Sent Message: Status is PUT; Key is test; Value is null
-2020-01-25 19:40:00,460 INFO  [main] root: Received Message: Status is DELETE_SUCCESS; Key is test; Value is null
-2020-01-25 20:01:22,947 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 20:01:23,155 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 20:01:23,299 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 20:13:50,361 INFO  [main] root: Connection Established
-2020-01-25 20:13:50,366 INFO  [main] root: Connection Successful
-2020-01-25 20:13:58,192 INFO  [main] root: Sent Message: Status is GET; Key is test; Value is null
-2020-01-25 20:13:58,238 INFO  [main] root: Received Message: Status is null; Key is null; Value is null
-2020-01-25 20:48:22,202 INFO  [main] root: Connection Established
-2020-01-25 20:48:22,207 INFO  [main] root: Connection Successful
-2020-01-25 20:48:48,417 INFO  [main] root: Sent Message: Status is PUT; Key is test; Value is test string
-2020-01-25 20:48:48,506 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is test; Value is test string
-2020-01-25 20:57:36,465 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 20:59:19,844 INFO  [main] root: Connection Established
-2020-01-25 20:59:19,849 INFO  [main] root: Connection Successful
-2020-01-25 20:59:27,340 INFO  [main] root: Sent Message: Status is PUT; Key is test; Value is test string
-2020-01-25 20:59:27,428 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is test; Value is test string
-2020-01-25 21:00:13,531 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
-2020-01-25 21:00:28,716 INFO  [main] root: Sent Message: Status is PUT; Key is test; Value is test str
-2020-01-25 21:00:28,724 INFO  [main] root: Received Message: Status is PUT_UPDATE; Key is test; Value is test str
-2020-01-25 21:44:06,141 INFO  [main] root: connect <ServerAddress> <PortNumber> ; put <key> <value>; get <key>; disconnect; help;
+2020-01-25 18:51:02,387 INFO  [main] root: Connection Established
+2020-01-25 18:51:02,394 INFO  [main] root: Connection Successful
+2020-01-25 18:51:07,392 INFO  [main] root: Sent Message: Status is PUT; Key is foo; Value is bar
+2020-01-25 18:51:07,548 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is foo; Value is bar
+2020-01-25 18:51:15,708 INFO  [main] root: Sent Message: Status is GET; Key is foo; Value is null
+2020-01-25 18:51:15,709 INFO  [main] root: Received Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-25 18:52:48,183 INFO  [main] root: Connection Established
+2020-01-25 18:52:48,190 INFO  [main] root: Connection Successful
+2020-01-25 18:52:54,714 INFO  [main] root: Sent Message: Status is PUT; Key is foo1; Value is bar1
+2020-01-25 18:52:54,873 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is foo1; Value is bar1
+2020-01-25 18:53:02,749 INFO  [main] root: Sent Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-25 18:53:02,756 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is foo2; Value is bar2
+2020-01-25 18:53:07,877 INFO  [main] root: Sent Message: Status is PUT; Key is foo3; Value is bar3
+2020-01-25 18:53:07,885 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is foo3; Value is bar3
+2020-01-25 18:53:14,752 INFO  [main] root: Sent Message: Status is PUT; Key is foo4; Value is bar4
+2020-01-25 18:53:14,760 INFO  [main] root: Received Message: Status is PUT_SUCCESS; Key is foo4; Value is bar4
+2020-01-25 18:53:18,184 INFO  [main] root: Sent Message: Status is GET; Key is foo3; Value is null
+2020-01-25 18:53:18,187 INFO  [main] root: Received Message: Status is GET_SUCCESS; Key is foo3; Value is bar3
