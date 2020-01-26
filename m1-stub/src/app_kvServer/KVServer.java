@@ -126,7 +126,7 @@ public class KVServer implements IKVServer {
 		}
 	}
 
-	public StatusType deleteKV(String key) throws Exception{
+	public void deleteKV(String key) throws Exception{
 		if (cache!=null && cache.getMaxCacheSize() > 0){
 			if (inCache(key)) {
 				cache.deleteKV(key);

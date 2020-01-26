@@ -1400,3 +1400,183 @@
 2020-01-26 02:00:41,683 INFO  [Thread-0] root: Connected to localhost on port 56880
 2020-01-26 02:00:41,684 INFO  [Thread-13] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
 2020-01-26 02:00:41,684 ERROR [Thread-13] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:48,439 INFO  [main] root: Initialize FIFO cache with cache size: 20
+2020-01-26 17:28:48,442 INFO  [Thread-0] root: Initialize server ...
+2020-01-26 17:28:48,444 INFO  [Thread-0] root: Server listening on port: 2000
+2020-01-26 17:28:55,559 ERROR [Thread-1] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:55,560 INFO  [Thread-0] root: Connected to localhost on port 51750
+2020-01-26 17:28:55,565 INFO  [Thread-0] root: Connected to localhost on port 51752
+2020-01-26 17:28:55,568 INFO  [Thread-2] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 17:28:55,604 INFO  [Thread-2] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 17:28:55,605 INFO  [Thread-2] root: Sent Message: Status is PUT_SUCCESS; Key is updateTestValue; Value is initial
+2020-01-26 17:28:55,607 INFO  [Thread-2] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 17:28:55,607 INFO  [Thread-2] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 17:28:55,608 INFO  [Thread-2] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 17:28:55,650 ERROR [Thread-2] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:55,651 INFO  [Thread-3] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:28:55,651 INFO  [Thread-3] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 17:28:55,651 INFO  [Thread-0] root: Connected to localhost on port 51754
+2020-01-26 17:28:55,651 INFO  [Thread-3] root: Sent Message: Status is PUT_SUCCESS; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:28:55,694 INFO  [Thread-3] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 17:28:55,694 INFO  [Thread-3] root: Finished put; key: deleteTestValue, value: null
+2020-01-26 17:28:55,694 INFO  [Thread-3] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is null
+2020-01-26 17:28:55,738 ERROR [Thread-3] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:55,741 INFO  [Thread-4] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 17:28:55,741 INFO  [Thread-4] root: Finished put; key: foo, value: bar
+2020-01-26 17:28:55,742 INFO  [Thread-4] root: Sent Message: Status is PUT_SUCCESS; Key is foo; Value is bar
+2020-01-26 17:28:55,742 INFO  [Thread-0] root: Connected to localhost on port 51756
+2020-01-26 17:28:55,786 INFO  [Thread-4] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 17:28:55,786 INFO  [Thread-4] root: Finished put; key: foo
+2020-01-26 17:28:55,786 INFO  [Thread-4] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 17:28:55,830 ERROR [Thread-4] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:55,831 INFO  [Thread-5] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 17:28:55,831 INFO  [Thread-5] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 17:28:55,831 ERROR [Thread-5] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:55,831 INFO  [Thread-0] root: Connected to localhost on port 51758
+2020-01-26 17:28:55,832 INFO  [Thread-6] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 17:28:55,832 INFO  [Thread-6] root: Finished put; key: foo2, value: bar2
+2020-01-26 17:28:55,832 INFO  [Thread-0] root: Connected to localhost on port 51760
+2020-01-26 17:28:55,832 INFO  [Thread-6] root: Sent Message: Status is PUT_SUCCESS; Key is foo2; Value is bar2
+2020-01-26 17:28:55,833 ERROR [Thread-6] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:59,735 INFO  [Thread-0] root: Connected to localhost on port 51764
+2020-01-26 17:28:59,740 INFO  [Thread-7] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 17:28:59,741 INFO  [Thread-7] root: Finished put; key: foo2, value: bar2
+2020-01-26 17:28:59,741 INFO  [Thread-7] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 17:28:59,742 ERROR [Thread-7] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:59,745 ERROR [Thread-8] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:59,746 INFO  [Thread-0] root: Connected to localhost on port 51766
+2020-01-26 17:28:59,747 INFO  [Thread-0] root: Connected to localhost on port 51768
+2020-01-26 17:28:59,747 INFO  [Thread-9] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 17:28:59,747 INFO  [Thread-9] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 17:28:59,748 INFO  [Thread-9] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 17:28:59,790 INFO  [Thread-9] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 17:28:59,790 INFO  [Thread-9] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 17:28:59,790 INFO  [Thread-9] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 17:28:59,835 INFO  [Thread-10] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:28:59,835 INFO  [Thread-10] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 17:28:59,835 INFO  [Thread-0] root: Connected to localhost on port 51770
+2020-01-26 17:28:59,835 INFO  [Thread-10] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:28:59,837 ERROR [Thread-9] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:59,878 INFO  [Thread-10] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 17:28:59,878 INFO  [Thread-10] root: Finished put; key: deleteTestValue, value: null
+2020-01-26 17:28:59,878 INFO  [Thread-10] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is null
+2020-01-26 17:28:59,922 ERROR [Thread-10] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:28:59,923 INFO  [Thread-11] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 17:28:59,923 INFO  [Thread-11] root: Finished put; key: foo, value: bar
+2020-01-26 17:28:59,923 INFO  [Thread-0] root: Connected to localhost on port 51772
+2020-01-26 17:28:59,923 INFO  [Thread-11] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 17:28:59,966 INFO  [Thread-11] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 17:28:59,966 INFO  [Thread-11] root: Finished put; key: foo
+2020-01-26 17:28:59,966 INFO  [Thread-11] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 17:29:00,010 ERROR [Thread-11] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:00,010 INFO  [Thread-12] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 17:29:00,010 INFO  [Thread-12] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 17:29:00,011 ERROR [Thread-12] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:00,011 INFO  [Thread-0] root: Connected to localhost on port 51774
+2020-01-26 17:29:01,613 INFO  [Thread-0] root: Connected to localhost on port 51778
+2020-01-26 17:29:01,618 INFO  [Thread-13] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 17:29:01,618 INFO  [Thread-13] root: Finished put; key: foo2, value: bar2
+2020-01-26 17:29:01,619 INFO  [Thread-13] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 17:29:01,620 ERROR [Thread-13] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:01,623 ERROR [Thread-14] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:01,623 INFO  [Thread-0] root: Connected to localhost on port 51780
+2020-01-26 17:29:01,625 INFO  [Thread-15] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 17:29:01,626 INFO  [Thread-15] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 17:29:01,626 INFO  [Thread-0] root: Connected to localhost on port 51782
+2020-01-26 17:29:01,626 INFO  [Thread-15] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 17:29:01,670 INFO  [Thread-15] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 17:29:01,670 INFO  [Thread-15] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 17:29:01,670 INFO  [Thread-15] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 17:29:01,714 ERROR [Thread-15] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:01,715 INFO  [Thread-16] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:29:01,715 INFO  [Thread-16] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 17:29:01,715 INFO  [Thread-0] root: Connected to localhost on port 51784
+2020-01-26 17:29:01,715 INFO  [Thread-16] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:29:01,758 INFO  [Thread-16] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 17:29:01,758 INFO  [Thread-16] root: Finished put; key: deleteTestValue, value: null
+2020-01-26 17:29:01,758 INFO  [Thread-16] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is null
+2020-01-26 17:29:01,802 ERROR [Thread-16] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:01,803 INFO  [Thread-17] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 17:29:01,803 INFO  [Thread-17] root: Finished put; key: foo, value: bar
+2020-01-26 17:29:01,803 INFO  [Thread-17] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 17:29:01,804 INFO  [Thread-0] root: Connected to localhost on port 51786
+2020-01-26 17:29:01,846 INFO  [Thread-17] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 17:29:01,846 INFO  [Thread-17] root: Finished put; key: foo
+2020-01-26 17:29:01,846 INFO  [Thread-17] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 17:29:01,890 ERROR [Thread-17] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:01,890 INFO  [Thread-18] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 17:29:01,890 INFO  [Thread-18] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 17:29:01,891 ERROR [Thread-18] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:01,891 INFO  [Thread-0] root: Connected to localhost on port 51788
+2020-01-26 17:29:13,204 INFO  [Thread-0] root: Connected to localhost on port 51792
+2020-01-26 17:29:13,221 ERROR [Thread-20] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:13,221 INFO  [Thread-0] root: Connected to localhost on port 51794
+2020-01-26 17:29:13,225 INFO  [Thread-21] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 17:29:13,225 INFO  [Thread-21] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 17:29:13,226 INFO  [Thread-0] root: Connected to localhost on port 51796
+2020-01-26 17:29:13,226 INFO  [Thread-21] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 17:29:13,274 INFO  [Thread-21] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 17:29:13,274 INFO  [Thread-21] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 17:29:13,274 INFO  [Thread-21] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 17:29:13,318 ERROR [Thread-21] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:13,318 INFO  [Thread-22] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:29:13,318 INFO  [Thread-22] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 17:29:13,319 INFO  [Thread-0] root: Connected to localhost on port 51798
+2020-01-26 17:29:13,319 INFO  [Thread-22] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:29:13,362 INFO  [Thread-22] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 17:29:13,362 INFO  [Thread-22] root: Finished put; key: deleteTestValue, value: null
+2020-01-26 17:29:13,362 INFO  [Thread-22] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is null
+2020-01-26 17:29:13,406 ERROR [Thread-22] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:13,409 INFO  [Thread-23] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 17:29:13,409 INFO  [Thread-23] root: Finished put; key: foo, value: bar
+2020-01-26 17:29:13,409 INFO  [Thread-0] root: Connected to localhost on port 51800
+2020-01-26 17:29:13,409 INFO  [Thread-23] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 17:29:13,454 INFO  [Thread-23] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 17:29:13,454 INFO  [Thread-23] root: Finished put; key: foo
+2020-01-26 17:29:13,454 INFO  [Thread-23] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 17:29:13,498 ERROR [Thread-23] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:13,498 INFO  [Thread-24] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 17:29:13,498 INFO  [Thread-24] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 17:29:13,498 ERROR [Thread-24] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:13,499 INFO  [Thread-0] root: Connected to localhost on port 51802
+2020-01-26 17:29:13,499 INFO  [Thread-25] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 17:29:13,499 INFO  [Thread-25] root: Finished put; key: foo2, value: bar2
+2020-01-26 17:29:13,499 INFO  [Thread-25] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 17:29:13,500 INFO  [Thread-0] root: Connected to localhost on port 51804
+2020-01-26 17:29:13,500 ERROR [Thread-25] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:29:13,506 ERROR [Thread-19] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:33:11,575 INFO  [Thread-0] root: Connected to localhost on port 51980
+2020-01-26 17:33:11,581 INFO  [Thread-26] root: Received Message: Status is PUT; Key is foo2; Value is bar2
+2020-01-26 17:33:11,581 INFO  [Thread-26] root: Finished put; key: foo2, value: bar2
+2020-01-26 17:33:11,582 INFO  [Thread-26] root: Sent Message: Status is PUT_UPDATE; Key is foo2; Value is bar2
+2020-01-26 17:33:11,582 ERROR [Thread-26] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:33:11,585 ERROR [Thread-27] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:33:11,586 INFO  [Thread-0] root: Connected to localhost on port 51982
+2020-01-26 17:33:11,586 INFO  [Thread-28] root: Received Message: Status is PUT; Key is updateTestValue; Value is initial
+2020-01-26 17:33:11,586 INFO  [Thread-28] root: Finished put; key: updateTestValue, value: initial
+2020-01-26 17:33:11,587 INFO  [Thread-28] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is initial
+2020-01-26 17:33:11,587 INFO  [Thread-0] root: Connected to localhost on port 51984
+2020-01-26 17:33:11,630 INFO  [Thread-28] root: Received Message: Status is PUT; Key is updateTestValue; Value is updated
+2020-01-26 17:33:11,630 INFO  [Thread-28] root: Finished put; key: updateTestValue, value: updated
+2020-01-26 17:33:11,630 INFO  [Thread-28] root: Sent Message: Status is PUT_UPDATE; Key is updateTestValue; Value is updated
+2020-01-26 17:33:11,674 ERROR [Thread-28] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:33:11,674 INFO  [Thread-29] root: Received Message: Status is PUT; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:33:11,675 INFO  [Thread-29] root: Finished put; key: deleteTestValue, value: toDelete
+2020-01-26 17:33:11,675 INFO  [Thread-29] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is toDelete
+2020-01-26 17:33:11,675 INFO  [Thread-0] root: Connected to localhost on port 51986
+2020-01-26 17:33:11,718 INFO  [Thread-29] root: Received Message: Status is PUT; Key is deleteTestValue; Value is null
+2020-01-26 17:33:11,718 INFO  [Thread-29] root: Finished put; key: deleteTestValue, value: null
+2020-01-26 17:33:11,718 INFO  [Thread-29] root: Sent Message: Status is PUT_UPDATE; Key is deleteTestValue; Value is null
+2020-01-26 17:33:11,762 ERROR [Thread-29] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:33:11,763 INFO  [Thread-30] root: Received Message: Status is PUT; Key is foo; Value is bar
+2020-01-26 17:33:11,763 INFO  [Thread-30] root: Finished put; key: foo, value: bar
+2020-01-26 17:33:11,764 INFO  [Thread-30] root: Sent Message: Status is PUT_UPDATE; Key is foo; Value is bar
+2020-01-26 17:33:11,764 INFO  [Thread-0] root: Connected to localhost on port 51988
+2020-01-26 17:33:11,806 INFO  [Thread-30] root: Received Message: Status is GET; Key is foo; Value is null
+2020-01-26 17:33:11,806 INFO  [Thread-30] root: Finished put; key: foo
+2020-01-26 17:33:11,806 INFO  [Thread-30] root: Sent Message: Status is GET_SUCCESS; Key is foo; Value is bar
+2020-01-26 17:33:11,850 ERROR [Thread-30] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:33:11,850 INFO  [Thread-31] root: Received Message: Status is GET; Key is an unset value; Value is null
+2020-01-26 17:33:11,851 INFO  [Thread-31] root: Sent Message: Status is GET_ERROR; Key is an unset value; Value is null
+2020-01-26 17:33:11,851 ERROR [Thread-31] root: Error! Server or client lost.java.io.EOFException
+2020-01-26 17:33:11,851 INFO  [Thread-0] root: Connected to localhost on port 51990
