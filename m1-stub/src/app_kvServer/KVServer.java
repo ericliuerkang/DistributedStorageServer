@@ -93,7 +93,7 @@ public class KVServer implements IKVServer {
 	@Override
     public String getKV(String key) throws Exception{
 		// TODO deal with exception and add storage from Jerry
-		if (cache!=null && cache.getMaxCacheSize() != 0){
+		if (cache!=null && cache.getMaxCacheSize() > 0){
 			if (inCache(key)){
 				return cache.getV(key);
 			}
@@ -113,7 +113,7 @@ public class KVServer implements IKVServer {
     public void putKV(String key, String value) throws Exception{
 		System.out.println(key +" "+ value); 
 		System.out.println("Checking for put");
-		if (cache!=null && cache.getMaxCacheSize() != 0){
+		if (cache!=null && cache.getMaxCacheSize() > 0){
 			cache.putKV(key, value);
 		}
 		else{
@@ -124,7 +124,7 @@ public class KVServer implements IKVServer {
 	}
 
 	public void deleteKV(String key) throws Exception{
-		if (cache!=null && cache.getMaxCacheSize() != 0){
+		if (cache!=null && cache.getMaxCacheSize() > 0){
 			if (inCache(key)) {
 				cache.deleteKV(key);
 			}
@@ -136,7 +136,7 @@ public class KVServer implements IKVServer {
 
 	@Override
     public void clearCache(){
-		if (cache.getCurrentCacheSize() == 0||cache!=null){
+		if (cache!=null && cache.getCurrentCacheSize() >0){
 			cache.clearCache();
 		}
 		else{
