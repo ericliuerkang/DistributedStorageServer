@@ -147,6 +147,7 @@ public class KVServer implements IKVServer {
 		else{
 			logger.info("No Cache to clear");
 		}
+
 	}
 
 	@Override

@@ -33,6 +33,10 @@ public class testCache {
     }
 
     public static void LRUTest() {
+        KVCache TMP = new KVCache("LALALA", 2);
+        System.out.println(TMP.getCurrentCacheSize());
+
+
         KVCache LRU = new KVCache("LRU", 2);
 
         LRU.putKV("foo1","bar1");
