@@ -92,4 +92,10 @@ public class LFUCache extends ICache{
         cache.remove(key);
     }
 
+    @Override
+    protected void clearCache() {
+        currentCacheSize = 0;
+        cache.clear();
+        freq_list.clear();
+    }
 }
