@@ -105,8 +105,7 @@ public class KVServer implements IKVServer {
 		}
 		else{
 			logger.info("No Cache during get");
-			String value = storage.getValue(key);
-			return value;
+			return storage.getValue(key);
 		}
 	}
 

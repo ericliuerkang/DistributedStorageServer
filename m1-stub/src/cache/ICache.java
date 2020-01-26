@@ -26,9 +26,9 @@ public abstract class ICache{
 
     protected void writeCache(String key, String value) {
         if (!cache.containsKey(key)) {
+//            System.out.println("curr: "+currentCacheSize+"max: "+maxCacheSize);
             if (currentCacheSize == maxCacheSize){
                 evict();
-                currentCacheSize --;
             }
             cache.put(key, value);
             currentCacheSize ++;
@@ -52,6 +52,7 @@ public abstract class ICache{
 
     protected void clearCache() {
         cache.clear();
+        currentCacheSize = 0;
     }
 
     public int getMaxCacheSize() {

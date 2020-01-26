@@ -40,9 +40,10 @@ public class testCache {
         LRU.putKV("foo2","bar2");
         String tmp = LRU.getV("foo1");
         LRU.putKV("foo3","bar3");
+        tmp = LRU.getV("foo1");
         LRU.putKV("foo4","bar4");
-        System.out.println("currsize: "+LRU.cache.currentCacheSize);
-        System.out.println("psize: "+LRU.cache.cache.size());
+        System.out.println("currsize: "+LRU.getCurrentCacheSize());
+        System.out.println("currsize2: "+LRU.cache.currentCacheSize);
 
         String val1 = LRU.getV("foo1");
         String val2 = LRU.getV("foo2");
@@ -50,6 +51,7 @@ public class testCache {
         String val4 = LRU.getV("foo4");
 
         LRU.clearCache();
+        System.out.println("currsize: "+LRU.getCurrentCacheSize());
 //        System.out.println("size: "+LRU.cache.maxCacheSize);
 
         String val5 = LRU.getV("foo1");
@@ -82,8 +84,8 @@ public class testCache {
     }
 
     public static void main(String[] args) {
-        FIFOTest();
-//        LRUTest();
+//        FIFOTest();
+        LRUTest();
 //        LFUTest();
     }
 }
