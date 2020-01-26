@@ -1,1 +1,0 @@
-{"deleted":1,"key":"test","value":"test string","totalLength":65}{"deleted":0,"key":"test","value":"test str","totalLength":71}

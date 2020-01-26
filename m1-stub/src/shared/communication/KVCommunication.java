@@ -137,10 +137,12 @@ public class KVCommunication implements Runnable {
                 switch (status){
                     case PUT:
                         if (key == null || key.contains(" ") || key.equals("") || key.length() < 1 || key.length() > 20) {
+                        	System.out.println("PUT_Error"); 
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
                         }
                         else {
-                            if (value != null && !value.equals("null") && !value.equals("") && value.length() <= 120) {
+                            if (value != null && !value.equals("") && value.length() <= 120) {
+                            	System.out.println("PUTsdsdsdsdsd"); 
                                 if (server.inCache(key) || server.inStorage(key))
                                     resultStatus = KVMessage.StatusType.PUT_UPDATE;
                                 else
@@ -150,7 +152,10 @@ public class KVCommunication implements Runnable {
                             }
                             else{
                                 //delete
+                            	System.out.println("Delete"); 
                                 if (server.inCache(key) || server.inStorage(key)) {
+                                	System.out.println("Delete"); 
+                                	System.out.println(key);
                                     server.deleteKV(key);
                                     resultStatus = KVMessage.StatusType.DELETE_SUCCESS;
                                 } else {
