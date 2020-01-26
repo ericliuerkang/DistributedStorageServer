@@ -102,21 +102,33 @@ public class KVServer implements IKVServer {
 	@Override
     public String getKV(String key) throws Exception{
 		// TODO deal with exception and add storage from Jerry
-		if (inCache(key)){
-			return cache.getV(key);
+		if (cache!=null){
+			if (inCache(key)){
+				return cache.getV(key);
+			}
+			else{
+				String value = storage.getValue(key);
+				cache.putKV(key, value);
+				return value;
+			}
 		}
 		else{
+			logger.info("No Cache");
 			String value = storage.getValue(key);
-			cache.putKV(key, value);
-			return value;
+			return null;
 		}
 	}
 
 	@Override
     public void putKV(String key, String value) throws Exception{
-		cache.putKV(key, value);
-		// TODO put storage stuff here
-		storage.putValue(key, value);
+		if (cache!=null){
+			cache.putKV(key, value);
+			storage.putValue(key, value);
+		}
+		else{
+			logger.info("No Cache")
+			storage.putValue(key, value);
+		}
 	}
 
 	public void deleteKV(String key) throws Exception{
