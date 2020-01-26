@@ -51,8 +51,8 @@ public abstract class ICache{
     }
 
     protected void clearCache() {
-        cache.clear();
         currentCacheSize = 0;
+    	cache.clear();
     }
 
     public int getMaxCacheSize() {

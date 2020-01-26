@@ -25,6 +25,19 @@ public class KVServer implements IKVServer {
 	private KVCache cache;
 	private storage storage;
 
+	public enum StatusType {
+		GET, 			/* Get - request */
+		GET_ERROR, 		/* requested tuple (i.e. value) not found */
+		GET_SUCCESS, 	/* requested tuple (i.e. value) found */
+		PUT, 			/* Put - request */
+		PUT_SUCCESS, 	/* Put - request successful, tuple inserted */
+		PUT_UPDATE, 	/* Put - request successful, i.e. value updated */
+		PUT_ERROR, 		/* Put - request not successful */
+		DELETE_SUCCESS, /* Delete - request successful */
+		DELETE_ERROR, 	/* Delete - request not successful */
+		FAILED
+	}
+
 	/**
 	 * Start KV Server at given port
 	 * @param port given port for storage server to operate
@@ -93,7 +106,7 @@ public class KVServer implements IKVServer {
 	@Override
     public String getKV(String key) throws Exception{
 		// TODO deal with exception and add storage from Jerry
-		if (cache!=null && cache.getMaxCacheSize() > 0){
+		if (cache!=null && cache.getMaxCacheSize() != 0){
 			if (inCache(key)){
 				return cache.getV(key);
 			}
@@ -111,9 +124,12 @@ public class KVServer implements IKVServer {
 
 	@Override
     public void putKV(String key, String value) throws Exception{
-		System.out.println(key +" "+ value); 
-		System.out.println("Checking for put");
-		if (cache!=null && cache.getMaxCacheSize() > 0){
+		System.out.println("Key, Value: " + key + " | "+ value);
+		if (value == null || value.equals("")){
+			deleteKV(key);
+			return; 
+		}
+		else if (cache!=null && cache.getMaxCacheSize() != 0){
 			cache.putKV(key, value);
 		}
 		else{
@@ -123,26 +139,30 @@ public class KVServer implements IKVServer {
 		storage.putValue(key, value);
 	}
 
-	public void deleteKV(String key) throws Exception{
-		if (cache!=null && cache.getMaxCacheSize() > 0){
+	public StatusType deleteKV(String key) throws Exception{
+		if (cache!=null && cache.getMaxCacheSize() != 0){
 			if (inCache(key)) {
 				cache.deleteKV(key);
 			}
 		}
 		else{ logger.info("No Cache during delete");}
 		System.out.println("Checking Storage for deletion");
-		storage.deleteValue(key);
+		if (storage.deleteValue(key)){
+			System.out.println("DELETE_SUCCESS");
+			return StatusType.DELETE_SUCCESS;
+		}
+		System.out.println("DELETE_SUCCESS");
+		return StatusType.DELETE_ERROR;
 	}
 
 	@Override
     public void clearCache(){
-		if (cache!=null && cache.getCurrentCacheSize() >0){
+		if (cache.getCurrentCacheSize() == 0||cache!=null){
 			cache.clearCache();
 		}
 		else{
 			logger.info("No Cache to clear");
 		}
-
 	}
 
 	@Override
