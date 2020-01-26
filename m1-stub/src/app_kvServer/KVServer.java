@@ -126,7 +126,7 @@ public class KVServer implements IKVServer {
 			storage.putValue(key, value);
 		}
 		else{
-			logger.info("No Cache")
+			logger.info("No Cache");
 			storage.putValue(key, value);
 		}
 	}
