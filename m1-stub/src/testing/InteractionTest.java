@@ -1,9 +1,8 @@
 package testing;
 
-import org.junit.Test;
-
 import client.KVStore;
 import junit.framework.TestCase;
+import org.junit.Test;
 import shared.messages.KVMessage;
 import shared.messages.KVMessage.StatusType;
 
@@ -13,7 +12,7 @@ public class InteractionTest extends TestCase {
 	private KVStore kvClient;
 	
 	public void setUp() {
-		kvClient = new KVStore("localhost", 50000);
+		kvClient = new KVStore("localhost", 2000);
 		try {
 			kvClient.connect();
 		} catch (Exception e) {
@@ -37,7 +36,7 @@ public class InteractionTest extends TestCase {
 		} catch (Exception e) {
 			ex = e;
 		}
-
+		ex.printStackTrace();
 		assertTrue(ex == null && response.getStatus() == StatusType.PUT_SUCCESS);
 	}
 	

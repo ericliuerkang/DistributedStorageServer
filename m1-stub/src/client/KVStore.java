@@ -1,15 +1,15 @@
 package client;
 
+import logger.LogSetup;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import shared.communication.KVCommunication;
+import shared.messages.KVMessage;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import java.net.Socket;
-
-import org.apache.log4j.*;
-import logger.LogSetup;
-import shared.messages.KVMessage;
-import shared.communication.KVCommunication;
 
 public class KVStore implements KVCommInterface {
 	private static final String PROMPT = "Client> ";
@@ -72,6 +72,7 @@ public class KVStore implements KVCommInterface {
 	@Override
 	public KVMessage put(String key, String value) throws Exception {
 		// TODO Auto-generated method stub
+		//System.out.println("hi");
 		communicationManager.sendMessage(KVMessage.StatusType.PUT, key, value);
 		return communicationManager.receiveMessage();
 	}
@@ -84,10 +85,7 @@ public class KVStore implements KVCommInterface {
 	}
 
 	public boolean isRunning() throws IOException {
-		if (clientSocket != null && clientSocket.getInetAddress().isReachable(20))
-			return true;
-		else
-			return false;
+		return clientSocket != null && clientSocket.getInetAddress().isReachable(200);
 	}
 
 	public String setLevel(String levelString) {
