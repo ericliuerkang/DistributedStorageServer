@@ -1,28 +1,31 @@
 package testing;
 
 import cache.KVCache;
+import client.KVStore;
 import junit.framework.TestCase;
+import org.apache.log4j.Level;
 import org.junit.Test;
+import shared.messages.KVMessage;
 
 public class AdditionalTest extends TestCase {
 
-   private KVCache FIFO;
-   private KVCache LRU;
-   private KVCache LFU;
+   private KVStore kvClient;
 
-   // TODO add your test cases, at least 3
+   public void setUp() {
+      kvClient = new KVStore("localhost", 2000);
+      try {
+         kvClient.connect();
+      } catch(Exception e) { }}
+
 
    @Test
-   public void FIFOTest() {
-      FIFO = new KVCache("FIFO", 2);
+   public void testFIFO() {
+      KVCache FIFO = new KVCache("FIFO", 2);
 
       FIFO.putKV("foo1","bar1");
-      System.out.println(FIFO.toString());
       FIFO.putKV("foo2","bar2");
-      System.out.println(FIFO.toString());
-      String tmp = LRU.getV("foo1");
+      String tmp = FIFO.getV("foo1");
       FIFO.putKV("foo3","bar3");
-      System.out.println(FIFO.toString());
 
       String val1 = FIFO.getV("foo1");
       String val2 = FIFO.getV("foo2");
@@ -34,16 +37,13 @@ public class AdditionalTest extends TestCase {
    }
 
    @Test
-   public void LRUTest() {
-      LRU = new KVCache("LRU", 2);
+   public void testLRU() {
+      KVCache LRU = new KVCache("LRU", 2);
 
       LRU.putKV("foo1","bar1");
-      System.out.println(LRU.toString());
       LRU.putKV("foo2","bar2");
-      System.out.println(LRU.toString());
       String tmp = LRU.getV("foo1");
       LRU.putKV("foo3","bar3");
-      System.out.println(LRU.toString());
 
       String val1 = LRU.getV("foo1");
       String val2 = LRU.getV("foo2");
@@ -55,22 +55,19 @@ public class AdditionalTest extends TestCase {
    }
 
    @Test
-   public void LFUTest() {
-      LFU = new KVCache("LFU", 2);
+   public void testLFU() {
+      KVCache LFU = new KVCache("LFU", 2);
 
       LFU.putKV("foo1","bar1");
-      System.out.println(LFU.toString());
-      String tmp1 = LRU.getV("foo1");
-      String tmp2 = LRU.getV("foo1");
+      String tmp1 = LFU.getV("foo1");
+      String tmp2 = LFU.getV("foo1");
+      tmp2 = LFU.getV("foo1");
       LFU.putKV("foo2","bar2");
-      String tmp3 = LRU.getV("foo2");
-      System.out.println(LFU.toString());
+      String tmp3 = LFU.getV("foo2");
       LFU.putKV("foo3","bar3");
-      String tmp4 = LRU.getV("foo3");
-      String tmp5 = LRU.getV("foo3");
-      System.out.println(LFU.toString());
+      String tmp4 = LFU.getV("foo3");
+      String tmp5 = LFU.getV("foo3");
       LFU.putKV("foo4","bar4");
-      System.out.println(LFU.toString());
 
 
       String val1 = LFU.getV("foo1");
@@ -80,7 +77,106 @@ public class AdditionalTest extends TestCase {
 
       assertSame("bar1", val1);
       assertSame(null, val2);
-      assertSame("bar3", val3);
+      assertSame(null, val3);
       assertSame("bar4", val4);
    }
+
+   @Test
+   public void testPutKeyTooLong() {
+      String key = "fooofooofooofooofoooff";
+      String value = "bar2";
+      KVMessage response = null;
+      Exception ex = null;
+
+      try {
+         response = kvClient.put(key, value);
+      } catch (Exception e) {
+         ex = e;
+         ex.printStackTrace();
+      }
+
+      assertTrue(ex == null &&response.getStatus() == KVMessage.StatusType.PUT_ERROR);
+   }
+
+   @Test
+   public void testPutValueTooLong() {
+      StringBuilder sb =
+              new StringBuilder(200000);
+      for(int i=0; i < 200000; i++){
+         sb.append('a');
+      }
+      String key = "foo233";
+      String value = sb.toString();
+      KVMessage response = null;
+      Exception ex = null;
+
+      try {
+         response = kvClient.put(key, value);
+      } catch (Exception e) {
+         ex = e;
+         ex.printStackTrace();
+      }
+
+      assertTrue(ex == null && response.getStatus() == KVMessage.StatusType.PUT_ERROR);
+   }
+
+   @Test
+   public void testPutBadKey() {
+      String value = "bar666";
+      String key1 = "";
+      String key2 = " ";
+      String key3 = null;
+      KVMessage response1 = null;
+      KVMessage response2 = null;
+      KVMessage response3 = null;
+      Exception ex = null;
+
+      try {
+         response1 = kvClient.put(key1, value);
+         response2 = kvClient.put(key2, value);
+         response3 = kvClient.put(key3, value);
+      } catch (Exception e) {
+         ex = e;
+      }
+      assertTrue( response1.getStatus() == KVMessage.StatusType.PUT_ERROR
+              && response2.getStatus() == KVMessage.StatusType.PUT_ERROR
+              && response3.getStatus() == KVMessage.StatusType.PUT_ERROR);
+   }
+   @Test
+   public void testDeleteBadKey() {
+      String value = null;
+      String key1 = "";
+      String key2 = " ";
+      String key3 = null;
+      KVMessage response1 = null;
+      KVMessage response2 = null;
+      KVMessage response3 = null;
+      Exception ex = null;
+
+      try {
+         response1 = kvClient.put(key1, value);
+         response2 = kvClient.put(key2, value);
+         response3 = kvClient.put(key3, value);
+      } catch (Exception e) {
+         ex = e;
+      }
+
+      assertTrue(ex == null && response1.getStatus() == KVMessage.StatusType.DELETE_ERROR
+              && response2.getStatus() == KVMessage.StatusType.DELETE_ERROR
+              && response3.getStatus() == KVMessage.StatusType.DELETE_ERROR
+              );
+   }
+//
+//   @Test
+//   public void testLogLevel() {
+//      String level = null;
+//      Exception ex = null;
+//      try {
+//         level = kvClient.setLevel(Level.DEBUG.toString());
+//      } catch (Exception e) {
+//         ex = e;
+//         ex.printStackTrace();
+//      }
+//      assertTrue(ex == null && level.equals(Level.DEBUG) == true);
+//   }
 }
