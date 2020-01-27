@@ -173,13 +173,13 @@ public class Storage {
         Map<String, LocationData> stringLocationDataHashMap = loadLocationStorage(locationStorageFileName);
         RandomAccessFile raf = loadDBFile(DBName);
         if (!stringLocationDataHashMap.containsKey(key)) {
-        	System.out.println("in putvalue");
-        	System.out.println(value.length());
+        	//System.out.println("in putvalue");
+        	//System.out.println(value.length());
             if(value == null || value.equals("") || value.length() == 0|| !value.matches(".*\\w.*")){
-            	System.out.println("Throwing Exception");
+            	// System.out.println("Throwing Exception");
             	throw new Exception("Invalid Delete");
             }else{
-            	System.out.println("in else");
+            	// System.out.println("in else");
                 byte[] valueByte = value.getBytes();
                 StorageData s = new StorageData(key, value);
                 String k = encodeMessage(s);

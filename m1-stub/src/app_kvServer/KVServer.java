@@ -112,7 +112,7 @@ public class KVServer implements IKVServer {
 	@Override
     public void putKV(String key, String value) throws Exception{
 		try{
-			System.out.println("Key, Value: " + key + " | "+ value);
+			// System.out.println("Key, Value: " + key + " | "+ value);
 			if (cache!=null && cache.getMaxCacheSize() != 0){
 				cache.putKV(key, value);
 			}
@@ -122,7 +122,7 @@ public class KVServer implements IKVServer {
 			//System.out.println("Checking Storage for put");
 			storage.putValue(key, value);
 		}catch(Exception e){
-			System.out.print("error");
+			e.printStackTrace();
 		}
 	}
 
