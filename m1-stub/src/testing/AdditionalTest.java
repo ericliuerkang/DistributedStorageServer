@@ -142,6 +142,23 @@ public class AdditionalTest extends TestCase {
 
       assertTrue(ex == null &&response.getStatus() == KVMessage.StatusType.PUT_ERROR);
    }
+   
+   @Test
+   public void testDeleteKeyTooLong() {
+      String key = "fooofooofooofooofoooff";
+      String value = null;
+      KVMessage response = null;
+      Exception ex = null;
+
+      try {
+         response = kvClient.put(key, value);
+      } catch (Exception e) {
+         ex = e;
+         ex.printStackTrace();
+      }
+
+      assertTrue(ex == null &&response.getStatus() == KVMessage.StatusType.DELETE_ERROR);
+   }
 
    @Test
    public void testPutValueTooLong() {
