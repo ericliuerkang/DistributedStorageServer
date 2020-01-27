@@ -1,13 +1,13 @@
 package persistentStorage;
 
-public class storageData {
+public class StorageData {
     private int deleted;
     private String key;
     private String value;
     private int totalLength;
 
 
-    public storageData(String key, String value) {
+    public StorageData(String key, String value) {
         this.key = key;
         this.value = value;
         this.deleted = 0;

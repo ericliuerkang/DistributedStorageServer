@@ -4,7 +4,7 @@ import cache.KVCache;
 import logger.LogSetup;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import persistentStorage.storage;
+import persistentStorage.Storage;
 import shared.communication.KVCommunication;
 
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class KVServer implements IKVServer {
 	private ArrayList<Thread> serverThreadList;
 	private Thread serverThread;
 	private KVCache cache;
-	private storage storage;
+	private Storage storage;
 
 	/**
 	 * Start KV Server at given port
@@ -44,7 +44,7 @@ public class KVServer implements IKVServer {
 		this.cacheStrategy = stringToStrategy(strategy);
 		serverThreadList = new ArrayList<Thread>();
 		serverThread = null;
-		this.storage = new storage(port);
+		this.storage = new Storage(port);
 	}
 
 	@Override

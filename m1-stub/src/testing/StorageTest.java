@@ -1,7 +1,7 @@
 package testing;
 
-import persistentStorage.storage;
+import persistentStorage.Storage;
 
 public class StorageTest {
-    storage store = new storage(2);
+    Storage store = new Storage(2);
 }

@@ -2,11 +2,11 @@ package persistentStorage;
 
 import java.io.Serializable;
 
-public class locationData implements Serializable {
+public class LocationData implements Serializable {
     private int length;
     private int startPoint;
 
-    public locationData(int length, int startPoint) {
+    public LocationData(int length, int startPoint) {
         this.length = length;
         this.startPoint = startPoint;
     }

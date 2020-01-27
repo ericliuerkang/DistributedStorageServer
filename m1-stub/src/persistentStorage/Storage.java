@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 /**
  *
  */
-public class storage {
+public class Storage {
     private static Logger logger = Logger.getRootLogger();
     //private Map<String, locationData> locationStorage;
     private int port;
@@ -20,7 +20,7 @@ public class storage {
     private String DBName;
     // private RandomAccessFile serverFile;
 
-    public storage(int port) {
+    public Storage(int port) {
         this.port = port;
         this.locationStorageFileName = port+"_look_up_table.txt";
         this.DBName = port + "_persistent_storage.txt";
@@ -49,7 +49,7 @@ public class storage {
      * @param locationStorage
      * @throws IOException
      */
-    public void saveLocationStorage(Map<String, locationData> locationStorage) throws IOException {
+    public void saveLocationStorage(Map<String, LocationData> locationStorage) throws IOException {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(locationStorageFileName));
             os.writeObject(locationStorage);
@@ -62,7 +62,7 @@ public class storage {
 
     public Map loadLocationStorage(String locationStorageFileName) {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(locationStorageFileName))) {
-            Map<String, locationData> stringlocationDataHashMap = Collections.synchronizedMap( (Map<String, locationData>)is.readObject());
+            Map<String, LocationData> stringlocationDataHashMap = Collections.synchronizedMap( (Map<String, LocationData>)is.readObject());
             is.close();
             return stringlocationDataHashMap;
         }catch (ClassNotFoundException CNFE) {
@@ -74,12 +74,12 @@ public class storage {
             IOE.printStackTrace();
             logger.error("Loading Failed, IOException", IOE);
         }
-        return Collections.synchronizedMap(new HashMap<String, locationData>());
+        return Collections.synchronizedMap(new HashMap<String, LocationData>());
     }
 
     public void deleteLocationStorageData(String key) {
         //Only delete the entry from lookup table
-        Map<String, locationData> locationStorage = loadLocationStorage(locationStorageFileName);
+        Map<String, LocationData> locationStorage = loadLocationStorage(locationStorageFileName);
         if (locationStorage.containsKey(key)) {
             try {
                 logger.info("Attempting to remove key: " + key);
@@ -147,7 +147,7 @@ public class storage {
      * @param s
      * @return
      */
-    public String encodeMessage(storageData s){
+    public String encodeMessage(StorageData s){
         Gson gson = new Gson();
         String jsonString = gson.toJson(s);
         return jsonString;
@@ -158,12 +158,12 @@ public class storage {
      * @param bytesArray An array of bytes read from the
      * @return storageData, object that contains key, value, delete information and length of the entry
      */
-    public storageData decodeBytes(byte[] bytesArray){
+    public StorageData decodeBytes(byte[] bytesArray){
         Gson gson = new Gson();
         String s = new String(bytesArray);
         //System.out.println(s);
         //System.out.println(s.length());
-        storageData sk = gson.fromJson(s, storageData.class);
+        StorageData sk = gson.fromJson(s, StorageData.class);
         return sk;
     }
 
@@ -175,12 +175,12 @@ public class storage {
      */
     public String getValue(String key) {
         try {
-            Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+            Map<String, LocationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             if(stringlocationDataHashMap.containsKey(key)){
-	            locationData loc = stringlocationDataHashMap.get(key);
+	            LocationData loc = stringlocationDataHashMap.get(key);
 	            RandomAccessFile raf = loadDBFile(DBName);
 	            byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
-	            storageData sk = decodeBytes(res);
+	            StorageData sk = decodeBytes(res);
 	            if(sk.getDeleted() != 1){
 	                //System.out.println(sk.getValue());
 	                return sk.getValue();
@@ -201,7 +201,7 @@ public class storage {
     }
 
     public void putValue(String key, String value) throws Exception {
-        Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        Map<String, LocationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
         RandomAccessFile raf = loadDBFile(DBName);
         if (!stringlocationDataHashMap.containsKey(key)) {
         	System.out.println("in putvalue");
@@ -212,32 +212,32 @@ public class storage {
             }else{
             	System.out.println("in else");
                 byte[] valueByte = value.getBytes();
-                storageData s = new storageData(key, value);
+                StorageData s = new StorageData(key, value);
                 String k = encodeMessage(s);
                 int tl = k.length();
                 s.setTotalLength(tl + (int) (Math.log10(tl)));
-                locationData loc = new locationData(s.getTotalLength(), (int) raf.length());
+                LocationData loc = new LocationData(s.getTotalLength(), (int) raf.length());
                 stringlocationDataHashMap.put(key, loc);
                 String message = encodeMessage(s);
                 writeCharsToFile(message, DBName, (int) raf.length());
                 saveLocationStorage(stringlocationDataHashMap);
             }
         }else{
-            locationData loc = stringlocationDataHashMap.get(key);
+            LocationData loc = stringlocationDataHashMap.get(key);
             byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
-            storageData s = decodeBytes(res);
+            StorageData s = decodeBytes(res);
             if (!s.getValue().equals(value)) {
                 s.setDeleted(1);
                 String message = encodeMessage(s);
                 writeCharsToFile(message, DBName, loc.getStartPoint());
-                storageData newS = new storageData(key, value);
+                StorageData newS = new StorageData(key, value);
                 String k = encodeMessage(newS);
                 //System.out.println(k);
                 int tl = k.length();
                 newS.setTotalLength(tl + (int) (Math.log10(tl)));
                 message = encodeMessage(newS);
 
-                loc = new locationData(newS.getTotalLength(), (int) raf.length());
+                loc = new LocationData(newS.getTotalLength(), (int) raf.length());
                 stringlocationDataHashMap.remove(key);
 
                 stringlocationDataHashMap.put(key, loc);
@@ -254,12 +254,12 @@ public class storage {
      * @throws IOException
      */
     public boolean deleteValue(String key) throws IOException, NoSuchElementException {
-            Map<String, locationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
+            Map<String, LocationData> stringlocationDataHashMap = loadLocationStorage(locationStorageFileName);
             RandomAccessFile raf = loadDBFile(DBName);
             if (stringlocationDataHashMap.containsKey(key)) {
-                locationData loc = stringlocationDataHashMap.get(key);
+                LocationData loc = stringlocationDataHashMap.get(key);
                 byte[] res = readCharsFromFile(loc.getStartPoint(), loc.getLength(), DBName);
-                storageData s = decodeBytes(res);
+                StorageData s = decodeBytes(res);
                 s.setDeleted(1);
                 String message = encodeMessage(s);
                 writeCharsToFile(message, DBName, loc.getStartPoint());
@@ -273,7 +273,7 @@ public class storage {
     }
 
     public boolean inStorage(String key){
-        Map<String, locationData> stringLocationDataHashMap = loadLocationStorage(locationStorageFileName);
+        Map<String, LocationData> stringLocationDataHashMap = loadLocationStorage(locationStorageFileName);
         return stringLocationDataHashMap.containsKey(key);
     }
 
@@ -292,7 +292,7 @@ public class storage {
     }
 
     public static void main(String[] args) throws Exception {
-        storage s = new storage(1);
+        Storage s = new Storage(1);
         try {
             s.putValue("k", "vv");
             s.getValue("k");
