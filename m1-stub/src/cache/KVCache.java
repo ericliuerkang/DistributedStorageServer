@@ -27,8 +27,8 @@ public class KVCache{
                         " cache with cache size: " + size);
                 break;
             default:
-                cache = null;
-                logger.info("Unknown strategy");
+                cache = new FIFOCache(size);
+                logger.info("Unknown strategy, assuming FIFO");
         }
     }
 

@@ -12,7 +12,7 @@ public class AdditionalTest extends TestCase {
    private KVStore kvClient;
 
    public void setUp() {
-      kvClient = new KVStore("localhost", 2000);
+      kvClient = new KVStore("localhost", 5000 );
       try {
          kvClient.connect();
       } catch(Exception e) { }}
@@ -79,6 +79,51 @@ public class AdditionalTest extends TestCase {
       assertSame(null, val2);
       assertSame(null, val3);
       assertSame("bar4", val4);
+   }
+
+   @Test
+   public void testClearCache() {
+      Exception ex = null;
+      int s3 = -1;
+      KVCache C1 = new KVCache("FIFO", 0);
+      KVCache C2 = new KVCache("LRU", 2);
+      KVCache C3 = new KVCache("JIAZESB", 5);
+
+      C1.clearCache();
+      C2.clearCache();
+      C3.clearCache();
+
+      int s1 = C1.getMaxCacheSize();
+      int s2 = C2.getMaxCacheSize();
+      try{
+         s3 = C3.getMaxCacheSize();
+      }
+      catch (Exception e){
+         ex = e;
+      }
+      assertSame(0,s1);
+      assertSame(2,s2);
+      assertTrue(ex==null && s3==5);
+   }
+
+   @Test
+   public void testInCache(){
+      Exception ex = null;
+      KVCache C1 = new KVCache("FIFO", 0);
+      KVCache C2 = new KVCache("LRU", 2);
+      KVCache C3 = new KVCache("JIAZESB", 5);
+
+      C2.putKV("foo2","bar2");
+      assertTrue(C2.inCache("foo2"));
+      assertFalse(C2.inCache("foo1"));
+      C2.clearCache();
+      assertFalse(C2.inCache("foo2"));
+
+      C3.putKV("foo3","bar3");
+      assertTrue(C3.inCache("foo3"));
+      assertFalse(C3.inCache("foo1"));
+      C3.clearCache();
+      assertFalse(C3.inCache("foo3"));
    }
 
    @Test
