@@ -141,7 +141,7 @@ public class KVCommunication implements Runnable {
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
                         }
                         else {
-                            if (value != null && !value.equals("") && value.length() <= 120) {
+                            if (value != null && !value.equals("") && value.length() <= 120000 && !value.equals("null")) {
                                 if (server.inCache(key) || server.inStorage(key))
                                     resultStatus = KVMessage.StatusType.PUT_UPDATE;
                                 else
