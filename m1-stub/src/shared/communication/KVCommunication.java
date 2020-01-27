@@ -136,11 +136,19 @@ public class KVCommunication implements Runnable {
                 KVMessage.StatusType resultStatus;
                 switch (status){
                     case PUT:
-                        if (key == null || key.contains(" ") || key.equals("") || key.length() < 1 || key.length() > 20 && value.length() <= 120000) {
-                            messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
+                        if (key == null || key.contains(" ") || key.equals("") || key.length() < 1 || key.length() > 20) {
+                            if (value != null && !value.equals("") && !value.equals("null")){
+                                System.out.println("PUT_ERROR");
+                                messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
+                            }
+                            else
+                            {
+                                System.out.println("DELETE_ERROR");
+                                messageToSend = new KVMessageImplementation(KVMessage.StatusType.DELETE_ERROR, key, value);
+                            }
                         }
                         else {
-                            if (value != null && !value.equals("") && !value.equals("null")) {
+                            if (value != null && !value.equals("") && value.length() <= 120000 && !value.equals("null")) {
                                 if (server.inCache(key) || server.inStorage(key))
                                     resultStatus = KVMessage.StatusType.PUT_UPDATE;
                                 else
@@ -149,17 +157,22 @@ public class KVCommunication implements Runnable {
                                 messageToSend = new KVMessageImplementation(resultStatus, key, value);
                             }
                             else{
-                                //delete
-                            	System.out.println("Delete");
-                                if (server.inCache(key) || server.inStorage(key)) {
-                                	System.out.println("Delete");
-                                	System.out.println(key);
-                                    server.deleteKV(key);
-                                    resultStatus = KVMessage.StatusType.DELETE_SUCCESS;
-                                } else {
-                                    resultStatus = KVMessage.StatusType.DELETE_ERROR;
+                                if (value.length() > 120000) {
+                                    messageToSend = new KVMessageImplementation(KVMessage.StatusType.PUT_ERROR, key, value);
                                 }
-                                messageToSend = new KVMessageImplementation(resultStatus, key, value);
+                                //delete
+                                else{
+                                    System.out.println("Delete");
+                                    if (server.inCache(key) || server.inStorage(key)) {
+                                        // System.out.println("Delete");
+                                        // System.out.println(key);
+                                        server.deleteKV(key);
+                                        resultStatus = KVMessage.StatusType.DELETE_SUCCESS;
+                                    } else {
+                                        resultStatus = KVMessage.StatusType.DELETE_ERROR;
+                                    }
+                                    messageToSend = new KVMessageImplementation(resultStatus, key, value);
+                                }
                             }
                         }
                         break;
@@ -168,7 +181,7 @@ public class KVCommunication implements Runnable {
                             messageToSend = new KVMessageImplementation(KVMessage.StatusType.GET_ERROR, key, null);
                         }
                         else {
-                        	System.out.print("hi3");
+                            System.out.print("hi3");
                             String valueToSend = server.getKV(key);
                             if (valueToSend != null){
                                 resultStatus = KVMessage.StatusType.GET_SUCCESS;
@@ -186,7 +199,7 @@ public class KVCommunication implements Runnable {
                 }
             }
         } catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
             messageToSend = new KVMessageImplementation(KVMessage.StatusType.FAILED, null, null);
         }
 
