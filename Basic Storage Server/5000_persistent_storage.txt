@@ -1,1 +1,0 @@
-{"deleted":0,"key":"foo","value":"bar","totalLength":56}{"deleted":1,"key":"updateTestValue","value":"initial","totalLength":72}{"deleted":0,"key":"updateTestValue","value":"updated","totalLength":72}{"deleted":1,"key":"deleteTestValue","value":"toDelete","totalLength":73}{"deleted":0,"key":"foo2","value":"bar2","totalLength":58}
