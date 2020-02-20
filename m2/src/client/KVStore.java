@@ -49,6 +49,7 @@ public class KVStore implements KVCommInterface {
 			logger.error("Connection could not be established!");
 		}
 	}
+
 	@Override
 	public void disconnect() {
 		logger.info("try to close connection ...");
@@ -58,6 +59,7 @@ public class KVStore implements KVCommInterface {
 			logger.error("Unable to close connection! Error:" + e);
 		}
 	}
+
 	private void tearDownConnection() throws IOException {
 		logger.info("tearing down the connection ...");
 		if (clientSocket != null) {
