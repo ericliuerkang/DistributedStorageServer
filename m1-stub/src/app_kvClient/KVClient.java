@@ -13,6 +13,9 @@ import java.io.InputStreamReader;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
 
+
+// This class is the application logic module, which is mainly comprised of command line shell to interact with the storage server and support queries to it.
+
 public class KVClient implements IKVClient {
 
     private static Logger logger = Logger.getRootLogger();
@@ -42,6 +45,7 @@ public class KVClient implements IKVClient {
         System.out.println(PROMPT + "Error! " +  error);
     }
 
+    // handle the command line input of the end user and perform the corresponding connect/put/get/disconnect/quit/help operation.
     private void handleCommand(String cmdLine) throws Exception {
         String[] tokens = cmdLine.split("\\s+");
 
