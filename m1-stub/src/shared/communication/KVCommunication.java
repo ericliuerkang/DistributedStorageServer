@@ -11,6 +11,11 @@ import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+/*
+This class is the client-server communication logic module, which is mainly comprised of request-reply interactions.
+It consists of three main methods to receive, process and send messages respectively and several helper functions.
+ */
+
 public class KVCommunication implements Runnable {
 
     private static Logger logger = Logger.getRootLogger();
@@ -83,6 +88,7 @@ public class KVCommunication implements Runnable {
         int numBufferNeeded = messageSize / BUFFER_SIZE;
         int numBytesLeft = messageSize % BUFFER_SIZE;
 
+        // read input message as a byte stream and use a message buffer to load the input stream into a complete byte array of message.
         for (int i = 0; i < numBufferNeeded; i++) {
             try {
                 int numBytesRead = inputStream.read(messageBuffer, 0, BUFFER_SIZE);
@@ -103,6 +109,7 @@ public class KVCommunication implements Runnable {
         }
         System.arraycopy(messageBuffer, 0, byteMessage, numBufferNeeded * BUFFER_SIZE, numBytesLeft);
 
+        // convert the byte message into JSON object, extract the value of status, key and value from the object and use these values to construct a corresponding KVMessage.
         KVMessage messageReceived = null;
         try {
             JSONObject jsonMessage = new JSONObject(new String(byteMessage));
@@ -125,6 +132,7 @@ public class KVCommunication implements Runnable {
         return messageReceived;
     }
 
+    // this method performs put/get operation and constructs reply messages based on the received message
     private KVMessage handleMessage(KVMessage messageReceived) {
         KVMessage messageToSend = null;
 
@@ -210,6 +218,8 @@ public class KVCommunication implements Runnable {
         KVMessage MessageToSend = new KVMessageImplementation(status, key, value);
         logger.info("Sent Message: Status is " + MessageToSend.getStatus() + "; Key is " + MessageToSend.getKey() + "; Value is " + MessageToSend.getValue());
 
+        // use JSON object to perform  serialization. We define ‘status’, ‘key’ and ‘value’ as attributes of the object, and then extract  the corresponding
+        // value from KVMessage. KVMessage is in the format of (<status> <key> <value>) and the JSON object is in the format of {‘status’: <status>, ‘key’: <key>, ‘value’ = <value>}.
         JSONObject jsonMessage = new JSONObject();
         try{
             jsonMessage.put("key", MessageToSend.getKey());
