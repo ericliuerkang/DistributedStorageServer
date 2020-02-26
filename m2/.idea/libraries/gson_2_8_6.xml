@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="gson-2.8.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.8.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/json-20190722.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/junit-4.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/zookeeper-3.4.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/zookeeper-3.4.11.jar!/" />
+    </SOURCES>
+  </library>
+</component>

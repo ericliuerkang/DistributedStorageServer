@@ -3,6 +3,7 @@ package ecs;
 public class ECSNode<T extends IECSNode> implements  IECSNode {
     final T physicalNode;
     final int replicaIndex;
+
     public enum ECSNodeFlag{
         STOP,
         START,
