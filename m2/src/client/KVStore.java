@@ -9,7 +9,9 @@ import shared.messages.KVMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigInteger;
 import java.net.Socket;
+import java.util.TreeMap;
 
 public class KVStore implements KVCommInterface {
 	private static final String PROMPT = "Client> ";
@@ -115,6 +117,18 @@ public class KVStore implements KVCommInterface {
 		} else {
 			return LogSetup.UNKNOWN_LEVEL;
 		}
+	}
+
+	public void moveData(String value) throws Exception{
+		communicationManager.sendMessage(KVMessage.StatusType.GET, );
+	}
+
+	public void findResponsibleServer(String key){
+
+	}
+
+	public boolean hashCompare(BigInteger hashValue, TreeMap metaData){
+		return true;
 	}
 
 	public void printPossibleLogLevels() {

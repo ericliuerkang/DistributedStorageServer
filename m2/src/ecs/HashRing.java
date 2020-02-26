@@ -1,9 +1,12 @@
 package ecs;
 
-import java.util.Collection;
-import java.util.TreeMap;
+import java.math.BigInteger;
+import java.util.*;
 import java.security.MessageDigest;
+import java.util.function.Consumer;
 
-public class HashRing<T extends IECSNode> {
+public class HashRing {
+    public SortedMap<BigInteger, IECSNode> ring;
+
 
 }

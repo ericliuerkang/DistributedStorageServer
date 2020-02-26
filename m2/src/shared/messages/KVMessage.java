@@ -12,7 +12,14 @@ public interface KVMessage {
 		PUT_ERROR, 		/* Put - request not successful */
 		DELETE_SUCCESS, /* Delete - request successful */
 		DELETE_ERROR, 	/* Delete - request not successful */
-		FAILED
+		FAILED,
+	}
+
+	public enum ECSType {
+		ECS_Move_Data,
+		ECS_Receive_Data,
+		ECS_Receive_Data_Finished,
+		ECS_Default
 	}
 
 	/**

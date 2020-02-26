@@ -4,8 +4,10 @@ import java.util.Map;
 import java.util.Collection;
 
 import ecs.IECSNode;
+import org.apache.log4j.Logger;
 
 public class ECSClient implements IECSClient {
+    private static Logger logger = Logger.getRootLogger();
 
     @Override
     public boolean start() {

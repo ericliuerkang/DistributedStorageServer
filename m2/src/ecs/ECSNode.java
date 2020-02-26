@@ -1,6 +1,12 @@
 package ecs;
+import shared.dataTypes.MetaData;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.TreeMap;
 
 public class ECSNode implements  IECSNode, Serializable{
     public enum ECSNodeFlag{
@@ -17,6 +23,15 @@ public class ECSNode implements  IECSNode, Serializable{
     private int port;
     private BigInteger hashStart;
     private BigInteger hashEnd;
+    private TreeMap<BigInteger, MetaData> metaData;
+
+    public TreeMap<BigInteger, MetaData> getMetaData() {
+        return metaData;
+    }
+
+    public void setMetaData(TreeMap<BigInteger, MetaData> metaData) {
+        this.metaData = metaData;
+    }
 
     public ECSNode(String name, String host, int port) {
         this.name = name;
@@ -55,5 +70,25 @@ public class ECSNode implements  IECSNode, Serializable{
         this.hashEnd = end;
     }
 
+    public byte[] toBytes(){
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream out = null;
+        byte[] bytes = null;
+        try {
+            out = new ObjectOutputStream(bos);
+            out.writeObject(this);
+            out.flush();
+            bytes = bos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bos.close();
+            } catch (IOException ex) {
+                // ignore close exception
+            }
+        }
+        return bytes;
+    }
 
 }

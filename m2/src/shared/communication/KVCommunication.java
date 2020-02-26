@@ -127,7 +127,6 @@ public class KVCommunication implements Runnable {
 
     private KVMessage handleMessage(KVMessage messageReceived) {
         KVMessage messageToSend = null;
-
         try{
             if (messageReceived != null){
                 String key = messageReceived.getKey();
@@ -229,6 +228,14 @@ public class KVCommunication implements Runnable {
         //Send to server
         outputStream.write(byteMessage, 0, messageSize);
         outputStream.flush();
+    }
+
+    public void sendMessage(KVMessage.StatusType status, String key, String value, KVMessage.ECSType ecsStatus ) throws IOException{
+        if(ecsStatus == null){
+            KVMessage MessageToSend = new KVMessageImplementation(status, key, value);
+        }else{
+            KVMessage MessageToSend = new KVMessageImplementation(status, key, value, ecsCommunicationStatus);
+        }
     }
 
     public void closeCommunication(){
