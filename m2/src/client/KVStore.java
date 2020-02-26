@@ -120,7 +120,7 @@ public class KVStore implements KVCommInterface {
 	}
 
 	public void moveData(String value) throws Exception{
-		communicationManager.sendMessage(KVMessage.StatusType.GET, );
+		communicationManager.sendMessage(KVMessage.StatusType.GET, "","", KVMessage.ECSType.ECS_Move_Data);
 	}
 
 	public void findResponsibleServer(String key){

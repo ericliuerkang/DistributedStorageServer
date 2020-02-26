@@ -23,6 +23,9 @@ public class KVMessageImplementation implements KVMessage, Serializable {
         this.ecsType = null;
     }
 
+    /*
+    Use overloading to handle milestone 2.
+     */
     public KVMessageImplementation(StatusType status, String key, String value, ECSType ecsType)
     {
         this.status = status;
@@ -30,8 +33,6 @@ public class KVMessageImplementation implements KVMessage, Serializable {
         this.value = value;
         this.ecsType = ecsType;
         this.metaData = null;
-
-
     }
 
     @Override
@@ -47,6 +48,14 @@ public class KVMessageImplementation implements KVMessage, Serializable {
     @Override
     public StatusType getStatus(){
         return this.status;
+    }
+
+    public ECSType getEcsType() {
+        return ecsType;
+    }
+
+    public TreeMap<BigInteger, MetaData> getMetaData() {
+        return metaData;
     }
 
 }
