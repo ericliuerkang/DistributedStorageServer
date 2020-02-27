@@ -60,15 +60,16 @@ public class HashRing<T extends IECSNode> {
         return new BigInteger(MD5.getMD5EncryptedValue(key));
     }
 
-    public packMetaData(){
+    /*
+    Use GSON to pack and unpack meta data.
+     */
+    public void packMetaData(){
 
     }
 
-    public unpackMetaData(){
+    public void unpackMetaData(){
 
     }
-
-    public
 
     public static void main(String[] args) {
 

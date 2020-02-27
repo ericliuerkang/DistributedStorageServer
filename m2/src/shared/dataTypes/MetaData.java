@@ -12,7 +12,6 @@ public class MetaData implements Serializable {
     private String startHash;
     private String endHash;
     private boolean writeLocked;
-    private Collection<IECSNode> iecsNodes;
 
     public MetaData(String name, String host, int port,
                     String startHash, String endHash) {
@@ -22,7 +21,6 @@ public class MetaData implements Serializable {
         this.startHash = startHash;
         this.endHash = endHash;
         writeLocked = false;
-        this.iecsNodes = null;
     }
 
     public String getName() {
@@ -49,5 +47,13 @@ public class MetaData implements Serializable {
         return writeLocked;
     }
 
-    public void addNode(IECSNode newNode) { iecsNodes.add(newNode);}
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public void setWriteLocked(boolean writeLocked) {
+        this.writeLocked = writeLocked;
+    }
+
+
 }

@@ -234,7 +234,7 @@ public class KVCommunication implements Runnable {
         if(ecsStatus == null){
             KVMessage MessageToSend = new KVMessageImplementation(status, key, value);
         }else{
-            KVMessage MessageToSend = new KVMessageImplementation(status, key, value, ecsCommunicationStatus);
+            KVMessage MessageToSend = new KVMessageImplementation(status, key, value, ecsStatus);
         }
     }
 
