@@ -47,7 +47,7 @@ public class HashRing<T extends IECSNode> {
     }
 
     public ECSNode reassignNode(String key) throws NoSuchAlgorithmException {
-        if (ring.isEmpty()){
+        if (ring.isEmpty()) {
             return null;
         }
         BigInteger hashValue = calculateHashValue(key);
