@@ -4,6 +4,7 @@ import logger.LogSetup;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import shared.communication.KVCommunication;
+import shared.dataTypes.MetaData;
 import shared.messages.KVMessage;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
 import java.net.Socket;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class KVStore implements KVCommInterface {
@@ -29,11 +31,14 @@ public class KVStore implements KVCommInterface {
 	private InputStream input;
 
 	private KVCommunication communicationManager;
+	private TreeMap<BigInteger, MetaData> metaData;
+
 
 	public KVStore(String address, int port) {
 		// TODO Auto-generated method stub
 		this.port = port;
 		this.address = address;
+		this.metaData =
 		logger.info("Connection Established");
 	}
 	/**
@@ -88,6 +93,33 @@ public class KVStore implements KVCommInterface {
 		return communicationManager.receiveMessage();
 	}
 
+	public void moveData(String value) throws Exception{
+		communicationManager.sendMessage(KVMessage.StatusType.GET, "","", KVMessage.ECSType.ECS_Move_Data);
+	}
+
+	public void findResponsibleServer(String key){
+
+	}
+
+	public void hashCompare(BigInteger hashValue, TreeMap <BigInteger, MetaData> metaData){
+		for (Map.Entry<BigInteger, MetaData> entry : metaData.entrySet()) {
+			MetaData temp = entry.getValue();
+			BigInteger upper = new BigInteger(temp.getStartHash());
+			BigInteger lower = new BigInteger(temp.getEndHash());
+			boolean descend = (upper.compareTo(lower) == 1);
+			if (hashValue.compareTo(upper) == 0 ||
+					hashValue.compareTo(lower) == 0 ||
+					(hashValue.compareTo(upper) == 1 && hashValue.compareTo(lower) == -1 && !descend) ||
+					(hashValue.compareTo(upper) == -1 && hashValue.compareTo(lower) == -1 && descend) ||
+					(hashValue.compareTo(upper) == 1 && hashValue.compareTo(lower) == 1 && descend)) {
+				// find the corresponding range
+				this.port = temp.getPort();
+				this.address = temp.getHost();
+				break;
+			}
+		}
+	}
+
 	public boolean isRunning() throws IOException {
 		return clientSocket != null && clientSocket.getInetAddress().isReachable(100);
 	}
@@ -119,17 +151,6 @@ public class KVStore implements KVCommInterface {
 		}
 	}
 
-	public void moveData(String value) throws Exception{
-		communicationManager.sendMessage(KVMessage.StatusType.GET, "","", KVMessage.ECSType.ECS_Move_Data);
-	}
-
-	public void findResponsibleServer(String key){
-
-	}
-
-	public boolean hashCompare(BigInteger hashValue, TreeMap metaData){
-		return true;
-	}
 
 	public void printPossibleLogLevels() {
 		System.out.println(PROMPT

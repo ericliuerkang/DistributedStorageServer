@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 
 public class KVServer implements IKVServer {
-
 	private static Logger logger = Logger.getRootLogger();
 	private int port;
 	private int cacheSize;
@@ -25,6 +24,13 @@ public class KVServer implements IKVServer {
 	private KVCache cache;
 	private Storage storage;
 
+	public enum ServerStateType {
+		IDLE,                    /*server is idle*/
+		STARTED,           /*server is started*/
+		SHUT_DOWN,    /*server is shut down*/
+		STOPPED           /*default server status; server is stopped*/
+	}
+
 	/**
 	 * Start KV Server at given port
 	 * @param port given port for storage server to operate
@@ -35,6 +41,7 @@ public class KVServer implements IKVServer {
 	 *           currently not contained in the cache. Options are "FIFO", "LRU",
 	 *           and "LFU".
 	 */
+
 
 	public KVServer(int port, int cacheSize, String strategy) {
 		// TODO Auto-generated method stub
