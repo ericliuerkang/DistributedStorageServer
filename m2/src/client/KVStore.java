@@ -38,7 +38,6 @@ public class KVStore implements KVCommInterface {
 		// TODO Auto-generated method stub
 		this.port = port;
 		this.address = address;
-		this.metaData =
 		logger.info("Connection Established");
 	}
 	/**
