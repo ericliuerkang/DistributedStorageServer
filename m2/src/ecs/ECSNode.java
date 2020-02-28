@@ -72,6 +72,10 @@ public class ECSNode implements  IECSNode, Serializable{
         this.metaData = metaData;
     }
 
+    @Override
+    public void setNodeStatus(ECSNodeFlag flag){this.nodeStatus = flag;}
+
+    @Override
     public byte[] toBytes(){
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream out = null;

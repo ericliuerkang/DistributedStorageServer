@@ -26,7 +26,6 @@ public class ECSClient implements IECSClient {
     private static Logger logger = Logger.getRootLogger();
     private HashRing<ECSNode> hashRing;
     private ArrayList<String> serverFile;
-    private Collection<ECSNode> ecsNodes;
 
     public ECSClient() throws IOException, InterruptedException {
         hashRing = new HashRing<ECSNode>();
@@ -50,40 +49,45 @@ public class ECSClient implements IECSClient {
     @Override
     public boolean start() {
         try {
-            for (ECSNode node : ecsNodes) {
-                node.nodeStatus = ECSNode.ECSNodeFlag.START;
+            for (Map.Entry<BigInteger, IECSNode> entry : hashRing.ring.entrySet()) {
+                IECSNode node = entry.getValue();
+                node.setNodeStatus(ECSNode.ECSNodeFlag.START);
+                zk.setData('/'+node.getNodeName(), node.toBytes(), -1);
             }
+            return true;
         } catch (Exception e) {
             logger.error("Failed to start ECSClient because: " + e.getMessage());
             return false;
         }
-        return true;
     }
 
     @Override
     public boolean stop() {
         try {
-            for (ECSNode node : ecsNodes) {
-                node.nodeStatus = ECSNode.ECSNodeFlag.STOP;
+            for (Map.Entry<BigInteger, IECSNode> entry : hashRing.ring.entrySet()) {
+                IECSNode node = entry.getValue();
+                node.setNodeStatus(ECSNode.ECSNodeFlag.STOP);
+                zk.setData('/' + node.getNodeName(), node.toBytes(), -1);
             }
+            return true;
         } catch (Exception e) {
-            logger.error("Failed to stop ECSClient because: " + e.getMessage());
+            logger.error("Failed to start ECSClient because: " + e.getMessage());
             return false;
         }
-        return true;
     }
-
     @Override
     public boolean shutdown() {
         try {
-            for (ECSNode node : ecsNodes) {
-                node.nodeStatus = ECSNode.ECSNodeFlag.SHUT_DOWN;
+            for (Map.Entry<BigInteger, IECSNode> entry : hashRing.ring.entrySet()) {
+                IECSNode node = entry.getValue();
+                node.setNodeStatus(ECSNode.ECSNodeFlag.SHUT_DOWN);
+                zk.setData('/' + node.getNodeName(), node.toBytes(), -1);
             }
+            return true;
         } catch (Exception e) {
-            logger.error("Failed to shut down ECSClient because: " + e.getMessage());
+            logger.error("Failed to start ECSClient because: " + e.getMessage());
             return false;
         }
-        return true;
     }
 
 //    If there are idle servers in the repository (“i.e., in the listed provided in “ecs.config”), randomly pick one of them and send an SSH call to invoke the KVServer process.
@@ -103,6 +107,8 @@ public class ECSClient implements IECSClient {
         //pick server from ecs.config
         Collections.shuffle(serverFile);
         ECSNode node = null;
+        String info;
+        boolean isAdded = false;
         int port = 0;
         for (String line : serverFile){
             String[] words = line.split(" ");
@@ -114,12 +120,15 @@ public class ECSClient implements IECSClient {
             node = new ECSNode(words[0],words[1],port);
             if (node.nodeStatus == ECSNode.ECSNodeFlag.IDLE){
                 node.nodeStatus = ECSNode.ECSNodeFlag.STOP;
-                try {hashRing.addNode(node);}
+                try {
+                    hashRing.addNode(node);
+                    isAdded = true;}
                 catch (NoSuchAlgorithmException e) {logger.info("NoSuchAlgorithmException with addNode");}
                 break;
             }
         }
-        ecsNodes.add(node);
+
+        assert (node != null && isAdded);
 
         //TODO
 //        metaData.update();
@@ -128,7 +137,6 @@ public class ECSClient implements IECSClient {
 //        }
 
         try {
-            assert node != null;
             zk.create('/' + node.getNodeName(), node.toBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
         }
         catch (NullPointerException | KeeperException | InterruptedException e) {logger.error(e);}
@@ -139,6 +147,12 @@ public class ECSClient implements IECSClient {
         //Transfer data
 
         return null;
+    }
+
+    public static void updateMetaData(TreeMap<BigInteger, MetaData> treeMap, MetaData newMetaData){
+        for (Map.Entry<BigInteger,MetaData> entry : treeMap.entrySet()){
+            entry.setValue(newMetaData);
+        }
     }
 
     @Override
