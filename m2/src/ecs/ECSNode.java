@@ -67,6 +67,7 @@ public class ECSNode implements  IECSNode, Serializable{
         this.hashEnd = end;
     }
 
+    @Override
     public void setMetaData(TreeMap<BigInteger, MetaData> metaData) {
         this.metaData = metaData;
     }

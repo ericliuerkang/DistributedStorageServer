@@ -1,13 +1,11 @@
 package app_kvECS;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Collection;
+import java.util.*;
 
 import app_kvServer.KVServer;
 import ecs.ECSNode;
@@ -24,10 +22,11 @@ import java.util.concurrent.CountDownLatch;
 
 public class ECSClient implements IECSClient {
     private final ZooKeeper zk;
-    private MetaData metaData;
+    private TreeMap<BigInteger, MetaData> metaData;
     private static Logger logger = Logger.getRootLogger();
     private HashRing<ECSNode> hashRing;
     private ArrayList<String> serverFile;
+    private Collection<ECSNode> ecsNodes;
 
     public ECSClient() throws IOException, InterruptedException {
         hashRing = new HashRing<ECSNode>();
@@ -51,7 +50,7 @@ public class ECSClient implements IECSClient {
     @Override
     public boolean start() {
         try {
-            for (ECSNode node : metaData.ecsNodes) {
+            for (ECSNode node : ecsNodes) {
                 node.nodeStatus = ECSNode.ECSNodeFlag.START;
             }
         } catch (Exception e) {
@@ -64,7 +63,7 @@ public class ECSClient implements IECSClient {
     @Override
     public boolean stop() {
         try {
-            for (ECSNode node : metaData.ecsNodes) {
+            for (ECSNode node : ecsNodes) {
                 node.nodeStatus = ECSNode.ECSNodeFlag.STOP;
             }
         } catch (Exception e) {
@@ -77,7 +76,7 @@ public class ECSClient implements IECSClient {
     @Override
     public boolean shutdown() {
         try {
-            for (ECSNode node : metaData.ecsNodes) {
+            for (ECSNode node : ecsNodes) {
                 node.nodeStatus = ECSNode.ECSNodeFlag.SHUT_DOWN;
             }
         } catch (Exception e) {
@@ -120,17 +119,22 @@ public class ECSClient implements IECSClient {
                 break;
             }
         }
+        ecsNodes.add(node);
 
         //TODO
-//        MetaData.update();
+//        metaData.update();
+//        for (Map.Entry<BigInteger, IECSNode> enode:hashRing.ring.entrySet()){
+//            enode.getValue().setMetaData(metaData);
+//        }
 
         try {
+            assert node != null;
             zk.create('/' + node.getNodeName(), node.toBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
         }
         catch (NullPointerException | KeeperException | InterruptedException e) {logger.error(e);}
 
         //TODO
-        //instantiate a server correponding to node
+        //instantiate a server corresponding to node
         //TODO
         //Transfer data
 
@@ -171,8 +175,14 @@ public class ECSClient implements IECSClient {
 
     @Override
     public IECSNode getNodeByKey(String Key) {
-        // TODO
-        return hashRing.ring.get(Key);
+        try {
+            BigInteger hashedKey = HashRing.calculateHashValue(Key);
+            return hashRing.ring.get(hashedKey);
+        }
+        catch (NoSuchAlgorithmException e) {
+            logger.error(e);
+            return null;
+        }
     }
 
     public static void main(String[] args) {

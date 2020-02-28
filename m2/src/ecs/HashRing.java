@@ -17,6 +17,8 @@ public class HashRing<T extends IECSNode> {
 
     }
 
+    public Set<Map.Entry<BigInteger, IECSNode>> getEntrySet() {return ring.entrySet();}
+
     public void addNode(ECSNode ecsNode) throws NoSuchAlgorithmException {
         BigInteger hashValue = calculateHashValue(ecsNode.getNodeHost());
         if (ring.isEmpty()){
@@ -56,7 +58,7 @@ public class HashRing<T extends IECSNode> {
         return node;
     }
 
-    public BigInteger calculateHashValue(String key) throws NoSuchAlgorithmException {
+    public static BigInteger calculateHashValue(String key) throws NoSuchAlgorithmException {
         return new BigInteger(MD5.getMD5EncryptedValue(key));
     }
 

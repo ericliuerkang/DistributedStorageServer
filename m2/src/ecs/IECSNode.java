@@ -1,5 +1,10 @@
 package ecs;
 
+import shared.dataTypes.MetaData;
+
+import java.math.BigInteger;
+import java.util.TreeMap;
+
 public interface IECSNode {
 
     /**
@@ -21,5 +26,9 @@ public interface IECSNode {
      * @return  array of two strings representing the low and high range of the hashes that the given node is responsible for
      */
     public String[] getNodeHashRange();
+
+    public void setMetaData(TreeMap<BigInteger, MetaData> metaData);
+
+//    public void setStatus(ECSNode.ECSNodeFlag);
 
 }
