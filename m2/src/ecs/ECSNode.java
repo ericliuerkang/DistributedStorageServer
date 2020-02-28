@@ -18,7 +18,7 @@ public class ECSNode implements  IECSNode, Serializable{
         KV_TRANSFER,
         SHUT_DOWN,
         UPDATE,
-        TRANSFER_FINISH
+        IDLE
     }
     private String name;
     private String host;
