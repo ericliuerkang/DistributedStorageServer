@@ -169,8 +169,7 @@ public class ECSClient implements IECSClient {
 
     @Override
     public Map<String, IECSNode> getNodes() {
-        // TODO
-        return null;
+        return hashRing.getNodes();
     }
 
     @Override

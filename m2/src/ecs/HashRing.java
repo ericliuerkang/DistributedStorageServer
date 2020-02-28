@@ -62,6 +62,14 @@ public class HashRing<T extends IECSNode> {
         return new BigInteger(MD5.getMD5EncryptedValue(key));
     }
 
+    public Map<String, IECSNode> getNodes(){
+        Map<String, IECSNode> outMap = new HashMap<>();
+        for (Map.Entry<BigInteger, IECSNode> entry : ring.entrySet()){
+            outMap.put(entry.getValue().getNodeName(), entry.getValue());
+        }
+        return outMap;
+    }
+
     /*
     Use GSON to pack and unpack meta data.
      */
