@@ -9,6 +9,8 @@ import java.math.BigInteger;
 import java.util.TreeMap;
 
 public class ECSNode implements  IECSNode, Serializable{
+    public ECSNodeFlag nodeStatus;
+
     public enum ECSNodeFlag{
         STOP,
         START,

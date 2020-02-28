@@ -3,28 +3,53 @@ package app_kvECS;
 import java.util.Map;
 import java.util.Collection;
 
-import ecs.IECSNode;
+import ecs.ECSNode;
 import org.apache.log4j.Logger;
 
-public class ECSClient implements IECSClient {
-    private static Logger logger = Logger.getRootLogger();
+import ecs.IECSNode;
+import shared.dataTypes.MetaData;
 
+
+public class ECSClient implements IECSClient {
+    private MetaData metaData;
+    private static Logger logger = Logger.getRootLogger();
     @Override
     public boolean start() {
-
-        return false;
+        try {
+            for (ECSNode node : metaData.ecsNodes) {
+                node.nodeStatus = ECSNode.ECSNodeFlag.START;
+            }
+        } catch (Exception e) {
+            logger.error("Failed to start ECSClient because: " + e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean stop() {
-        // TODO
-        return false;
+        try {
+            for (ECSNode node : metaData.ecsNodes) {
+                node.nodeStatus = ECSNode.ECSNodeFlag.STOP;
+            }
+        } catch (Exception e) {
+            logger.error("Failed to stop ECSClient because: " + e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean shutdown() {
-        // TODO
-        return false;
+        try {
+            for (ECSNode node : metaData.ecsNodes) {
+                node.nodeStatus = ECSNode.ECSNodeFlag.SHUT_DOWN;
+            }
+        } catch (Exception e) {
+            logger.error("Failed to shut down ECSClient because: " + e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override

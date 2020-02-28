@@ -1,11 +1,13 @@
 package shared.dataTypes;
 
+import ecs.ECSNode;
 import ecs.IECSNode;
 
 import java.io.Serializable;
 import java.util.Collection;
 
 public class MetaData implements Serializable {
+    public Collection<ECSNode> ecsNodes;
     private String name;
     private String host;
     private int port;
