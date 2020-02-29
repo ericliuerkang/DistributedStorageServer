@@ -1,5 +1,6 @@
 package app_kvECS;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -10,6 +11,7 @@ import java.util.*;
 import app_kvServer.KVServer;
 import ecs.ECSNode;
 import ecs.HashRing;
+import ecs.MetaRing;
 import org.apache.log4j.Logger;
 
 import ecs.IECSNode;
@@ -22,13 +24,22 @@ import java.util.concurrent.CountDownLatch;
 
 public class ECSClient implements IECSClient {
     private final ZooKeeper zk;
+    private int zkPort = 1234;
+    private String zkHost = "localhost";
+
     private TreeMap<BigInteger, MetaData> metaData;
     private static Logger logger = Logger.getRootLogger();
     private HashRing<ECSNode> hashRing;
+    private MetaRing<MetaData> metaRing;
     private ArrayList<String> serverFile;
+    private static String jarPath;
 
     public ECSClient() throws IOException, InterruptedException {
+        String serverScript = System.getProperty("user.dir") + "/" + "server.sh";
+        jarPath = new File(serverScript).toString();
+
         hashRing = new HashRing<ECSNode>();
+        metaRing = new MetaRing<MetaData>();
         Path configFile;
         try {
             serverFile = new ArrayList<String>(Files.readAllLines(Paths.get("ecs.config"), StandardCharsets.UTF_8));
@@ -127,19 +138,24 @@ public class ECSClient implements IECSClient {
                 break;
             }
         }
-
         assert (node != null && isAdded);
+        sshStartServer(node);
 
         //TODO
+        try {
+            BigInteger hashValue = HashRing.calculateHashValue(node.getNodeHost());
+            BigInteger start = hashValue.add(new BigInteger("1"));
+            BigInteger end = metaRing.getNextHash(node);
+            MetaData md = new MetaData(node.getNodeName(), node.getNodeHost(), node.getNodePort(), start, end);
+            metaRing.addNode(md);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 //        metaData.update();
 //        for (Map.Entry<BigInteger, IECSNode> enode:hashRing.ring.entrySet()){
 //            enode.getValue().setMetaData(metaData);
 //        }
 
-        try {
-            zk.create('/' + node.getNodeName(), node.toBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-        }
-        catch (NullPointerException | KeeperException | InterruptedException e) {logger.error(e);}
 
         //TODO
         //instantiate a server corresponding to node
@@ -147,6 +163,45 @@ public class ECSClient implements IECSClient {
         //Transfer data
 
         return null;
+    }
+
+    public void sshStartServer(ECSNode n){
+        assert n != null;
+        // Issue the ssh call to start the process remotely
+        String javaCmd = String.join(" ",
+                "java -jar",
+                jarPath,
+                String.valueOf(n.getNodePort()),
+                n.getNodeName(),
+                zkHost,
+                Integer.toString(zkPort));
+        String sshCmd = "ssh -o StrictHostKeyChecking=no -n " + n.getNodeHost() + " nohup " + javaCmd +
+                " > server.log &";
+        // Redirect output to files so that ssh channel will not wait for further output
+        try {
+            logger.info("Executing command: " + sshCmd);
+            Process p = Runtime.getRuntime().exec(sshCmd);
+            Thread.sleep(100);
+            // p.waitFor();
+            // assert !p.isAlive();
+            // assert p.exitValue() == 0;
+        } catch (IOException e) {
+            logger.error("Unable to launch server with ssh (" + n + ")", e);
+            e.printStackTrace();
+            try {
+                hashRing.removeNode(n); // Connection failed, remove instance from result collection
+            } catch (NoSuchAlgorithmException ex1) {
+                logger.error(ex1);
+            }
+        } catch (InterruptedException e) {
+            logger.error("Receive an interrupt", e);
+            e.printStackTrace();
+            try {
+                hashRing.removeNode(n); // Connection failed, remove instance from result collection
+            } catch (NoSuchAlgorithmException ex2) {
+                logger.error(ex2);
+            }
+        }
     }
 
     public static void updateMetaData(TreeMap<BigInteger, MetaData> treeMap, MetaData newMetaData){

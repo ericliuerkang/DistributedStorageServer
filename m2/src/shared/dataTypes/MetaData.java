@@ -4,18 +4,19 @@ import ecs.ECSNode;
 import ecs.IECSNode;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Collection;
 
 public class MetaData implements Serializable {
     private String name;
     private String host;
     private int port;
-    private String startHash;
-    private String endHash;
+    private BigInteger startHash;
+    private BigInteger endHash;
     private boolean writeLocked;
 
     public MetaData(String name, String host, int port,
-                    String startHash, String endHash) {
+                    BigInteger startHash, BigInteger endHash) {
         this.name = name;
         this.host = host;
         this.port = port;
@@ -36,11 +37,11 @@ public class MetaData implements Serializable {
         return port;
     }
 
-    public String getStartHash() {
+    public BigInteger getStartHash() {
         return startHash;
     }
 
-    public String getEndHash() {
+    public BigInteger getEndHash() {
         return endHash;
     }
 
@@ -56,5 +57,8 @@ public class MetaData implements Serializable {
         this.writeLocked = writeLocked;
     }
 
-
+    public void setNodeHashRange(BigInteger start, BigInteger end){
+        this.startHash = start.add(new BigInteger("1"));
+        this.endHash = end;
+    }
 }
