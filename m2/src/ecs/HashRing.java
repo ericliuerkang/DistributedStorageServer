@@ -26,7 +26,6 @@ public class HashRing<T extends IECSNode> {
         return size;
     }
 
-
     public void addNode(ECSNode ecsNode) throws NoSuchAlgorithmException {
         BigInteger hashValue = calculateHashValue(ecsNode.getNodeName());
         if (ring.isEmpty()){
@@ -104,7 +103,6 @@ public class HashRing<T extends IECSNode> {
         System.out.println();
         hr.removeNode(a);
         System.out.println();
-
     }
 
 }

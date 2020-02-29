@@ -2,6 +2,7 @@ package app_kvServer;
 
 import cache.KVCache;
 import client.KVStore;
+import ecs.ECSNode;
 import ecs.HashRing;
 import logger.LogSetup;
 import org.apache.log4j.Level;
@@ -9,9 +10,12 @@ import org.apache.log4j.Logger;
 import persistentStorage.LocationData;
 import persistentStorage.Storage;
 import shared.communication.KVCommunication;
+import shared.dataTypes.MetaData;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.*;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -35,7 +39,6 @@ public class KVServer implements IKVServer {
 		SHUT_DOWN,    /*server is shut down*/
 		STOPPED           /*default server status; server is stopped*/
 	}
-
 	/**
 	 * Start KV Server at given port
 	 * @param port given port for storage server to operate
@@ -46,8 +49,6 @@ public class KVServer implements IKVServer {
 	 *           currently not contained in the cache. Options are "FIFO", "LRU",
 	 *           and "LFU".
 	 */
-
-
 	public KVServer(int port, int cacheSize, String strategy) {
 		// TODO Auto-generated method stub
 		this.port = port;
@@ -57,6 +58,7 @@ public class KVServer implements IKVServer {
 		serverThreadList = new ArrayList<Thread>();
 		serverThread = null;
 		this.storage = new Storage(port);
+		this.hr = new HashRing();
 	}
 
 	@Override
@@ -241,7 +243,22 @@ public class KVServer implements IKVServer {
 		}
 	}
 
-	public void addServer(int addedServerPort, int existingServerPort) throws Exception{
+	public void addServer(String addedServerAddress, int addedServerPort, int existingServerPort) throws Exception{
+		String existingServerName = existingServerPort +"_look_up_table.txt";
+		Map<String, LocationData> existingServerlocationDataHashMap = storage.loadLocationStorage(existingServerName);
+		KVStore tempClient = new KVStore(addedServerAddress, addedServerPort);
+		for(Map.Entry<String, LocationData> entry : existingServerlocationDataHashMap.entrySet()) {
+			String key = entry.getKey();
+			String value = getKV(key);
+			BigInteger hashValue = hr.calculateHashValue(key);
+			if (hr.reassignNode(key).getNodePort() == addedServerPort && hr.reassignNode(key).getNodeName() == addedServerAddress);{
+				tempClient.put(key, value);
+				storage.deleteValue(key);
+			}
+			tempClient.put(key, value);
+		}
+
+		storage.loadLocationStorage();
 	}
 
 	public void removeServer(int removedServerPort, int responsibleServerPort, String responsibleAddress) throws  Exception{
@@ -264,7 +281,6 @@ public class KVServer implements IKVServer {
 	}
 
 	private boolean initializeServer() {
-
 		logger.info("Initialize server ...");
 		try {
 			serverSocket = new ServerSocket(port);
