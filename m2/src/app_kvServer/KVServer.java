@@ -9,6 +9,7 @@ import logger.LogSetup;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import persistentStorage.LocationData;
@@ -46,6 +47,10 @@ public class KVServer implements IKVServer {
 	private Storage storage;
 	private HashRing hr;
 
+	private boolean lock;
+
+
+
 	public enum ServerStateType {
 		IDLE,                    /*server is idle*/
 		STARTED,           /*server is started*/
@@ -74,6 +79,12 @@ public class KVServer implements IKVServer {
 		this.hr = new HashRing();
 	}
 
+	/**
+	 * Start KV Server and connect to zookeeper.
+	 * @param name name of the znode
+	 * @param zkHostName
+	 * @param zkPort
+	 */
 	public KVServer(String name, String zkHostName, int zkPort){
 		this.zkHostName = zkHostName;
 		this.name = name;
@@ -129,6 +140,9 @@ public class KVServer implements IKVServer {
 
 	}
 
+	public void process(WatchedEvent watchedEvent){
+
+	}
 	@Override
 	public int getPort(){
 		// TODO Auto-generated method stub
