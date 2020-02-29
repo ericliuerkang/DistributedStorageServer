@@ -144,7 +144,7 @@ public class ECSClient implements IECSClient {
 
         //TODO
         try {
-            BigInteger hashValue = HashRing.calculateHashValue(node.getNodeHost());
+            BigInteger hashValue = hashRing.calculateHashValue(node.getNodeHost());
             BigInteger start = hashValue.add(new BigInteger("1"));
             BigInteger end = metaRing.getNextHash(node);
             MetaData md = new MetaData(node.getNodeName(), node.getNodeHost(), node.getNodePort(), start, end);
