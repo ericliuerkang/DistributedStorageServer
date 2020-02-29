@@ -127,7 +127,6 @@ public class MetaRing<T extends MetaData> {
     }
 
     public static void main(String[] args) {
-
     }
 
 }

@@ -103,8 +103,8 @@ public class KVStore implements KVCommInterface {
 	public void hashCompare(BigInteger hashValue, TreeMap <BigInteger, MetaData> metaData){
 		for (Map.Entry<BigInteger, MetaData> entry : metaData.entrySet()) {
 			MetaData temp = entry.getValue();
-			BigInteger upper = new BigInteger(temp.getStartHash());
-			BigInteger lower = new BigInteger(temp.getEndHash());
+			BigInteger upper = temp.getStartHash();
+			BigInteger lower = temp.getEndHash();
 			boolean descend = (upper.compareTo(lower) == 1);
 			if (hashValue.compareTo(upper) == 0 ||
 					hashValue.compareTo(lower) == 0 ||
