@@ -76,8 +76,7 @@ public class HashRing<T extends IECSNode> {
         }
         BigInteger hashValue = calculateHashValue(key);
         SortedMap<BigInteger, IECSNode> map = ring.tailMap(hashValue);
-        ECSNode node = (ECSNode) (map.isEmpty() ? ring.get(ring.firstKey()) : ring.get(map.firstKey()));
-        return node;
+        return (ECSNode) (map.isEmpty() ? ring.get(ring.firstKey()) : ring.get(map.firstKey()));
     }
 
     public BigInteger calculateHashValue(String key) throws NoSuchAlgorithmException {
