@@ -257,8 +257,6 @@ public class KVServer implements IKVServer {
 			}
 			tempClient.put(key, value);
 		}
-
-		storage.loadLocationStorage();
 	}
 
 	public void removeServer(int removedServerPort, int responsibleServerPort, String responsibleAddress) throws  Exception{
