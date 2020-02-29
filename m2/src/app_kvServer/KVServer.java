@@ -2,15 +2,20 @@ package app_kvServer;
 
 import cache.KVCache;
 import client.KVStore;
+import com.google.gson.Gson;
 import ecs.ECSNode;
 import ecs.HashRing;
 import logger.LogSetup;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooKeeper;
 import persistentStorage.LocationData;
 import persistentStorage.Storage;
 import shared.communication.KVCommunication;
 import shared.dataTypes.MetaData;
+import zooKeeper.ZooKeeperString;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -18,10 +23,18 @@ import java.net.*;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 
 public class KVServer implements IKVServer {
 	private static Logger logger = Logger.getRootLogger();
+	private String zkHostName;
+	private int zkPort;
+	private String name;
+	private ZooKeeper zk;
+	private String zkPath;
+
+
 	private int port;
 	private int cacheSize;
 	private ServerSocket serverSocket;
@@ -59,6 +72,61 @@ public class KVServer implements IKVServer {
 		serverThread = null;
 		this.storage = new Storage(port);
 		this.hr = new HashRing();
+	}
+
+	public KVServer(String name, String zkHostName, int zkPort){
+		this.zkHostName = zkHostName;
+		this.name = name;
+		this.zkPort = zkPort;
+		this.zkPath = ZooKeeperString.ZK_SERVER_ROOT + "/" + name;
+		String connectString = this.zkHostName + ":" + Integer.toString(this.zkPort);
+
+		//Connecting to Zookeeper
+		try {
+			final CountDownLatch sig = new CountDownLatch(1);
+			zk = new ZooKeeper(connectString, ZooKeeperString.ZK_TIMEOUT, event -> {
+				if (event.getState().equals(Watcher.Event.KeeperState.SyncConnected)) {
+					// connection fully established can proceed
+					sig.countDown();
+				}
+			});
+			try {
+				sig.await();
+			} catch (InterruptedException e) {
+				// Should never happen
+				e.printStackTrace();
+			}
+
+		} catch (IOException e) {
+			logger.debug(this.name + "Unable to connect to zookeeper");
+			e.printStackTrace();
+		}
+		//Creating the Group ZNode
+		try{
+			if (zk.exists(zkPath, false) == null){
+				logger.error("the zNode does not exist");
+			}else{
+				byte[] cacheData = zk.getData(zkPath, false, null);
+				String cacheString = new String(cacheData);
+				MetaData m = new Gson().fromJson(cacheString, MetaData.class);
+				this.cacheSize = m.getCacheSize();
+				this.cacheStrategy = CacheStrategy.valueOf(m.getCacheStrategy());
+			}
+		}catch (KeeperException | InterruptedException e){
+			logger.error(this.name + " Unable to retrieve cache info from " + zkPath);
+			this.cacheStrategy = CacheStrategy.FIFO;
+			this.cacheSize = 100;
+			e.printStackTrace();
+		}
+
+		//Update HashRing
+		try{
+
+		}catch{
+
+		}
+
+
 	}
 
 	@Override
