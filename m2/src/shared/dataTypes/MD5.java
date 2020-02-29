@@ -21,4 +21,8 @@ public class MD5 {
         input = hexString + "";
         return  input;
     }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        System.out.println(getMD5EncryptedValue("Server_1"));
+    }
 }

@@ -1,15 +1,19 @@
 package app_kvServer;
 
 import cache.KVCache;
+import client.KVStore;
+import ecs.HashRing;
 import logger.LogSetup;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import persistentStorage.LocationData;
 import persistentStorage.Storage;
 import shared.communication.KVCommunication;
 
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class KVServer implements IKVServer {
@@ -23,6 +27,7 @@ public class KVServer implements IKVServer {
 	private Thread serverThread;
 	private KVCache cache;
 	private Storage storage;
+	private HashRing hr;
 
 	public enum ServerStateType {
 		IDLE,                    /*server is idle*/
@@ -234,6 +239,24 @@ public class KVServer implements IKVServer {
 				logger.error("Invalid Cache Strategy!");
 				return CacheStrategy.None;
 		}
+	}
+
+	public void addServer(int addedServerPort, int existingServerPort) throws Exception{
+	}
+
+	public void removeServer(int removedServerPort, int responsibleServerPort, String responsibleAddress) throws  Exception{
+		String removedServerLocationData = removedServerPort+"_look_up_table.txt";
+		Map<String, LocationData> removedServerlocationDataHashMap = storage.loadLocationStorage(removedServerLocationData);
+		String responsibleServerLocationData = responsibleServerPort+"_look_up_table.txt";
+		Map<String, LocationData> responsibleServerlocationDataHashMap = storage.loadLocationStorage(responsibleServerLocationData);
+		KVStore tempClient = new KVStore(responsibleAddress, responsibleServerPort);
+		for(Map.Entry<String, LocationData> entry : removedServerlocationDataHashMap.entrySet()) {
+			String key = entry.getKey();
+			String value = getKV(key);
+			tempClient.put(key, value);
+		}
+		clearStorage();
+		clearCache();
 	}
 
 	private boolean isRunning() {

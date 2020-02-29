@@ -1,5 +1,5 @@
 package ecs;
-
+import org.apache.log4j.Logger;
 import shared.dataTypes.MD5;
 
 import java.math.BigInteger;
@@ -8,9 +8,12 @@ import java.util.*;
 
 public class HashRing<T extends IECSNode> {
     public SortedMap<BigInteger, IECSNode> ring;
+    private Logger logger = Logger.getRootLogger();
+    private int size;
 
     public HashRing(){
         this.ring = new TreeMap<>();
+        this.size = 0;
     }
 
     public HashRing(String packedMetaData){
@@ -19,20 +22,26 @@ public class HashRing<T extends IECSNode> {
 
     public Set<Map.Entry<BigInteger, IECSNode>> getEntrySet() {return ring.entrySet();}
 
+    public int getSize() {
+        return size;
+    }
+
+
     public void addNode(ECSNode ecsNode) throws NoSuchAlgorithmException {
-        BigInteger hashValue = calculateHashValue(ecsNode.getNodeHost());
+        BigInteger hashValue = calculateHashValue(ecsNode.getNodeName());
         if (ring.isEmpty()){
             ecsNode.setNodeHashRange(hashValue, hashValue.subtract(new BigInteger("1")));
         }else {
             SortedMap<BigInteger, IECSNode> headMap = ring.headMap(hashValue);
             SortedMap<BigInteger, IECSNode> tailMap = ring.tailMap(hashValue);
             ECSNode biggerNode = (ECSNode) (tailMap.isEmpty() ? ring.get(ring.firstKey()) : ring.get(tailMap.firstKey()));
-            ECSNode smallerNode = (ECSNode) (tailMap.isEmpty() ? ring.get(ring.lastKey()) : ring.get(headMap.firstKey()));
+            ECSNode smallerNode = (ECSNode) (headMap.isEmpty() ? ring.get(ring.lastKey()) : ring.get(headMap.firstKey()));
             //Might be sketchy.
             smallerNode.setNodeHashRange(calculateHashValue(smallerNode.getNodeName()), hashValue);
             ecsNode.setNodeHashRange(hashValue, calculateHashValue(biggerNode.getNodeName()));
         }
         ring.put(calculateHashValue(ecsNode.getNodeHost()), ecsNode);
+        size++;
     }
 
     public void removeNode(ECSNode ecsNode) throws NoSuchAlgorithmException {
@@ -46,6 +55,7 @@ public class HashRing<T extends IECSNode> {
             smallerNode.setNodeHashRange(calculateHashValue(smallerNode.getNodeName()), calculateHashValue(biggerNode.getNodeName()));
             ring.remove(calculateHashValue(ecsNode.getNodeHost()));
         }
+        size--;
     }
 
     public ECSNode reassignNode(String key) throws NoSuchAlgorithmException {
@@ -58,8 +68,8 @@ public class HashRing<T extends IECSNode> {
         return node;
     }
 
-    public static BigInteger calculateHashValue(String key) throws NoSuchAlgorithmException {
-        return new BigInteger(MD5.getMD5EncryptedValue(key));
+    public BigInteger calculateHashValue(String key) throws NoSuchAlgorithmException {
+        return new BigInteger(MD5.getMD5EncryptedValue(key), 16);
     }
 
     public Map<String, IECSNode> getNodes(){
@@ -81,7 +91,19 @@ public class HashRing<T extends IECSNode> {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        ECSNode a = new ECSNode("Server_1", "localhost", 1000);
+        ECSNode b = new ECSNode("Server_2", "localhost", 1000);
+        ECSNode c = new ECSNode("Server_3", "localhost", 1000);
+        HashRing hr = new HashRing();
+        hr.addNode(a);
+        hr.addNode(b);
+        hr.addNode(c);
+        a.getNodeHashRange();
+        b.getNodeHashRange();
+        System.out.println();
+        hr.removeNode(a);
+        System.out.println();
 
     }
 

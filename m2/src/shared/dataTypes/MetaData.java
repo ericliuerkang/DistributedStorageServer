@@ -14,8 +14,7 @@ public class MetaData implements Serializable {
     private String endHash;
     private boolean writeLocked;
 
-    public MetaData(String name, String host, int port,
-                    String startHash, String endHash) {
+    public MetaData(String name, String host, int port, String startHash, String endHash) {
         this.name = name;
         this.host = host;
         this.port = port;

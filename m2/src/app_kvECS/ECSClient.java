@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import ecs.IECSNode;
 import org.apache.zookeeper.*;
+import shared.dataTypes.MD5;
 import shared.dataTypes.MetaData;
 
 import java.nio.file.Path;
@@ -189,7 +190,7 @@ public class ECSClient implements IECSClient {
     @Override
     public IECSNode getNodeByKey(String Key) {
         try {
-            BigInteger hashedKey = HashRing.calculateHashValue(Key);
+            BigInteger hashedKey = new BigInteger(MD5.getMD5EncryptedValue(Key));
             return hashRing.ring.get(hashedKey);
         }
         catch (NoSuchAlgorithmException e) {
