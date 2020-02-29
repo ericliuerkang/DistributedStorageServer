@@ -49,6 +49,32 @@ public class MetaRing<T extends MetaData> {
         }
     }
 
+    public BigInteger getPrevHash(ECSNode node){
+        BigInteger hashValue = null;
+        try {
+            hashValue = calculateHashValue(node.getNodeName());
+            SortedMap<BigInteger, MetaData> headMap = ring.headMap(hashValue);
+            SortedMap<BigInteger, MetaData> tailMap = ring.tailMap(hashValue);
+            MetaData smallerNode = (tailMap.isEmpty() ? ring.get(ring.lastKey()) : ring.get(headMap.firstKey()));
+            return calculateHashValue(smallerNode.getName());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public BigInteger getPrevHash(BigInteger hashValue){
+        try {
+            SortedMap<BigInteger, MetaData> headMap = ring.headMap(hashValue);
+            SortedMap<BigInteger, MetaData> tailMap = ring.tailMap(hashValue);
+            MetaData smallerNode = (tailMap.isEmpty() ? ring.get(ring.lastKey()) : ring.get(headMap.firstKey()));
+            return calculateHashValue(smallerNode.getName());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void removeNode(MetaData md) throws NoSuchAlgorithmException {
         if (ring.containsKey(calculateHashValue(md.getName()))){
             BigInteger hashValue = calculateHashValue(md.getName());

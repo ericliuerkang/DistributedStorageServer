@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 
 import ecs.IECSNode;
 import org.apache.zookeeper.*;
+import org.apache.zookeeper.data.Stat;
 import shared.dataTypes.MD5;
 import shared.dataTypes.MetaData;
 
@@ -119,7 +120,6 @@ public class ECSClient implements IECSClient {
         //pick server from ecs.config
         Collections.shuffle(serverFile);
         ECSNode node = null;
-        String info;
         boolean isAdded = false;
         int port = 0;
         for (String line : serverFile){
@@ -140,30 +140,7 @@ public class ECSClient implements IECSClient {
             }
         }
         assert (node != null && isAdded);
-        sshStartServer(node);
-
-        //TODO
-        try {
-            BigInteger hashValue = hashRing.calculateHashValue(node.getNodeHost());
-            BigInteger start = hashValue.add(new BigInteger("1"));
-            BigInteger end = metaRing.getNextHash(node);
-            MetaData md = new MetaData(node.getNodeName(), node.getNodeHost(), node.getNodePort(), start, end);
-            metaRing.addNode(md);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-//        metaData.update();
-//        for (Map.Entry<BigInteger, IECSNode> enode:hashRing.ring.entrySet()){
-//            enode.getValue().setMetaData(metaData);
-//        }
-
-
-        //TODO
-        //instantiate a server corresponding to node
-        //TODO
-        //Transfer data
-
-        return null;
+        return setupNode(node);
     }
 
     public void sshStartServer(ECSNode n){
@@ -205,11 +182,11 @@ public class ECSClient implements IECSClient {
         }
     }
 
-    public static void updateMetaData(TreeMap<BigInteger, MetaData> treeMap, MetaData newMetaData){
-        for (Map.Entry<BigInteger,MetaData> entry : treeMap.entrySet()){
-            entry.setValue(newMetaData);
-        }
-    }
+//    public static void updateMetaData(TreeMap<BigInteger, MetaData> treeMap, MetaData newMetaData){
+//        for (Map.Entry<BigInteger,MetaData> entry : treeMap.entrySet()){
+//            entry.setValue(newMetaData);
+//        }
+//    }
 
     @Override
     public Collection<IECSNode> addNodes(int count, String cacheStrategy, int cacheSize) {
@@ -225,16 +202,102 @@ public class ECSClient implements IECSClient {
         return null;
     }
 
+    public IECSNode setupNode(ECSNode node) {
+        //start server
+        sshStartServer(node);
+
+        //update
+        try {
+            BigInteger hashValue = hashRing.calculateHashValue(node.getNodeHost());
+            BigInteger start = hashValue.add(new BigInteger("1"));
+            BigInteger end = metaRing.getNextHash(node);
+            MetaData md = new MetaData(node.getNodeName(), node.getNodeHost(), node.getNodePort(), start, end);
+            node.setMetaData(md);
+            metaRing.addNode(md);
+
+            //update znodes with metadata
+            Stat exists = zk.exists('/'+node.getNodeName(), false);
+            if (exists == null) {
+                zk.create('/'+node.getNodeName(), md.toString().getBytes(),
+                        ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            } else {
+                zk.setData('/'+node.getNodeName(), md.toString().getBytes(), exists.getVersion());
+                // Delete all children (msg z-nodes)
+                List<String> children = zk.getChildren('/'+node.getNodeName(), false);
+                for (String zn : children) {
+                    String msgPath = '/'+node.getNodeName() + "/" + zn;
+                    Stat ex = zk.exists(msgPath, false);
+                    zk.delete(msgPath, ex.getVersion());
+                }
+            }
+
+            //update the previous node's metadata
+            md = metaRing.ring.get(metaRing.getPrevHash(node));
+            String path = '/'+md.getName();
+            zk.setData(path, md.toString().getBytes(), exists.getVersion());
+            // Delete all children (msg z-nodes)
+            List<String> children = zk.getChildren(path, false);
+            for (String zn : children) {
+                String msgPath = path + "/" + zn;
+                Stat ex = zk.exists(msgPath, false);
+                zk.delete(msgPath, ex.getVersion());
+            }
+
+        } catch (NoSuchAlgorithmException | InterruptedException | KeeperException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     @Override
     public boolean awaitNodes(int count, int timeout) throws Exception {
-        // TODO
+        long startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() < startTime+timeout){
+            List<String> list = zk.getChildren("/Barrier", true);
+            if (list.size() == count) {
+                return true;
+            }
+        }
         return false;
+    }
+
+//    Select one of the storage servers to be removed
+//    Recalculate and update the metadata of the storage service (i.e., the range for the successor storage server)
+//    Set the write lock on the storage server that has to be deleted.
+//    Send metadata update to the successor storage server (i.e., the successor is now also responsible for the range of the storage server that is to be removed)
+//    Invoke the transfer of the affected data items (i.e., all data of the storage server that is to be removed)  to the successor. The data that is transferred should not be deleted immediately to be able to serve read requests while the transfer is in progress
+//serverToRemove.moveData(range, successor)
+//    When all affected data has been transferred (i.e., the storage server that is removed notified the ECS)
+//    Send a metadata update to the remaining storage servers
+//    Shutdown the respective storage server
+
+    public boolean removeNode(String name){
+        BigInteger hashedName = null;
+        try {
+            hashedName = hashRing.calculateHashValue(name);
+            MetaData md = metaRing.getMetaData(hashedName);
+            MetaData prev = metaRing.getMetaData(metaRing.getPrevHash(hashedName));
+            hashRing.getNode(hashedName).setNodeStatus(ECSNode.ECSNodeFlag.SHUT_DOWN);
+            metaRing.removeNode(md);
+            hashRing.removeNode(hashedName);
+
+            zk.delete('/'+name, -1);
+            zk.setData('/'+prev.getName(), prev.toString().getBytes(), -1);
+            return true;
+        } catch (NoSuchAlgorithmException | KeeperException | InterruptedException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean removeNodes(Collection<String> nodeNames) {
-        // TODO
-        return false;
+        boolean isSuccess = true;
+        for (String name : nodeNames){
+            isSuccess = isSuccess && removeNode(name);
+        }
+        return isSuccess;
     }
 
     @Override

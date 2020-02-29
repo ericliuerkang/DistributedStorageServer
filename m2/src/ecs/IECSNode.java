@@ -27,7 +27,7 @@ public interface IECSNode {
      */
     public String[] getNodeHashRange();
 
-    public void setMetaData(TreeMap<BigInteger, MetaData> metaData);
+    public void setMetaData(MetaData metaData);
 
     public void setNodeStatus(ECSNode.ECSNodeFlag flag);
     public byte[] toBytes();

@@ -25,7 +25,7 @@ public class ECSNode implements  IECSNode, Serializable{
     private int port;
     private BigInteger hashStart;
     private BigInteger hashEnd;
-    private TreeMap<BigInteger, MetaData> metaData;
+    private MetaData metaData;
 
     public ECSNode(String name, String host, int port) {
         this.name = name;
@@ -50,9 +50,7 @@ public class ECSNode implements  IECSNode, Serializable{
         return port;
     }
 
-    public TreeMap<BigInteger, MetaData> getMetaData() {
-        return metaData;
-    }
+    public MetaData getMetaData() { return metaData; }
 
     @Override
     public String[] getNodeHashRange() {
@@ -68,7 +66,7 @@ public class ECSNode implements  IECSNode, Serializable{
     }
 
     @Override
-    public void setMetaData(TreeMap<BigInteger, MetaData> metaData) {
+    public void setMetaData(MetaData metaData) {
         this.metaData = metaData;
     }
 

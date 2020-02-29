@@ -57,6 +57,19 @@ public class HashRing<T extends IECSNode> {
         size--;
     }
 
+    public void removeNode(BigInteger hashedName) throws NoSuchAlgorithmException {
+        if (ring.containsKey(hashedName)) {
+            SortedMap<BigInteger, IECSNode> headMap = ring.headMap(hashedName);
+            SortedMap<BigInteger, IECSNode> tailMap = ring.tailMap(hashedName);
+            ECSNode biggerNode = (ECSNode) (tailMap.isEmpty() ? ring.get(ring.firstKey()) : ring.get(tailMap.firstKey()));
+            ECSNode smallerNode = (ECSNode) (tailMap.isEmpty() ? ring.get(ring.lastKey()) : ring.get(headMap.firstKey()));
+            //Removal
+            smallerNode.setNodeHashRange(calculateHashValue(smallerNode.getNodeName()), calculateHashValue(biggerNode.getNodeName()));
+            ring.remove(hashedName);
+        }
+        size--;
+    }
+
     public ECSNode reassignNode(String key) throws NoSuchAlgorithmException {
         if (ring.isEmpty()) {
             return null;
@@ -77,6 +90,10 @@ public class HashRing<T extends IECSNode> {
             outMap.put(entry.getValue().getNodeName(), entry.getValue());
         }
         return outMap;
+    }
+
+    public IECSNode getNode(BigInteger hashedName) {
+        return ring.get(hashedName);
     }
 
     /*
