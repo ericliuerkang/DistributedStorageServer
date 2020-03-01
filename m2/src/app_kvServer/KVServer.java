@@ -16,6 +16,7 @@ import persistentStorage.LocationData;
 import persistentStorage.Storage;
 import shared.communication.KVCommunication;
 import shared.dataTypes.MetaData;
+import shared.messages.KVAdminMessage;
 import zooKeeper.ZooKeeperString;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.math.BigInteger;
 import java.net.*;
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
@@ -114,23 +116,24 @@ public class KVServer implements IKVServer {
 			logger.debug(this.name + "Unable to connect to zookeeper");
 			e.printStackTrace();
 		}
-		//Creating the Group ZNode
+
+		//Initialize Server
 		try{
-			if (zk.exists(zkPath, false) == null){
-				logger.error("the zNode does not exist");
-			}else{
-				byte[] cacheData = zk.getData(zkPath, false, null);
-				String cacheString = new String(cacheData);
-				MetaData m = new Gson().fromJson(cacheString, MetaData.class);
-				this.cacheSize = m.getCacheSize();
-				this.cacheStrategy = CacheStrategy.valueOf(m.getCacheStrategy());
+			List<String> children = zk.getChildren(this.znode, this, null);
+			if (!children.isEmpty()) {
+				String msgNode = this.znode + "/" + children.get(0);
+				byte[] msgData = zk.getData(msgNode, false, null);
+				KVAdminMessage msg = new Gson().fromJson(new String(msgData), KVAdminMessage.class);
+				if (msg.getCommand().equals(KVAdminMessage.Command.INIT)) {
+					initKVServer(msg.getMetaData(), msg.getCacheSize(), msg.getStrategy());
+					zk.delete(msgNode, zk.exists(msgNode,false).getVersion());
+					logger.info("Server initialized");
+				}
 			}
-		}catch (KeeperException | InterruptedException e){
-			logger.error(this.name + " Unable to retrieve cache info from " + zkPath);
-			this.cacheStrategy = CacheStrategy.FIFO;
-			this.cacheSize = 100;
-			e.printStackTrace();
+		}catch{
+
 		}
+
 
 	}
 
