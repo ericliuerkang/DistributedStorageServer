@@ -11,12 +11,12 @@ public class MetaData implements Serializable {
     private String name;
     private String host;
     private int port;
-    private BigInteger startHash;
-    private BigInteger endHash;
+    private String startHash;
+    private String endHash;
     private boolean writeLocked;
 
     public MetaData(String name, String host, int port,
-                    BigInteger startHash, BigInteger endHash) {
+                    String startHash, String endHash) {
         this.name = name;
         this.host = host;
         this.port = port;
@@ -58,7 +58,7 @@ public class MetaData implements Serializable {
     }
 
     public void setNodeHashRange(BigInteger start, BigInteger end){
-        this.startHash = start.add(new BigInteger("1"));
-        this.endHash = end;
+        this.startHash = start.add(new BigInteger("1")).toString();
+        this.endHash = end.toString();
     }
 }

@@ -86,4 +86,14 @@ public interface IKVServer {
      * Gracefully stop the server, can perform any additional actions
      */
     public void close();
-}
+
+    /**
+     * ECS-related lock, locks the KVServer for write operations
+     */
+    public void lockWrite();
+
+    /**
+     * ECS-related unlock, unlocks the KVServer for write operations
+     */
+    public void unlockWrite();
+

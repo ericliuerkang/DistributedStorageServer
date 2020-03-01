@@ -34,10 +34,11 @@ public class KVServer implements IKVServer {
 	private String name;
 	private ZooKeeper zk;
 	private String zkPath;
-
-
 	private int port;
 	private int cacheSize;
+
+	private ServerStateType status;
+
 	private ServerSocket serverSocket;
 	private boolean running;
 	private CacheStrategy cacheStrategy;
@@ -46,10 +47,9 @@ public class KVServer implements IKVServer {
 	private KVCache cache;
 	private Storage storage;
 	private HashRing hr;
+	private MetaData md;
 
 	private boolean lock;
-
-
 
 	public enum ServerStateType {
 		IDLE,                    /*server is idle*/
@@ -57,6 +57,7 @@ public class KVServer implements IKVServer {
 		SHUT_DOWN,    /*server is shut down*/
 		STOPPED           /*default server status; server is stopped*/
 	}
+
 	/**
 	 * Start KV Server at given port
 	 * @param port given port for storage server to operate
@@ -140,9 +141,36 @@ public class KVServer implements IKVServer {
 
 	}
 
+	@Override
+	public void lockWrite() {
+		logger.info(this.name + " Server status change to WRITE_LOCK");
+		this.status = ServerStatus.LOCK;
+	}
+
+	@Override
+	public void unlockWrite() {
+		logger.info(this.name + " Server Unlock Write");
+		this.status = ServerStatus.START;
+	}
+
 	public void process(WatchedEvent watchedEvent){
 
 	}
+
+	public MetaData getMetaData() {
+		return md;
+	}
+
+	public void update(MetaData metadata){
+
+	}
+
+	public ServerStateType getServerState(){
+		return status;
+	}
+
+
+
 	@Override
 	public int getPort(){
 		// TODO Auto-generated method stub
