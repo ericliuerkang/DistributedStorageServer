@@ -2,20 +2,73 @@ package testing;
 
 import cache.KVCache;
 import client.KVStore;
+import ecs.ECSNode;
+import ecs.HashRing;
 import junit.framework.TestCase;
 import org.apache.log4j.Level;
 import org.junit.Test;
 import shared.messages.KVMessage;
 
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
+
 public class AdditionalTest extends TestCase {
 
    private KVStore kvClient;
+   private HashRing<ECSNode> hashRing;
 
    public void setUp() {
       kvClient = new KVStore("localhost", 5000 );
       try {
          kvClient.connect();
       } catch(Exception e) { }}
+
+      @Test
+      public void testHashRingAdd(){
+         ECSNode a = new ECSNode("Server_1", "localhost", 1000);
+         ECSNode b = new ECSNode("Server_2", "localhost", 1000);
+         ECSNode c = new ECSNode("Server_3", "localhost", 1000);
+         HashRing hr = new HashRing();
+         try {
+            hr.addNode(a);
+            hr.addNode(b);
+            hr.addNode(c);
+            String[] aRange = a.getNodeHashRange();
+            String[] bRange = b.getNodeHashRange();
+            String[] cRange = c.getNodeHashRange();
+//            System.out.println(aRange[0]+aRange[1]+bRange[0]+bRange[1]+cRange[0]+cRange[1]);
+            assertEquals(new BigInteger(aRange[1]).add(new BigInteger("1")), new BigInteger(bRange[0]));
+
+         } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+         }
+      }
+
+   @Test
+   public void testHashRingRemove(){
+      ECSNode a = new ECSNode("Server_1", "localhost", 1000);
+      ECSNode b = new ECSNode("Server_2", "localhost", 1000);
+      ECSNode c = new ECSNode("Server_3", "localhost", 1000);
+      HashRing hr = new HashRing();
+      try {
+         hr.addNode(a);
+         hr.addNode(b);
+         hr.addNode(c);
+         String[] aRange = a.getNodeHashRange();
+         String[] bRange = b.getNodeHashRange();
+         String[] cRange = c.getNodeHashRange();
+         hr.removeNode(a);
+
+         bRange = b.getNodeHashRange();
+         cRange = c.getNodeHashRange();
+
+         assertEquals(new BigInteger(aRange[1]), new BigInteger(cRange[1]));
+
+
+      } catch (NoSuchAlgorithmException e) {
+         e.printStackTrace();
+      }
+   }
 
 
    @Test
