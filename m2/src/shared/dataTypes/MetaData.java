@@ -11,12 +11,14 @@ public class MetaData implements Serializable {
     private String name;
     private String host;
     private int port;
-    private String startHash;
-    private String endHash;
+    private BigInteger startHash;
+    private BigInteger endHash;
     private boolean writeLocked;
+    private int cacheSize;
+    private String cacheStrategy;
 
     public MetaData(String name, String host, int port,
-                    String startHash, String endHash) {
+                    BigInteger startHash, BigInteger endHash) {
         this.name = name;
         this.host = host;
         this.port = port;
@@ -45,6 +47,10 @@ public class MetaData implements Serializable {
         return endHash;
     }
 
+    public int getCacheSize(){return cacheSize;}
+
+    public String getCacheStrategy(){return cacheStrategy;}
+
     public boolean isWriteLocked() {
         return writeLocked;
     }
@@ -58,7 +64,7 @@ public class MetaData implements Serializable {
     }
 
     public void setNodeHashRange(BigInteger start, BigInteger end){
-        this.startHash = start.add(new BigInteger("1")).toString();
-        this.endHash = end.toString();
+        this.startHash = start.add(new BigInteger("1"));
+        this.endHash = end;
     }
 }

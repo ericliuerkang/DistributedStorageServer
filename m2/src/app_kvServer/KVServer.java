@@ -55,7 +55,8 @@ public class KVServer implements IKVServer {
 		IDLE,                    /*server is idle*/
 		STARTED,           /*server is started*/
 		SHUT_DOWN,    /*server is shut down*/
-		STOPPED           /*default server status; server is stopped*/
+		STOPPED,           /*default server status; server is stopped*/
+		LOCK
 	}
 
 	/**
@@ -131,26 +132,18 @@ public class KVServer implements IKVServer {
 			e.printStackTrace();
 		}
 
-		//Update HashRing
-		try{
-
-		}catch{
-
-		}
-
-
 	}
 
 	@Override
 	public void lockWrite() {
 		logger.info(this.name + " Server status change to WRITE_LOCK");
-		this.status = ServerStatus.LOCK;
+		this.status = ServerStateType.LOCK;
 	}
 
 	@Override
 	public void unlockWrite() {
 		logger.info(this.name + " Server Unlock Write");
-		this.status = ServerStatus.START;
+		this.status = ServerStateType.STARTED;
 	}
 
 	public void process(WatchedEvent watchedEvent){
