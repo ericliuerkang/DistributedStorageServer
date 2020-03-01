@@ -13,6 +13,8 @@ public class KVAdminMessage{
     }
     private Command command;
 
+    public KVAdminMessage(Command command){this.command = command;}
+
     public Command getCommand() {
         return command;
     }
