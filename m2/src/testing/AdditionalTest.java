@@ -7,6 +7,7 @@ import ecs.HashRing;
 import junit.framework.TestCase;
 import org.apache.log4j.Level;
 import org.junit.Test;
+import shared.messages.KVAdminMessage;
 import shared.messages.KVMessage;
 
 import java.math.BigInteger;
@@ -22,6 +23,15 @@ public class AdditionalTest extends TestCase {
       try {
          kvClient.connect();
       } catch(Exception e) { }}
+
+      @Test
+      public void testKVAdminMessage(){
+         KVAdminMessage msg = new KVAdminMessage(KVAdminMessage.Command.TRANSFER);
+         String encoded = msg.encodeMessage();
+         KVAdminMessage tmp = msg;
+         msg.decode(encoded);
+         assertSame(tmp, msg);
+      }
 
       @Test
       public void testHashRingAdd(){
