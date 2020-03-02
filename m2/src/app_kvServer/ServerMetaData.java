@@ -51,12 +51,9 @@ public class ServerMetaData {
         return new Gson().toJson(this);
     }
 
-    public void decode(String msg){
+    public ServerMetaData decode(String msg){
         ServerMetaData smd = new Gson().fromJson(msg, this.getClass());
-        this.host = smd.getHost();
-        this.cacheSize = smd.getCacheSize();
-        this.cacheStratgy = smd.getCacheStratgy();
-        this.receivingPort = smd.getReceivingPort();
+        return smd;
     }
 
 }

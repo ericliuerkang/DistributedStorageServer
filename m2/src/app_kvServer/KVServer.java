@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.net.*;
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -117,24 +118,20 @@ public class KVServer implements IKVServer {
 			e.printStackTrace();
 		}
 
-		//Initialize Server
 		try{
-			List<String> children = zk.getChildren(this.znode, this, null);
-			if (!children.isEmpty()) {
-				String msgNode = this.znode + "/" + children.get(0);
-				byte[] msgData = zk.getData(msgNode, false, null);
-				KVAdminMessage msg = new Gson().fromJson(new String(msgData), KVAdminMessage.class);
-				if (msg.getCommand().equals(KVAdminMessage.Command.INIT)) {
-					initKVServer(msg.getMetaData(), msg.getCacheSize(), msg.getStrategy());
-					zk.delete(msgNode, zk.exists(msgNode,false).getVersion());
-					logger.info("Server initialized");
-				}
+			if (zk.exists(zkPath, false) != null){
+				String msg = new String(zk.getData(zkPath, false, null));
+				ServerMetaData smd = new Gson().fromJson(msg, ServerMetaData.class);
+				this.cacheStrategy = stringToStrategy(smd.getCacheStratgy());
+				this.cacheSize = smd.getCacheSize();
+			}else{
+				logger.error("The znode for server does not exist.");
 			}
-		}catch{
-
+		} catch (InterruptedException | KeeperException e) {
+			e.printStackTrace();
+			this.cacheStrategy = CacheStrategy.FIFO;
+			this.cacheSize = 100;
 		}
-
-
 	}
 
 	@Override
@@ -150,15 +147,57 @@ public class KVServer implements IKVServer {
 	}
 
 	public void process(WatchedEvent watchedEvent){
+		List<String> children;
+		try{
+			children = zk.getChildren(zkPath, false, null);
+			// no more events to handle
+			if (children.isEmpty()) {
+				zk.getChildren(zkPath, (Watcher) this, null);
+				return;
+			}
+			String path = zkPath + "/" + children.get(0);
+			String msg = new String (zk.getData(path, false, null));
+			KVAdminMessage kvMsg = new Gson().fromJson(msg, KVAdminMessage.class);
+			switch(kvMsg.getCommand()){
+				case INIT:
+					logger.info("Initializeing Server");
+					break;
+				case START:
+					this.status = ServerStateType.STARTED;
+					logger.info("Server Started");
+					break;
+				case STOP:
+					this.status = ServerStateType.STOPPED;
+					zk.delete(path, zk.exists(path, false).getVersion());
+					logger.info("Server Stopped");
+					break;
+				case SHUT_DOWN:
+					clearCache();
+					try{
+						if (serverSocket != null){
+							serverSocket.close();
+						}
+						String alivepath = ZooKeeperString.ZK_ACTIVE_ROOT + "/" + this.name;
+						if (zk.exists(alivepath, false) != null){
+							zk.delete(alivepath, zk.exists(alivepath, false).getVersion());
+							zk.close();
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					logger.info("Server Shutdown");
+					break;
 
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (KeeperException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public MetaData getMetaData() {
 		return md;
-	}
-
-	public void update(MetaData metadata){
-
 	}
 
 	public ServerStateType getServerState(){
@@ -348,6 +387,25 @@ public class KVServer implements IKVServer {
 				return CacheStrategy.None;
 		}
 	}
+
+	public void moveData(String recevingAddress, int receivingPort) throws Exception {
+		lockWrite();
+		KVStore tempClient = new KVStore(recevingAddress, receivingPort);
+		String existingServerName = this.port +"_look_up_table.txt";
+		Map<String, LocationData> existingServerlocationDataHashMap = storage.loadLocationStorage(existingServerName);
+		for(Map.Entry<String, LocationData> entry : existingServerlocationDataHashMap.entrySet()) {
+			String key = entry.getKey();
+			String value = getKV(key);
+			BigInteger hashValue = hr.calculateHashValue(key);
+			if (hr.reassignNode(key).getNodePort() == receivingPort && hr.reassignNode(key).getNodeName() == recevingAddress){
+				tempClient.put(key, value);
+				storage.deleteValue(key);
+			}
+			tempClient.put(key, value);
+		}
+		unlockWrite();
+	}
+
 
 	public void addServer(String addedServerAddress, int addedServerPort, int existingServerPort) throws Exception{
 		String existingServerName = existingServerPort +"_look_up_table.txt";
